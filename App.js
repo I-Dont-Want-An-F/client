@@ -15,7 +15,7 @@ export default function App() {
             component={HomeScreen}
             options={({ navigation }) => ({
               header: () => (
-                <NavigationBar></NavigationBar>
+                <NavigationBar navigation={navigation} />
               )
             })}
           />
