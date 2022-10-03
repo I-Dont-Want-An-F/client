@@ -9,9 +9,9 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
       <NavigationContainer style={GlobalStyles.container}>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="HomeScreen">
           <Stack.Screen
-            name="Home"
+            name="HomeScreen"
             component={HomeScreen}
             options={({ navigation }) => ({
               header: () => (
