@@ -1,13 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
-import { globalStyles } from './stlyes/global';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { GlobalStyles } from './stlyes/Global';
+import HomeScreen from './screens/HomeScreen'
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={globalStyles.container}>
-      <Text>This is a code change!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer style={GlobalStyles.container}>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
