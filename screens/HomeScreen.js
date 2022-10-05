@@ -1,5 +1,5 @@
 import {React,  useState } from 'react';
-import {Text } from 'react-native';
+import { Text } from 'react-native';
 import { GlobalStyles } from '../stlyes/Global';
 
 
