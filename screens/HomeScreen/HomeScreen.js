@@ -5,6 +5,6 @@ import { GlobalStyles } from '../../stlyes/Global';
 
 export default function HomeScreen({ navigation }) {
     return (
-        <Text style={GlobalStyles.text} > This is the home screen </Text>
+        <Text style={GlobalStyles.text} > We Dont Want An F </Text>
     )
 }

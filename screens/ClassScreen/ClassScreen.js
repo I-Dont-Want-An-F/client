@@ -17,13 +17,13 @@ function ClassContainerElemenet (props) {
 
 
 
-export default function ClassScreen(navigation) {
+export default function ClassScreen({navigation}) {
     return (
       <View>
         <FlatList data={classList} renderItem={({ item })=> (  
-           <TouchableOpacity onPress={() => navigation.navigate('class', item)}>   
+           <TouchableOpacity onPress= {()=> navigation.navigate("Classes", item)}>   
                <Text> { item.name } </Text> 
-           </TouchableOpacity>                                           // This doesnt work and Idk how to add navigation to app.js
+           </TouchableOpacity>                                           
        )} />   
       </View>
     )
