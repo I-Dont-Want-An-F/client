@@ -14,12 +14,17 @@ export const GlobalStyles = StyleSheet.create({
       //margin: 20,
       fontSize: 20,
     },
+    text2: {
+      textAlign:"center",
+      //margin: 20,
+      fontSize: 15,
+    },
     header: {
       color:"red",  //we should choose a color theme for our app
       textAlign:"center",
       fontSize: 30,
       fontWeight: "bold",
-      margin: 20,
+      margin: 10,
     },
     list:{
       color:"gray",
@@ -28,10 +33,10 @@ export const GlobalStyles = StyleSheet.create({
       textAlign:"center",
     },
     input:{
-    height: 40,
-    margin: 5,
-    borderWidth: 1,
-    padding: 10,
+      height: 40,
+      margin: 5,
+      borderWidth: 1,
+      padding: 10,
     },
     box:{
       borderWidth: 1, 

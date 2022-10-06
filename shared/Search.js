@@ -4,9 +4,9 @@ import { GlobalStyles } from '../stlyes/Global';
 
 
 const classList = [
-    {name: "Cs 262", rating: "5", comment: "This class is amazing and the proff is the best. Please give us a good grade ", comment2:"I would take agian", key: 0},
-    {name: "Engr 220", rating: "2", comment: "engineers smell", comment2: "the labs were so boring", key: 1},
-    {name: "Cs 112", rating: "4", comment: "good", comment2: "The first lab was terrible", key: 2}];
+    {name: "Cs 262", rating: "4.8", hw: "weekly", dif: "3.2", comment: "This class is amazing and the proff is the best. Please give us a good grade ",comment2:"I would take again", book: "no", key: 0},
+    {name:"Cs 112", rating: "4.5", hw:"weekly",dif:"2.9", comment: "good",comment2: "the labs were so boring", book: "no", key: 1},
+    {name: "Engr 220", rating: "2.1",hw:"never", dif:"4.3", comment: "engineers smell", comment2: "The first lab was terrible", book:"idk", key: 2}, ];
     const listItems = classList.map((c) =>
       < ClassContainerElemenet key={c.key} c={c.name} />
     );
@@ -32,7 +32,7 @@ export default function Search ({ navigation }) {
                     navigation.navigate("Classes", a)
                 }
               })}
-            navigation.navigate(text) //can probaly throw error
+            
         }}  />
     </View>
     )
