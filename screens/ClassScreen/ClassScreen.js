@@ -1,10 +1,10 @@
 import {React,  useState } from 'react';
-import { Text, View, TextInput, Button } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { GlobalStyles } from '../../stlyes/Global';
 
 //super rough draft
 
-const classList = [{name: "cs 262", key: 0}, {name: "engr 220", key: 1},];
+const classList = [{name: "Cs 262", key: 0}, {name: "engr 220", key: 1},{name:"cs 112", key: 2}];
 const listItems = classList.map((c) =>
   < ClassContainerElemenet key={c.key} c={c.name} />
 );
@@ -15,10 +15,16 @@ function ClassContainerElemenet (props) {
   )
 }
 
-export default function ClassScreen() {
+
+
+export default function ClassScreen(navigation) {
     return (
       <View>
-        {listItems}
+        <FlatList data={classList} renderItem={({ item })=> (  
+           <TouchableOpacity onPress={() => navigation.navigate('class', item)}>   
+               <Text> { item.name } </Text> 
+           </TouchableOpacity>                                           // This doesnt work and Idk how to add navigation to app.js
+       )} />   
       </View>
     )
 }
