@@ -1,5 +1,6 @@
 import React from 'react';
 import {  View, Text, } from 'react-native'; 
+import { GlobalStyles } from '../../stlyes/Global';
 
 
  
@@ -7,9 +8,9 @@ import {  View, Text, } from 'react-native';
 export default function Classes ({ route, navigation }) {
     return (
       <View >
-          <Text >{ route.params.name }</Text>
-          {/* <Text>{ route.params.rating }</Text>
-          <Text>{ route.params.description }</Text> */}
+          <Text style= {GlobalStyles.header}>{ route.params.name } </Text>
+          <Text style={GlobalStyles.text}> {route.params.rating} out of 5</Text>
+        <Text style= {GlobalStyles.text}> Comments: {"\n"} {route.params.comment} </Text>
       </View>
     );
   }
