@@ -33,9 +33,20 @@ export const GlobalStyles = StyleSheet.create({
       textAlign:"center",
     },
     input:{
+      textAlign: "center",
+      alignSelf: "center",
+      width: 300,
       height: 40,
-      margin: 5,
       borderWidth: 1,
+      borderRadius: 5, 
+      padding: 10,
+    },
+    post:{
+      textAlign: "center",
+      alignSelf: "center",
+      width: 300,
+      borderWidth: 1,
+      borderRadius: 5, 
       padding: 10,
     },
     box:{
