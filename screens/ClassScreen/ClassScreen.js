@@ -13,8 +13,10 @@ const listItems = classList.map((c) =>
 );
 
 function ClassContainerElemenet (props) {
+  const [text, setText] = useState();
+  setText(props.c)
   return (
-    <Text> {props.c}</Text>
+    <Text> {text}</Text>
   )
 }
 

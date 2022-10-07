@@ -1,6 +1,6 @@
 //This js file creates a class that using an array? to generate the same page for each class 
 
-import React from 'react';
+import {React, useState} from 'react';
 import {  View, Text,TextInput } from 'react-native'; 
 import { GlobalStyles } from '../../stlyes/Global';
 
@@ -8,6 +8,8 @@ import { GlobalStyles } from '../../stlyes/Global';
 
 
 export default function Classes ({ route, navigation }) {
+  const [comments, setComments] = useState();
+  const [questions, setQuestions] = useState();
     return (
       <View>
         <Text style= {GlobalStyles.header}>{ route.params.name } </Text>
