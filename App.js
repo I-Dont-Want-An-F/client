@@ -17,10 +17,10 @@ export default function App() {
   return (
       <NavigationContainer style={GlobalStyles.container}>
           <Tab.Navigator initialRouteName='Home'>
-            <Tab.Screen name="HomeScreenStack" component={HomeScreenStack} options={{ headerShown: false }} />
-            <Tab.Screen name="ClassScreenStack"  component={ClassScreenStack} options={{ headerShown: false }} />
-            <Tab.Screen name="MessageScreenStack" component={MessageScreenStack} options={{ headerShown: false }} />
-            <Tab.Screen name="ProfileScreenStack" component={ProfileScreenStack} options={{ headerShown: false }} />
+            <Tab.Screen name="Home" component={HomeScreenStack} options={{ headerShown: false }} />
+            <Tab.Screen name="Classes"  component={ClassScreenStack} options={{ headerShown: false }} />
+            <Tab.Screen name="Messages" component={MessageScreenStack} options={{ headerShown: false }} />
+            <Tab.Screen name="Profiles" component={ProfileScreenStack} options={{ headerShown: false }} />
           </Tab.Navigator>
           
       </NavigationContainer>
