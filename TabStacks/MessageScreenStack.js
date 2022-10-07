@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 export default function MessageScreenStack () {
     return (
         <Stack.Navigator initialRouteName='Messages'>
-            <Stack.Screen name="Messages" component={MessageScreen} >
+            <Stack.Screen name="Messages" component={MessageScreen} options={{headerTitleAlign: 'left' }}  >
             </Stack.Screen>
         </Stack.Navigator>
     )
