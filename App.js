@@ -16,11 +16,11 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
       <NavigationContainer style={GlobalStyles.container}>
-          <Tab.Navigator initialRouteName='Home'>
-            <Tab.Screen name="Home" component={HomeScreenStack} options={{ headerShown: false }} />
-            <Tab.Screen name="Classes"  component={ClassScreenStack} options={{ headerShown: false }} />
-            <Tab.Screen name="Messages" component={MessageScreenStack} options={{ headerShown: false }} />
-            <Tab.Screen name="Profiles" component={ProfileScreenStack} options={{ headerShown: false }} />
+          <Tab.Navigator initialRouteName='Home' screenOptions={{ tabBarShowLabel: false }} >
+            <Tab.Screen name="HomeScreen" component={HomeScreenStack} options={{ headerShown: false }} />
+            <Tab.Screen name="ClassesScreen"  component={ClassScreenStack} options={{ headerShown: false }} />
+            <Tab.Screen name="MessagesScreen" component={MessageScreenStack} options={{ headerShown: false }} />
+            <Tab.Screen name="ProfilesScreen" component={ProfileScreenStack} options={{ headerShown: false }} />
           </Tab.Navigator>
           
       </NavigationContainer>
