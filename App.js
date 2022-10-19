@@ -1,28 +1,32 @@
+import { React } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { GlobalStyles } from './stlyes/Global';
-import HomeScreenStack from './TabStacks/HomeScreenStack';
-import ClassScreenStack from './TabStacks/ClassScreenStack';
-import MessageScreenStack from './TabStacks/MessageScreenStack';
-import ProfileScreenStack from './TabStacks/ProfileScreenStack';
-import ClassScreen from './screens/ClassScreen/ClassScreen';
+import HomeScreen from './screens/HomeScreen';
+import SearchScreen from './screens/SearchScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import { Button } from 'react-native';
 
- 
+
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
- 
+
 
 export default function App() {
   return (
-      <NavigationContainer style={GlobalStyles.container}>
-          <Tab.Navigator initialRouteName='Home' screenOptions={{ tabBarShowLabel: false }} >
-            <Tab.Screen name="HomeScreen" component={HomeScreenStack} options={{ headerShown: false }} />
-            <Tab.Screen name="ClassesScreen"  component={ClassScreenStack} options={{ headerShown: false }} />
-            <Tab.Screen name="MessagesScreen" component={MessageScreenStack} options={{ headerShown: false }} />
-            <Tab.Screen name="ProfilesScreen" component={ProfileScreenStack} options={{ headerShown: false }} />
-          </Tab.Navigator>
-          
+      <NavigationContainer>
+          <Stack.Navigator initialRouteName='Home' screenOptions={{headerTitleAlign: 'center' }} >
+              <Stack.Screen name='Home' component={HomeScreen}   
+                            options={({ navigation }) => ({
+                                      headerRight: () => (
+                                          <Button title="Search" onPress={ () => (navigation.navigate('Search'))} />
+                                          ),
+                                      headerLeft: () => (
+                                        <Button title="👤" onPress={ () => (navigation.navigate('Profile'))} />
+                                      )
+                                          
+                                          })} />
+              <Stack.Screen name='Search' component={SearchScreen}/> 
+              <Stack.Screen name='Profile' component={ProfileScreen}/> 
+          </Stack.Navigator>
       </NavigationContainer>
   );
 }
