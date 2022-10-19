@@ -10,16 +10,35 @@ export default function Post (props, { navigation }) {
      *  ** maybe add a type prop as well? ** 
      */
     return (
-        <View style={PostContainerStyles}>
-            <Text>{props.title}</Text>
-            <Text>{props.text}</Text>
+        <View style={PostContainerStyles.container}>
+            <Text style={PostContainerStyles.title} >{props.title}</Text>
+            <Text style={PostContainerStyles.text} >{props.text}</Text>
         </View>
     );
 }
 
 const PostContainerStyles = StyleSheet.create({
-    backgroundColor: 'white',
-    color: 'blue',
-    font: 'ariel',
-    borderRadius: 10,
+        container: {
+            backgroundColor: 'white',
+            color: 'blue',
+            font: 'ariel',
+            borderRadius: 20,
+            margin: 10,
+        },
+        title: {
+            justifyContent: 'center',
+            textAlign: 'center',
+            fontSize: 20,
+            marginTop: 10,
+            marginBottom: 5,
+
+        },
+        text: {
+            textAlign: "start",
+            marginBottom: 15,
+            margin: 10,
+            fontSize: 20,
+            color: "blue",
+        }
+
 });
