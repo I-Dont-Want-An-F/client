@@ -21,7 +21,6 @@ const PostContainerStyles = StyleSheet.create({
         container: {
             backgroundColor: 'white',
             color: 'blue',
-            font: 'ariel',
             borderRadius: 20,
             margin: 10,
         },
@@ -34,7 +33,7 @@ const PostContainerStyles = StyleSheet.create({
 
         },
         text: {
-            textAlign: "start",
+            textAlign: "left",
             marginBottom: 15,
             margin: 10,
             fontSize: 20,
