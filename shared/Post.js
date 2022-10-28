@@ -9,7 +9,7 @@ export default function Post (props, { navigation }) {
      */
     return (
         <View style={PostContainerStyles.container}>
-            <Image source={{uri:'https://calvin.edu/dotAsset/0d95e9c5-c5ef-4870-8caf-c0afbfa40dcd.jpg'}} style={PostContainerStyles.imageWrapper}></Image>
+            {/* <Image source={{uri:'https://calvin.edu/dotAsset/0d95e9c5-c5ef-4870-8caf-c0afbfa40dcd.jpg'}} style={PostContainerStyles.imageWrapper}></Image> */}
             <Text style={PostContainerStyles.title} >{props.title}</Text>
             <Text style={PostContainerStyles.text} >{props.text}</Text>
         </View>
