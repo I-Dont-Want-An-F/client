@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import DetailScreen from './screens/DetailScreen';
 import { Button } from 'react-native';
 
 
@@ -23,10 +24,18 @@ export default function App() {
                                       headerLeft: () => (
                                         <Button title="👤" onPress={ () => (navigation.navigate('Profile'))} />
                                       )
-                                          
                                           })} />
-              <Stack.Screen name='Search' component={SearchScreen}/> 
-              <Stack.Screen name='Profile' component={ProfileScreen}/> 
+                <Stack.Screen name='Details' component={DetailScreen}
+                            options={({ navigation }) => ({
+                                    headerRight: () => (
+                                        <Button title="Search" onPress={ () => (navigation.navigate('Search'))} />
+                                        ),
+                                    headerLeft: () => (
+                                        <Button title="👤" onPress={ () => (navigation.navigate('Profile'))} />
+                                      )
+                                            })}/>
+                <Stack.Screen name='Search' component={SearchScreen}/> 
+                <Stack.Screen name='Profile' component={ProfileScreen}/> 
           </Stack.Navigator>
       </NavigationContainer>
   );
