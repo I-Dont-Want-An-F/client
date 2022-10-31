@@ -25,15 +25,7 @@ export default function App() {
                                         <Button title="👤" onPress={ () => (navigation.navigate('Profile'))} />
                                       )
                                           })} />
-                <Stack.Screen name='Details' component={DetailScreen}
-                            options={({ navigation }) => ({
-                                    headerRight: () => (
-                                        <Button title="Search" onPress={ () => (navigation.navigate('Search'))} />
-                                        ),
-                                    headerLeft: () => (
-                                        <Button title="👤" onPress={ () => (navigation.navigate('Profile'))} />
-                                      )
-                                            })}/>
+                <Stack.Screen name='Details' component={DetailScreen}/>
                 <Stack.Screen name='Search' component={SearchScreen}/> 
                 <Stack.Screen name='Profile' component={ProfileScreen}/> 
           </Stack.Navigator>
