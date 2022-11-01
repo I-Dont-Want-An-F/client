@@ -23,8 +23,8 @@ export default function App() {
                                           //I changed to #FDDA0D but not sure how it will look on android vs apple
                                           ),
                                       headerLeft: () => (
-                                        <Button color='#FDDA0D' title="👤" onPress={ () => (navigation.navigate('Profile'))} />
-                                      )
+                                          <Button color='#FDDA0D' title="👤" onPress={ () => (navigation.navigate('Profile'))} />
+                                          )
                                           })} />
                 <Stack.Screen name='Details' component={DetailScreen}/>
                 <Stack.Screen name='Search' component={SearchScreen}/> 
