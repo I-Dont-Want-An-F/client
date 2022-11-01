@@ -30,7 +30,7 @@ export const GlobalStyles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#FFC000',
+        color: '#D22B2B',
         backgroundColor: 'white',
         borderRadius: 20,
         margin: 10,
