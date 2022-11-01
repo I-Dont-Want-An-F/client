@@ -16,13 +16,14 @@ export default function App() {
   return (
       <NavigationContainer>
           <Stack.Navigator initialRouteName='Home' screenOptions={{headerTitleAlign: 'center' }} >
-              <Stack.Screen name='Home' component={HomeScreen}   
+              <Stack.Screen  name='Home' component={HomeScreen}   
                             options={({ navigation }) => ({
                                       headerRight: () => (
-                                          <Button title="Search" onPress={ () => (navigation.navigate('Search'))} />
+                                          <Button color='#FDDA0D' title='search'onPress={ () => (navigation.navigate('Search'))} /> 
+                                          //I changed to #FDDA0D but not sure how it will look on android vs apple
                                           ),
                                       headerLeft: () => (
-                                          <Button title="👤" onPress={ () => (navigation.navigate('Profile'))} />
+                                          <Button color='#FDDA0D' title="👤" onPress={ () => (navigation.navigate('Profile'))} />
                                           )
                                           })} />
                 <Stack.Screen name='Details' component={DetailScreen}/>

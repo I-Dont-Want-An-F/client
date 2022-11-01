@@ -5,6 +5,7 @@ import { View, Text, FlatList, TouchableOpacity,Image } from 'react-native';
 import {GlobalStyles} from '../shared/GlobalStyles';
 
 
+
 export default function ProfileScreen ({ navigation }){
     //classes user is taken 
     const classList = [
@@ -72,28 +73,31 @@ export default function ProfileScreen ({ navigation }){
       }
     return (
         <View>
+          
         <Image
                     source={require('../assets/Profile_Pic.webp' )}
                     style={GlobalStyles.UserPic}
                     />
+        <Text style={GlobalStyles.titleBig}> John Doe</Text>
+        <Text style={GlobalStyles.titleSmall}>   JD12@calvin.edu</Text>
 
-        <Text style={GlobalStyles.title}> John Doe</Text>
-        <Text style={GlobalStyles.email}>   JD12@calvin.edu</Text>
-        <Text style={GlobalStyles.text}> Classes currently taking</Text> 
-
+        <View style={GlobalStyles.background}>
+        <Text style={GlobalStyles.textBig}> Classes currently taking</Text>        
         <FlatList data={classList} renderItem={({ item })=> (  
              <TouchableOpacity onPress= {() => navigation.navigate("Details", item)}> 
-                 <Text style={GlobalStyles.text2}> {item.number} </Text>
+                 <Text style={GlobalStyles.textMed}> {item.number} </Text>
               </TouchableOpacity>                                           
          )} />   
+</View>
 
-        <Text style={GlobalStyles.text}> Completed Classes</Text> 
-
+        <View style={GlobalStyles.background}> 
+        <Text style={GlobalStyles.textBig}> Completed Classes</Text> 
         <FlatList data={classList2} renderItem={({ item })=> (  
              <TouchableOpacity onPress= {() => navigation.navigate("Details", item)}> 
-                 <Text style={GlobalStyles.text2}> {item.number} </Text>
+                 <Text style={GlobalStyles.textMed}> {item.number} </Text>
               </TouchableOpacity>  
           )}/>
+          </View>
         </View>
     )
 }

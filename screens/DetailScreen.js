@@ -2,16 +2,19 @@ import { TabRouter } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import {GlobalStyles} from '../shared/GlobalStyles';
 
 export default function DetailsScreen({ route, navigation }) {
     return (
         <View style={{ flex: 1, padding: 20}}>
-            <Text style = {Styles.header}> { route.params.number + ' - ' + route.params.name }</Text>
-            <Text style = {Styles.sub_header}>{ 'Professor: ' + route.params.prof }</Text>
-            <Text style = {Styles.text}>{ 'General rating: ' + route.params.rating}</Text>
-            <Text style = {Styles.text}>{ 'Homework frequency: ' + route.params.hw}</Text>
-            <Text style = {Styles.text}>{ 'Difficulty: ' + route.params.dif}</Text>
-            <Text style = {Styles.text}>{ 'Book requirement: ' + route.params.book}</Text>
+            <Text style = {GlobalStyles.titleBig}> { route.params.number + ' - ' + route.params.name }</Text>
+            <Text style = {GlobalStyles.titleSmall}>{ 'Professor: ' + route.params.prof }</Text>
+            <View style ={GlobalStyles.background}>
+            <Text style = {GlobalStyles.textSmall}>{ 'General rating: ' + route.params.rating}</Text>
+            <Text style = {GlobalStyles.textSmall}>{ 'Homework frequency: ' + route.params.hw}</Text>
+            <Text style = {GlobalStyles.textSmall}>{ 'Difficulty: ' + route.params.dif}</Text>
+            <Text style = {GlobalStyles.textSmall}>{ 'Book requirement: ' + route.params.book}</Text>
+            </View>
             <Text style = {Styles.post}>{ route.params.post1 }</Text>
             <Text style = {Styles.post}>{ route.params.post2 }</Text>
             <Text style = {Styles.post}>{ route.params.post3 }</Text>
