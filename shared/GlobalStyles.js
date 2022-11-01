@@ -5,37 +5,58 @@ export const GlobalStyles = StyleSheet.create({
         flex: 1,
         padding: 20,
     },
-    title: {
+    titleBig: {
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#0047AB',
+        color: '#880808',
+       
 
     },
-    email: {
+    titleSmall: {
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#0047AB',
+        color: '#D22B2B',
 
     },
-    text:{
+    textBig:{
         fontSize: 25,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#6495ED',
+        color: '#880808',
     },
-    text2:{
+    textMed:{
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#7393B3',
+        color: '#FFC000',
+        backgroundColor: 'white',
+        borderRadius: 20,
+        margin: 10,
+    },
+    textSmall:{
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign:"left",
+        marginTop: 5,
+        marginBottom: 5,
+        fontSize: 15,
+        color: '#880808',
+        margin: 10,
     },
     UserPic: {
         marginTop: 10,
         borderRadius: 50,
+        borderWidth: 4,
+        borderColor: '#FDDA0D',
         width: 100, 
         height: 100,
         alignSelf: 'center',
+    },
+    background: {
+        backgroundColor: '#D0D0D0',
+        borderRadius: 20,
+        margin: 10,
     }
 });
