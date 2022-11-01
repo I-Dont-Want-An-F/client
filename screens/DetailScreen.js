@@ -1,6 +1,7 @@
 import { TabRouter } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 
 export default function DetailsScreen({ route, navigation }) {
     return (
@@ -12,6 +13,9 @@ export default function DetailsScreen({ route, navigation }) {
             <Text style = {Styles.text}>{ 'Difficulty: ' + route.params.dif}</Text>
             <Text style = {Styles.text}>{ 'Book requirement: ' + route.params.book}</Text>
             <Text style = {Styles.post}>{ route.params.post1 }</Text>
+            <Text style = {Styles.post}>{ route.params.post2 }</Text>
+            <Text style = {Styles.post}>{ route.params.post3 }</Text>
+            <TextInput style = {Styles.post} placeholder = "post a comment">{}</TextInput>
         </View>
     );
 }
