@@ -89,4 +89,9 @@ export const GlobalStyles = StyleSheet.create({
         marginTop: 15,
         padding: 10,
    },
+   button: {
+    backgroundColor: "blue",
+    padding: 20,
+    borderRadius: 5,
+   }
 });

@@ -20,6 +20,7 @@ export default function HomeScreen ({ navigation }){
 
     {number: "CS 108", name: "Intro to Computing", key: 1,
     prof: "Keith VanderLinden",
+    prof2: "Derek Schuurman",
     rating: "4.8", hw: "weekly", dif: "3.0", book: "Online resource",
     user1: "python_new:",
     user2: "python_easy:",

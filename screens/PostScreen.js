@@ -1,4 +1,4 @@
-//created by dylan, creates a new page off of main that opens up a comment thread
+//created by dylan, creates a new page off of details that opens up a comment thread
 import { React, useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, TextInput } from 'react-native';
 

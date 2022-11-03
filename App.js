@@ -9,8 +9,11 @@ import DetailScreen from './screens/DetailScreen';
 import SignInScreen from './screens/SignInScreen';
 import PostScreen from './screens/PostScreen';
 import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
+import VanderScreen from './screens/VaderScreen';
+import SchuuScreen from './screens/SchuuScreen';
 import { Button, StyleSheet, Text  } from 'react-native';
 import { ScreenStack } from 'react-native-screens';
+ 
 
 const styles = StyleSheet.create({
   root: {
@@ -25,7 +28,8 @@ export default function App() {
   return (
       <NavigationContainer>
  
-          <Stack.Navigator initialRouteName='Sign In Screen' screenOptions={{headerTitleAlign: 'center' }} >
+          <Stack.Navigator initialRouteName='Sign In Screen' 
+          screenOptions={{headerTitleAlign: 'center' }} >
               <Stack.Screen name='Sign In' component={SignInScreen}/>
               <Stack.Screen name='Sign Up' component={SignUpScreen}/>
               <Stack.Screen name='Home' component={HomeScreen}   
@@ -38,8 +42,10 @@ export default function App() {
                                           <Button color='#FDDA0D' title="👤" onPress={ () => (navigation.navigate('Profile'))} />
                                           )
                                           })} />
-                <Stack.Screen name='Post' component={PostScreen}/>                          
+                <Stack.Screen name='Post' component={PostScreen}/>                         
                 <Stack.Screen name='Details' component={DetailScreen}/>
+                <Stack.Screen name='Proffesor' component={VanderScreen}/>                      
+                <Stack.Screen name='Proffesor2' component={SchuuScreen}/>
                 <Stack.Screen name='Search' component={SearchScreen}/> 
                 <Stack.Screen name='Profile' component={ProfileScreen}/> 
           </Stack.Navigator>
