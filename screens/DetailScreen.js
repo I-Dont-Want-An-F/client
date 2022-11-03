@@ -5,64 +5,64 @@ import { TextInput } from 'react-native-gesture-handler';
 import {GlobalStyles} from '../shared/GlobalStyles';
 
 export default function DetailsScreen({ route, navigation }) {
+
+const comments =[
+  {
+   post: route.params.post1,
+   reply: route.params.post2,
+   reply2: route.params.post3,
+  },
+  {
+    post: route.params.post4,
+  },
+]
     return (
         <View style={{ flex: 1, padding: 20}}>
             <Text style = {GlobalStyles.titleBig}> { route.params.number + ' - ' + route.params.name }</Text>
             <Text style = {GlobalStyles.titleSmall}>{ 'Professor: ' + route.params.prof }</Text>
-            <View style ={GlobalStyles.background}>
+            <View style = {GlobalStyles.background}>
             <Text style = {GlobalStyles.textSmall}>{ 'General rating: ' + route.params.rating}</Text>
             <Text style = {GlobalStyles.textSmall}>{ 'Homework frequency: ' + route.params.hw}</Text>
             <Text style = {GlobalStyles.textSmall}>{ 'Difficulty: ' + route.params.dif}</Text>
             <Text style = {GlobalStyles.textSmall}>{ 'Book requirement: ' + route.params.book}</Text>
             </View>
-            <Text style = {Styles.post}>{ route.params.post1 }</Text>
-            <Text style = {Styles.post}>{ route.params.post2 }</Text>
-            <Text style = {Styles.post}>{ route.params.post3 }</Text>
-            <TextInput style = {Styles.post} placeholder = "post a comment">{}</TextInput>
+
+            <View style={Styles.container}>
+                <Button  color={'#880808'} title="rate"    />  
+                <Button color={'#880808'} title="comments"/>
+                <Button color={'#880808'} title="Questions"/>  
+                <Button color={'#880808'} title="both"/>
+            </View>
+
+            <Text style = {GlobalStyles.titleSmall}> Showing all posts: </Text>
+
+            
+            <FlatList data={comments} renderItem={({ item })=> (  
+              <View style={GlobalStyles.background2}>
+             <TouchableOpacity onPress= {() => navigation.navigate("Post", item)}> 
+               <Text style={GlobalStyles.textSmall}> {item.post}</Text>
+              </TouchableOpacity>   
+              </View>
+            )}/>
+            
+
+            <TextInput style = {Styles.post} placeholder = "post a reply">{}</TextInput>
+
+
+            
         </View>
-    );
-}
+    )
+    }
+
 
 export const Styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
+      //flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-around',
       alignItems: 'center',
       justifyContent: 'center',
-    },
-    header: {
-        textAlign:"center",
-        fontSize: 20,
-        fontWeight: "bold",
-        margin: 10,
-    },
-    sub_header: {
-      textAlign:"center",
-      fontWeight: "bold",
-      marginTop: 5,
-      marginBottom: 5,
-      fontSize: 15,
-    },
-    text: {
-        textAlign:"left",
-        marginTop: 10,
-        marginBottom: 5,
-        fontSize: 15,
-      },
-    list:{
-      color:"gray",
-      fontSize: 30,
-      fontWeight: "bold",
-      textAlign:"center",
-    },
-    input:{
-      textAlign: "center",
-      alignSelf: "center",
-      width: 300,
-      height: 40,
-      borderWidth: 1,
-      borderRadius: 5, 
-      padding: 10,
+      margin : 5,
     },
     post:{
       textAlign: "center",
@@ -78,5 +78,6 @@ export const Styles = StyleSheet.create({
       margin: 5,
       padding: 5,
       fontSize: 15 
-    }
+    },
+     
   });

@@ -7,6 +7,7 @@ import SearchScreen from './screens/SearchScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import DetailScreen from './screens/DetailScreen';
 import SignInScreen from './screens/SignInScreen';
+import PostScreen from './screens/PostScreen';
 import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
 import { Button, StyleSheet, Text  } from 'react-native';
 import { ScreenStack } from 'react-native-screens';
@@ -37,6 +38,7 @@ export default function App() {
                                           <Button color='#FDDA0D' title="👤" onPress={ () => (navigation.navigate('Profile'))} />
                                           )
                                           })} />
+                <Stack.Screen name='Post' component={PostScreen}/>                          
                 <Stack.Screen name='Details' component={DetailScreen}/>
                 <Stack.Screen name='Search' component={SearchScreen}/> 
                 <Stack.Screen name='Profile' component={ProfileScreen}/> 

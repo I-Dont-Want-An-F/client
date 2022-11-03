@@ -35,6 +35,12 @@ export const GlobalStyles = StyleSheet.create({
         borderRadius: 20,
         margin: 10,
     },
+    textMed2:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'left',
+        color: '#880808',
+    },
     textSmall:{
         fontSize: 15,
         fontWeight: 'bold',
@@ -43,6 +49,16 @@ export const GlobalStyles = StyleSheet.create({
         marginBottom: 5,
         fontSize: 15,
         color: '#880808',
+        margin: 10,
+    },
+    textSmall2:{ //same as small but with the bright red
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign:"left",
+        marginTop: 5,
+        marginBottom: 5,
+        fontSize: 15,
+        color: '#D22B2B',
         margin: 10,
     },
     UserPic: {
@@ -58,5 +74,19 @@ export const GlobalStyles = StyleSheet.create({
         backgroundColor: '#D0D0D0',
         borderRadius: 20,
         margin: 10,
-    }
+    },
+    background2: {
+        backgroundColor: '#D0D0D0',
+        borderRadius: 15,
+        margin: 5,
+    },
+   textIn:{ //used for text input
+        textAlign: "center",
+        alignSelf: "center",
+        width: 350,
+        borderWidth: 1,
+        borderRadius: 5, 
+        marginTop: 15,
+        padding: 10,
+   },
 });
