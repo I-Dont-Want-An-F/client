@@ -8,11 +8,15 @@ export default function DetailsScreen({ route, navigation }) {
 
 const comments =[
   {
+   user1: route.params.user1,
+   user2: route.params.user2,
+   user3: route.params.user3,
    post: route.params.post1,
    reply: route.params.post2,
    reply2: route.params.post3,
   },
-  {
+  { 
+    User1: route.params.user1,
     post: route.params.post4,
   },
 ]
@@ -40,7 +44,7 @@ const comments =[
             <FlatList data={comments} renderItem={({ item })=> (  
               <View style={GlobalStyles.background2}>
              <TouchableOpacity onPress= {() => navigation.navigate("Post", item)}> 
-               <Text style={GlobalStyles.textSmall}> {item.post}</Text>
+               <Text style={GlobalStyles.textSmall}> {item.user1} {item.post}</Text>
               </TouchableOpacity>   
               </View>
             )}/>
