@@ -11,8 +11,10 @@ import PostScreen from './screens/PostScreen';
 import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
 import VanderScreen from './screens/VaderScreen';
 import SchuuScreen from './screens/SchuuScreen';
+import RateScreen from './screens/RateScreen';
 import { Button, StyleSheet, Text  } from 'react-native';
 import { ScreenStack } from 'react-native-screens';
+ 
  
 
 const styles = StyleSheet.create({
@@ -47,6 +49,7 @@ export default function App() {
                 <Stack.Screen name='Proffesor' component={VanderScreen}/>                      
                 <Stack.Screen name='Proffesor2' component={SchuuScreen}/>
                 <Stack.Screen name='Search' component={SearchScreen}/> 
+                <Stack.Screen name ='Rate'  component={RateScreen}/>
                 <Stack.Screen name='Profile' component={ProfileScreen}/> 
           </Stack.Navigator>
       </NavigationContainer>

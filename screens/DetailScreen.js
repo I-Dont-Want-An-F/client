@@ -38,9 +38,9 @@ if(route.params.prof2==null){ // if there is 1 proff
             </View>
 
             <View style={Styles.container}>
-                <Button  color={'#880808'} title="rate"    />  
+               <Button  color={'#880808'} title="rate" onPress={ () => (navigation.navigate('Rate'))}   />  
                <View style={Styles.space2} />   
-                <Button color={'#880808'} title="comments"/>
+               <Button color={'#880808'} title="comments"/>
                <View style={Styles.space2} />   
                <Button color={'#880808'} title="Questions"/>  
                <View style={Styles.space2} />   
@@ -87,7 +87,7 @@ if(route.params.prof2==null){ // if there is 1 proff
         </View>
 
         <View style={Styles.container}>
-            <Button  color={'#880808'} title="rate"    />  
+            <Button  color={'#880808'} title="rate" onPress={ () => (navigation.navigate('Rate'))}   />  
             <View style={Styles.space2} />   
             <Button color={'#880808'} title="comments"/>
             <View style={Styles.space2} />   

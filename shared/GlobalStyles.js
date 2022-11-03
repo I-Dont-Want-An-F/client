@@ -89,8 +89,20 @@ export const GlobalStyles = StyleSheet.create({
         marginTop: 15,
         padding: 10,
    },
+   textIn2:{ //used for text input in the rate screen 
+    textAlign: "center",
+    alignSelf: "center",
+    width: 300,
+    height: 40,
+    color: '#D22B2B',
+    borderWidth: 2,
+    borderRadius: 10, 
+    marginTop: 15,
+    padding: 10,
+},
    button: {
-    backgroundColor: "blue",
+    backgroundColor: "#880808",
+    width: 20,
     padding: 20,
     borderRadius: 5,
    }

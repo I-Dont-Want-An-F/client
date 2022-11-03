@@ -6,15 +6,32 @@ import {GlobalStyles} from '../shared/GlobalStyles';
      
 
 export default function VanderScreen ({ route, navigation }) {
+    const comments =[ //used to create the postscreen inside of vaderscreen
+    {
+     user1: 'def22',
+     user2: 'abc34',
+     user3: 'def122',
+     post:  "I really liked VanderLinden's teaching style",
+     reply:  "Were his lectures boring",
+     reply2:  "no, he is really funny",
+    },
+    { 
+      user1: 'add124',
+      post: 'Best proffesor and his office hours are really helpful',
+    },
+  ]
+
+
+    
     return (
         <View style={{ flex: 1, padding: 20}}>
-        <Text style = {GlobalStyles.titleBig}>  class </Text>
-        <Text style = {GlobalStyles.titleSmall}>proff</Text>
+        <Text style = {GlobalStyles.titleBig}>  CS 108- Intro to Computing </Text>
+        <Text style = {GlobalStyles.titleSmall}> Keith VanderLinden</Text>
         <View style = {GlobalStyles.background}>
-        <Text style = {GlobalStyles.textSmall}>rating</Text>
-        <Text style = {GlobalStyles.textSmall}>homework</Text>
-        <Text style = {GlobalStyles.textSmall}>diff</Text>
-        <Text style = {GlobalStyles.textSmall}>book</Text>
+        <Text style = {GlobalStyles.textSmall}>Rating: 5</Text>
+        <Text style = {GlobalStyles.textSmall}>Homework: weekly</Text>
+        <Text style = {GlobalStyles.textSmall}>Difficulity: medium</Text>
+        <Text style = {GlobalStyles.textSmall}>TextBook: none</Text>
         </View>
 
         <View style={Styles.container}>
@@ -30,13 +47,13 @@ export default function VanderScreen ({ route, navigation }) {
         <Text style = {GlobalStyles.titleSmall}> Showing all posts: </Text>
 
         
-        {/* <FlatList data={comments} renderItem={({ item })=> (  
+        <FlatList data={comments} renderItem={({ item })=> (  
           <View style={GlobalStyles.background2}>
          <TouchableOpacity onPress= {() => navigation.navigate("Post", item)}> 
            <Text style={GlobalStyles.textSmall}> {item.user1} {item.post}</Text>
           </TouchableOpacity>   
           </View>
-        )}/> */}
+        )}/>
         
 
         <TextInput style = {Styles.post} placeholder = "post a reply">{}</TextInput>
