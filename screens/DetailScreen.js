@@ -1,12 +1,13 @@
 import { TabRouter } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import {GlobalStyles} from '../shared/GlobalStyles';
 
 export default function DetailsScreen({ route, navigation }) {
+  const [comments, setComments] = useState([route.params.post1,route.params.post2,route.params.post3 ]);
     return (
-        <View style={{ flex: 1, padding: 20}}>
+        <KeyboardAvoidingView style={{ flex: 1, padding: 20}}>
             <Text style = {GlobalStyles.titleBig}> { route.params.number + ' - ' + route.params.name }</Text>
             <Text style = {GlobalStyles.titleSmall}>{ 'Professor: ' + route.params.prof }</Text>
             <View style ={GlobalStyles.background}>
@@ -15,11 +16,11 @@ export default function DetailsScreen({ route, navigation }) {
             <Text style = {GlobalStyles.textSmall}>{ 'Difficulty: ' + route.params.dif}</Text>
             <Text style = {GlobalStyles.textSmall}>{ 'Book requirement: ' + route.params.book}</Text>
             </View>
-            <Text style = {Styles.post}>{ route.params.post1 }</Text>
-            <Text style = {Styles.post}>{ route.params.post2 }</Text>
-            <Text style = {Styles.post}>{ route.params.post3 }</Text>
-            <TextInput style = {Styles.post} placeholder = "post a comment">{}</TextInput>
-        </View>
+            <FlatList data={comments} renderItem={({ item })=> (  
+               <Text style = {Styles.post}>{item}</Text> 
+              )} />  
+            <TextInput style = {Styles.post} placeholder = "post a comment" onSubmitEditing={(event) => {setComments([...comments, event.nativeEvent.text])}} >{}</TextInput>
+        </KeyboardAvoidingView>
     );
 }
 
