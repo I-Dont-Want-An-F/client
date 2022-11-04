@@ -37,7 +37,7 @@ export default function HomeScreen ({ navigation }){
     user1: "freshman 26':",
     user2: "sophomore 25':",
     user3: "junior 24':",
-    post1: "freshman 26': How could the dif only be 2.8? It's so hard!",
+    post1: "How could the dif only be 2.8? It's so hard!",
     post2: "Try go to help session on Wednesday night.",
     post3: "Or contact a tutor if you need further help.",
     post4: "How do you study for a math final"
