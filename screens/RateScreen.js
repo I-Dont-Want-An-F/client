@@ -21,7 +21,7 @@ export default function RateScreen({ route, navigation }) {
       <Text style = {GlobalStyles.textSmall}>  </Text>
 
        
-        <Button  color={'#880808'} title="home" onPress={ () => (navigation.navigate(''))}   />  
+        <Button  color={'#880808'} title="home" onPress={ () => (navigation.navigate('Home'))}   />  
     </View>
     )
 }
