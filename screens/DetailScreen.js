@@ -73,9 +73,9 @@ if(route.params.prof2==null){ // if there is 1 proff
         <Text style = {GlobalStyles.titleSmall}>{ 'Professors: ' + route.params.prof + ' and ' +route.params.prof2}</Text>
          
         <View style={Styles.container}>
-            <Button  color={'#880808'} title={route.params.prof} onPress={ () => (navigation.navigate('Proffesor'))}/>
+            <Button  color={'#880808'} title={route.params.prof} onPress={ () => (navigation.navigate('Professor'))}/>
             <View style={Styles.space2} />   
-            <Button color={'#880808'} title={route.params.prof2} onPress={ () => (navigation.navigate('Proffesor2'))}/>
+            <Button color={'#880808'} title={route.params.prof2} onPress={ () => (navigation.navigate('Professor2'))}/>
         </View>
 
 

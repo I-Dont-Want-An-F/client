@@ -46,8 +46,8 @@ export default function App() {
                                           })} />
                 <Stack.Screen name='Post' component={PostScreen}/>                         
                 <Stack.Screen name='Details' component={DetailScreen}/>
-                <Stack.Screen name='Proffesor' component={VanderScreen}/>                      
-                <Stack.Screen name='Proffesor2' component={SchuuScreen}/>
+                <Stack.Screen name='Professor' component={VanderScreen}/>                      
+                <Stack.Screen name='Professor2' component={SchuuScreen}/>
                 <Stack.Screen name='Search' component={SearchScreen}/> 
                 <Stack.Screen name ='Rate'  component={RateScreen}/>
                 <Stack.Screen name='Profile' component={ProfileScreen}/> 
