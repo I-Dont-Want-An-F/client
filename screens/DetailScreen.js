@@ -1,6 +1,6 @@
 import { TabRouter } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import {GlobalStyles} from '../shared/GlobalStyles';
 
@@ -8,7 +8,7 @@ import {GlobalStyles} from '../shared/GlobalStyles';
 
 
 export default function DetailsScreen({ route, navigation }) {
-const comments =[ //used to create the PostScreen
+const c =[ //used to create the PostScreen
   {
    user1: route.params.user1,
    user2: route.params.user2,
@@ -22,12 +22,15 @@ const comments =[ //used to create the PostScreen
     post: route.params.post4,
   },
 ]
+
+const [comments, setComments] = useState(c);
+
  
 
 if(route.params.prof2==null){ // if there is 1 proff
   
     return (
-        <View style={{ flex: 1, padding: 20}}>
+        <KeyboardAvoidingView style={{ flex: 1, padding: 20}}>
             <Text style = {GlobalStyles.titleBig}> { route.params.number + ' - ' + route.params.name }</Text>
             <Text style = {GlobalStyles.titleSmall}>{ 'Professor: ' + route.params.prof }</Text>
             <View style = {GlobalStyles.background}>
@@ -59,16 +62,16 @@ if(route.params.prof2==null){ // if there is 1 proff
             )}/>
             
 
-            <TextInput style = {Styles.post} placeholder = "post a reply">{}</TextInput>
+            <TextInput style = {Styles.post} placeholder = "post a comment" onSubmitEditing={(event) => {setComments([...comments, {user1: "etl3:", post: event.nativeEvent.text}])}} >{}</TextInput>
 
 
             
-        </View>
+        </KeyboardAvoidingView>
     )
     }
   
   return ( // if there is 2 proff, right now i created two pages, however this can be changed to one with the database
-    <View style={{ flex: 1, padding: 20}}>
+    <KeyboardAvoidingView style={{ flex: 1, padding: 20}}>
         <Text style = {GlobalStyles.titleBig}> { route.params.number + ' - ' + route.params.name }</Text>
         <Text style = {GlobalStyles.titleSmall}>{ 'Professors: ' + route.params.prof + ' and ' +route.params.prof2}</Text>
          
@@ -112,7 +115,7 @@ if(route.params.prof2==null){ // if there is 1 proff
 
 
         
-    </View>
+    </KeyboardAvoidingView>
 )
         }
 
