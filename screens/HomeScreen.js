@@ -15,7 +15,7 @@ export default function HomeScreen ({ navigation }){
     post1: "When is this class typically offered?",
     post2: "Probably not this semester.",
     post3: "Oh no, I need to take it this year!",
-    post4: "Dcm22: This class too easy"
+    post4: "This class too easy"
   },
 
     {number: "CS 108", name: "Intro to Computing", key: 1,
@@ -28,7 +28,7 @@ export default function HomeScreen ({ navigation }){
     post1: "Help! I deleted my Thonny!",
     post2: "Try to find the install link on Moodle.",
     post3: " I genuinely can't understand how turtle works.",
-    post4: "User4: I really like the proffesor"
+    post4: "I really like the proffesor"
   },
 
     {number: "Math 171", name: "Calculus I", key: 2,
@@ -40,7 +40,7 @@ export default function HomeScreen ({ navigation }){
     post1: "freshman 26': How could the dif only be 2.8? It's so hard!",
     post2: "Try go to help session on Wednesday night.",
     post3: "Or contact a tutor if you need further help.",
-    post4: "User123: How do you study for a math final"
+    post4: "How do you study for a math final"
   },
 
     {number:"CS 112", name: "Intro to Data Structures", key: 3,
@@ -52,7 +52,7 @@ export default function HomeScreen ({ navigation }){
     post1: "Any tips for studying for next test?",
     post2: "Want to come and study with us together?",
     post3: "Of course! Where are your guys?",
-    post4: "User456: The first lab was hard"
+    post4: "The first lab was hard"
   },
 
     {number: "CS 262", name: "Software Engineering", key: 4,
@@ -64,7 +64,7 @@ export default function HomeScreen ({ navigation }){
     post1: "I love learning JavaScript!",
     post2: "Are your guys ready for the presentation?",
     post3: "SC303 is a big room! I'm so nervous.",
-    post4: "Freshman1: I heard the proffesor was mean. Is this true?"
+    post4: "I heard the proffesor was mean. Is this true?"
   },
 
     {number: "ENGR 220", name: "Intro to Computer Architecture", key: 5,
@@ -76,7 +76,7 @@ export default function HomeScreen ({ navigation }){
     post1: "When is the next lab help session?",
     post2: "I believe they move it to Wednesday this week.",
     post3: "Oh no, I'm on my way already!",
-    post4: "JC13: Why do cs majors have to take this"
+    post4: "Why do cs majors have to take this"
   },
 
     ];
