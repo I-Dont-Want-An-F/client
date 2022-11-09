@@ -9,10 +9,10 @@ export default function SearchScreen ({ navigation }){
     const [data, setData] = useState();
 
     function textChanged(text){
-        text = text.toLowerCase();
+        var text = text.toLowerCase();
         classList.map( 
             (c) => {
-                lowerC = c.number.toLowerCase();
+                var lowerC = c.number.toLowerCase();
                 if (text == lowerC) {
                     navigation.navigate("Details", c);
                 }

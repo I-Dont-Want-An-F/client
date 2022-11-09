@@ -1,65 +1,133 @@
 import { TabRouter } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import {GlobalStyles} from '../shared/GlobalStyles';
+
+
+
 
 export default function DetailsScreen({ route, navigation }) {
+const c =[ //used to create the PostScreen
+  {
+   user1: route.params.user1,
+   user2: route.params.user2,
+   user3: route.params.user3,
+   post: route.params.post1,
+   reply: route.params.post2,
+   reply2: route.params.post3,
+  },
+  { 
+    user1: route.params.user1,
+    post: route.params.post4,
+  },
+]
+
+const [comments, setComments] = useState(c);
+
+ 
+
+if(route.params.prof2==null){ // if there is 1 proff
+  
     return (
-        <View style={{ flex: 1, padding: 20}}>
-            <Text style = {Styles.header}> { route.params.number + ' - ' + route.params.name }</Text>
-            <Text style = {Styles.sub_header}>{ 'Professor: ' + route.params.prof }</Text>
-            <Text style = {Styles.text}>{ 'General rating: ' + route.params.rating}</Text>
-            <Text style = {Styles.text}>{ 'Homework frequency: ' + route.params.hw}</Text>
-            <Text style = {Styles.text}>{ 'Difficulty: ' + route.params.dif}</Text>
-            <Text style = {Styles.text}>{ 'Book requirement: ' + route.params.book}</Text>
-            <Text style = {Styles.post}>{ route.params.post1 }</Text>
-            <Text style = {Styles.post}>{ route.params.post2 }</Text>
-            <Text style = {Styles.post}>{ route.params.post3 }</Text>
-            <TextInput style = {Styles.post} placeholder = "post a comment">{}</TextInput>
+        <KeyboardAvoidingView style={{ flex: 1, padding: 20}}>
+            <Text style = {GlobalStyles.titleBig}> { route.params.number + ' - ' + route.params.name }</Text>
+            <Text style = {GlobalStyles.titleSmall}>{ 'Professor: ' + route.params.prof }</Text>
+            <View style = {GlobalStyles.background}>
+            <Text style = {GlobalStyles.textSmall}>{ 'General rating: ' + route.params.rating}</Text>
+            <Text style = {GlobalStyles.textSmall}>{ 'Homework frequency: ' + route.params.hw}</Text>
+            <Text style = {GlobalStyles.textSmall}>{ 'Difficulty: ' + route.params.dif}</Text>
+            <Text style = {GlobalStyles.textSmall}>{ 'Book requirement: ' + route.params.book}</Text>
+            </View>
+
+            <View style={Styles.container}>
+               <Button  color={'#880808'} title="rate" onPress={ () => (navigation.navigate('Rate'))}   />  
+               <View style={Styles.space2} />   
+               <Button color={'#880808'} title="comments"/>
+               <View style={Styles.space2} />   
+               <Button color={'#880808'} title="Questions"/>  
+               <View style={Styles.space2} />   
+               <Button color={'#880808'} title="both"/>
+            </View>
+
+            <Text style = {GlobalStyles.titleSmall}> Showing all posts: </Text>
+
+            
+            <FlatList data={comments} renderItem={({ item })=> (  
+              <View style={GlobalStyles.background2}>
+             <TouchableOpacity onPress= {() => navigation.navigate("Post", item)}> 
+               <Text style={GlobalStyles.textSmall}> {item.user1} {item.post}</Text>
+              </TouchableOpacity>   
+              </View>
+            )}/>
+            
+
+            <TextInput style = {Styles.post} placeholder = "post a comment" onSubmitEditing={(event) => {setComments([...comments, {user1: "etl3:", post: event.nativeEvent.text}])}} >{}</TextInput>
+
+
+            
+        </KeyboardAvoidingView>
+    )
+    }
+  
+  return ( // if there is 2 proff, right now i created two pages, however this can be changed to one with the database
+    <KeyboardAvoidingView style={{ flex: 1, padding: 20}}>
+        <Text style = {GlobalStyles.titleBig}> { route.params.number + ' - ' + route.params.name }</Text>
+        <Text style = {GlobalStyles.titleSmall}>{ 'Professors: ' + route.params.prof + ' and ' +route.params.prof2}</Text>
+         
+        <View style={Styles.container}>
+            <Button  color={'#880808'} title={route.params.prof} onPress={ () => (navigation.navigate('Professor'))}/>
+            <View style={Styles.space2} />   
+            <Button color={'#880808'} title={route.params.prof2} onPress={ () => (navigation.navigate('Professor2'))}/>
         </View>
-    );
-}
+
+
+        <View style = {GlobalStyles.background}>
+        <Text style = {GlobalStyles.textSmall}>{ 'General rating: ' + route.params.rating}</Text>
+        <Text style = {GlobalStyles.textSmall}>{ 'Homework frequency: ' + route.params.hw}</Text>
+        <Text style = {GlobalStyles.textSmall}>{ 'Difficulty: ' + route.params.dif}</Text>
+        <Text style = {GlobalStyles.textSmall}>{ 'Book requirement: ' + route.params.book}</Text>
+        </View>
+
+        <View style={Styles.container}>
+            <Button  color={'#880808'} title="rate" onPress={ () => (navigation.navigate('Rate'))}   />  
+            <View style={Styles.space2} />   
+            <Button color={'#880808'} title="comments"/>
+            <View style={Styles.space2} />   
+            <Button color={'#880808'} title="Questions"/>  
+            <View style={Styles.space2} />   
+            <Button color={'#880808'} title="both"/>
+        </View>
+
+        <Text style = {GlobalStyles.titleSmall}> Showing all posts: </Text>
+
+        
+        <FlatList data={comments} renderItem={({ item })=> (  
+          <View style={GlobalStyles.background2}>
+         <TouchableOpacity onPress= {() => navigation.navigate("Post", item)}> 
+           <Text style={GlobalStyles.textSmall}> {item.user1} {item.post}</Text>
+          </TouchableOpacity>   
+          </View>
+        )}/>
+        
+
+        <TextInput style = {Styles.post} placeholder = "post a reply">{}</TextInput>
+
+
+        
+    </KeyboardAvoidingView>
+)
+        }
+
 
 export const Styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#fff',
+      //flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-around',
       alignItems: 'center',
       justifyContent: 'center',
-    },
-    header: {
-        textAlign:"center",
-        fontSize: 20,
-        fontWeight: "bold",
-        margin: 10,
-    },
-    sub_header: {
-      textAlign:"center",
-      fontWeight: "bold",
-      marginTop: 5,
-      marginBottom: 5,
-      fontSize: 15,
-    },
-    text: {
-        textAlign:"left",
-        marginTop: 10,
-        marginBottom: 5,
-        fontSize: 15,
-      },
-    list:{
-      color:"gray",
-      fontSize: 30,
-      fontWeight: "bold",
-      textAlign:"center",
-    },
-    input:{
-      textAlign: "center",
-      alignSelf: "center",
-      width: 300,
-      height: 40,
-      borderWidth: 1,
-      borderRadius: 5, 
-      padding: 10,
+      margin : 5,
     },
     post:{
       textAlign: "center",
@@ -75,5 +143,10 @@ export const Styles = StyleSheet.create({
       margin: 5,
       padding: 5,
       fontSize: 15 
-    }
+    },
+    space2: {
+      width: 10,  
+      height: 20,
+    },
+     
   });

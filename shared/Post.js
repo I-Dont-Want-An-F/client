@@ -37,6 +37,7 @@ const PostContainerStyles = StyleSheet.create({
         title: {
             justifyContent: 'center',
             textAlign: 'center',
+            color: '#880808',
             fontSize: 18,
             marginTop: 10,
         },
@@ -45,7 +46,7 @@ const PostContainerStyles = StyleSheet.create({
             marginBottom: 15,
             margin: 10,
             fontSize: 15,
-            color: "blue",
+            color: '#D22B2B',
         }
 
 });
