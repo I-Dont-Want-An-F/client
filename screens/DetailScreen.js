@@ -62,19 +62,29 @@ export default function DetailsScreen({ route, navigation }) {
     return (
       <KeyboardAvoidingView style={{ flex: 1, padding: 20}}>
         <Text style = {GlobalStyles.titleBig}> { route.params.shortname + ': ' + route.params.longname } </Text>
-        
-        <FlatList data={prof} renderItem={({ item }) => (
-          <View><Text style = {GlobalStyles.titleSmall}> { 'Professor: ' + item.name} </Text></View>
-        )}/>
-        
-        <FlatList data={rating} renderItem={({ item }) => (
-          <View style = {GlobalStyles.background}>
-            <Text style = {GlobalStyles.textSmall}> { 'General rating: ' + item.stars} </Text>
-            <Text style = {GlobalStyles.textSmall}> { 'Homework frequency: ' + item.hw} </Text>
-            <Text style = {GlobalStyles.textSmall}> { 'Difficulty: ' + item.dif} </Text>
-            <Text style = {GlobalStyles.textSmall}> { 'Book requirement: ' + item.book} </Text>
-          </View>
-        )}/>
+
+        <View style={GlobalStyles.titleSmall}>
+          {prof.map((prof) => {
+            return (
+              <View>
+                <Text style={GlobalStyles.titleSmall}>{'Professor: ' + prof.name}</Text>
+              </View>
+            );
+          })}
+        </View>
+
+        <View style={GlobalStyles.titleSmall}>
+          {rating.map((rating) => {
+            return (
+              <View style = {GlobalStyles.background}>
+                <Text style = {GlobalStyles.textSmall}> { 'General rating: ' + rating.stars} </Text>
+                <Text style = {GlobalStyles.textSmall}> { 'Homework frequency: ' + rating.hw} </Text>
+                <Text style = {GlobalStyles.textSmall}> { 'Difficulty: ' + rating.dif} </Text>
+                <Text style = {GlobalStyles.textSmall}> { 'Book requirement: ' + rating.book} </Text>
+              </View>
+            );
+          })}
+        </View>
 
         <View style={Styles.container}>
           <Button color={'#880808'} title="Rating" onPress={ () => (navigation.navigate('Rate'))}   />  
