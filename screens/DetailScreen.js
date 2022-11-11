@@ -67,7 +67,6 @@ export default function DetailsScreen({ route, navigation }) {
           <View><Text style = {GlobalStyles.titleSmall}> { 'Professor: ' + item.name} </Text></View>
         )}/>
         
-        {/* This part not quite working for some reason. (maybe the link or the query?) */}
         <FlatList data={rating} renderItem={({ item }) => (
           <View style = {GlobalStyles.background}>
             <Text style = {GlobalStyles.textSmall}> { 'General rating: ' + item.stars} </Text>
