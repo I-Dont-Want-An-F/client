@@ -30,7 +30,7 @@ export default function App() {
   return (
       <NavigationContainer>
  
-          <Stack.Navigator initialRouteName='Sign In Screen' 
+          <Stack.Navigator initialRouteName='SignInScreen' 
           screenOptions={{headerTitleAlign: 'center' }} >
               <Stack.Screen name='Sign In' component={SignInScreen}/>
               <Stack.Screen name='Sign Up' component={SignUpScreen}/>

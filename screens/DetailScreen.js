@@ -1,124 +1,105 @@
 import { TabRouter } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import {GlobalStyles} from '../shared/GlobalStyles';
-
-
-
+import { GlobalStyles } from '../shared/GlobalStyles';
+import Post from '../shared/Post';
 
 export default function DetailsScreen({ route, navigation }) {
-const c =[ //used to create the PostScreen
-  {
-   user1: route.params.user1,
-   user2: route.params.user2,
-   user3: route.params.user3,
-   post: route.params.post1,
-   reply: route.params.post2,
-   reply2: route.params.post3,
-  },
-  { 
-    user1: route.params.user1,
-    post: route.params.post4,
-  },
-]
 
-const [comments, setComments] = useState(c);
+  const [prof, setProf] = useState([]);
+  const [rating, setRating] = useState([]);
+  const [post, setPost] = useState([]);
+  const [comments, setComment] = useState([]);
 
- 
+  const getProf = async () => {
+      try {
+      const response = await fetch('https://fast-woodland-72631.herokuapp.com/prof/' + route.params.shortname)
+      const json = await response.json();
+        setProf(json);
+      } catch (error) {
+        console.error(error);
+      }
+  }
 
-if(route.params.prof2==null){ // if there is 1 proff
-  
-    return (
-        <KeyboardAvoidingView style={{ flex: 1, padding: 20}}>
-            <Text style = {GlobalStyles.titleBig}> { route.params.number + ' - ' + route.params.name }</Text>
-            <Text style = {GlobalStyles.titleSmall}>{ 'Professor: ' + route.params.prof }</Text>
-            <View style = {GlobalStyles.background}>
-            <Text style = {GlobalStyles.textSmall}>{ 'General rating: ' + route.params.rating}</Text>
-            <Text style = {GlobalStyles.textSmall}>{ 'Homework frequency: ' + route.params.hw}</Text>
-            <Text style = {GlobalStyles.textSmall}>{ 'Difficulty: ' + route.params.dif}</Text>
-            <Text style = {GlobalStyles.textSmall}>{ 'Book requirement: ' + route.params.book}</Text>
-            </View>
-
-            <View style={Styles.container}>
-               <Button  color={'#880808'} title="rate" onPress={ () => (navigation.navigate('Rate'))}   />  
-               <View style={Styles.space2} />   
-               <Button color={'#880808'} title="comments"/>
-               <View style={Styles.space2} />   
-               <Button color={'#880808'} title="Questions"/>  
-               <View style={Styles.space2} />   
-               <Button color={'#880808'} title="both"/>
-            </View>
-
-            <Text style = {GlobalStyles.titleSmall}> Showing all posts: </Text>
-
-            
-            <FlatList data={comments} renderItem={({ item })=> (  
-              <View style={GlobalStyles.background2}>
-             <TouchableOpacity onPress= {() => navigation.navigate("Post", item)}> 
-               <Text style={GlobalStyles.textSmall}> {item.user1} {item.post}</Text>
-              </TouchableOpacity>   
-              </View>
-            )}/>
-            
-
-            <TextInput style = {Styles.post} placeholder = "post a comment" onSubmitEditing={(event) => {setComments([...comments, {user1: "etl3:", post: event.nativeEvent.text}])}} >{}</TextInput>
-
-
-            
-        </KeyboardAvoidingView>
-    )
+  const getRating = async () => {
+    try {
+    const response = await fetch('https://fast-woodland-72631.herokuapp.com/rating/' + route.params.shortname)
+    const json = await response.json();
+      setRating(json);
+    } catch (error) {
+      console.error(error);
     }
-  
-  return ( // if there is 2 proff, right now i created two pages, however this can be changed to one with the database
-    <KeyboardAvoidingView style={{ flex: 1, padding: 20}}>
-        <Text style = {GlobalStyles.titleBig}> { route.params.number + ' - ' + route.params.name }</Text>
-        <Text style = {GlobalStyles.titleSmall}>{ 'Professors: ' + route.params.prof + ' and ' +route.params.prof2}</Text>
-         
-        <View style={Styles.container}>
-            <Button  color={'#880808'} title={route.params.prof} onPress={ () => (navigation.navigate('Professor'))}/>
-            <View style={Styles.space2} />   
-            <Button color={'#880808'} title={route.params.prof2} onPress={ () => (navigation.navigate('Professor2'))}/>
-        </View>
+  }
 
+  const getPost = async () => {
+    try {
+    const response = await fetch('https://fast-woodland-72631.herokuapp.com/post/' + route.params.shortname)
+    const json = await response.json();
+      setPost(json);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-        <View style = {GlobalStyles.background}>
-        <Text style = {GlobalStyles.textSmall}>{ 'General rating: ' + route.params.rating}</Text>
-        <Text style = {GlobalStyles.textSmall}>{ 'Homework frequency: ' + route.params.hw}</Text>
-        <Text style = {GlobalStyles.textSmall}>{ 'Difficulty: ' + route.params.dif}</Text>
-        <Text style = {GlobalStyles.textSmall}>{ 'Book requirement: ' + route.params.book}</Text>
-        </View>
+  const getComment = async () => {
+    try {
+    const response = await fetch('https://fast-woodland-72631.herokuapp.com/comments/' + route.params.shortname)
+    const json = await response.json();
+      setComment(json);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-        <View style={Styles.container}>
-            <Button  color={'#880808'} title="rate" onPress={ () => (navigation.navigate('Rate'))}   />  
-            <View style={Styles.space2} />   
-            <Button color={'#880808'} title="comments"/>
-            <View style={Styles.space2} />   
-            <Button color={'#880808'} title="Questions"/>  
-            <View style={Styles.space2} />   
-            <Button color={'#880808'} title="both"/>
-        </View>
+  useEffect(() => {
+      getProf();
+      getRating();
+      getPost();
+      getComment();
+    }, []);
 
-        <Text style = {GlobalStyles.titleSmall}> Showing all posts: </Text>
-
+    return (
+      <KeyboardAvoidingView style={{ flex: 1, padding: 20}}>
+        <Text style = {GlobalStyles.titleBig}> { route.params.shortname + ': ' + route.params.longname } </Text>
         
-        <FlatList data={comments} renderItem={({ item })=> (  
-          <View style={GlobalStyles.background2}>
-         <TouchableOpacity onPress= {() => navigation.navigate("Post", item)}> 
-           <Text style={GlobalStyles.textSmall}> {item.user1} {item.post}</Text>
-          </TouchableOpacity>   
-          </View>
+        <FlatList data={prof} renderItem={({ item }) => (
+          <View><Text style = {GlobalStyles.titleSmall}> { 'Professor: ' + item.name} </Text></View>
         )}/>
         
+        <FlatList data={rating} renderItem={({ item }) => (
+          <View style = {GlobalStyles.background}>
+            <Text style = {GlobalStyles.textSmall}> { 'General rating: ' + item.stars} </Text>
+            <Text style = {GlobalStyles.textSmall}> { 'Homework frequency: ' + item.hw} </Text>
+            <Text style = {GlobalStyles.textSmall}> { 'Difficulty: ' + item.dif} </Text>
+            <Text style = {GlobalStyles.textSmall}> { 'Book requirement: ' + item.book} </Text>
+          </View>
+        )}/>
 
-        <TextInput style = {Styles.post} placeholder = "post a reply">{}</TextInput>
+        <View style={Styles.container}>
+          <Button color={'#880808'} title="Rating" onPress={ () => (navigation.navigate('Rate'))}   />  
+            <View style={Styles.space2} />   
+          <Button color={'#880808'} title="Comments"/>
+            <View style={Styles.space2} />   
+          <Button color={'#880808'} title="Questions"/>  
+            <View style={Styles.space2} />   
+          <Button color={'#880808'} title="All"/>
+        </View>
 
+        <Text style = {GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
-        
-    </KeyboardAvoidingView>
-)
-        }
-
+        <FlatList data={post} renderItem={({ item })=> (  
+          <View style={GlobalStyles.background2}>
+            <TouchableOpacity onPress= {() => navigation.navigate("Post", item)}> 
+              <Text style={GlobalStyles.textSmall}> {item.id} {item.text}</Text>
+            </TouchableOpacity>   
+          </View>
+        )}/>
+            
+        <TextInput style = {Styles.post} placeholder = "post a comment" onSubmitEditing={(event) => {setComment([...comments, {user1: "etl3:", post: event.nativeEvent.text}])}} >{}</TextInput>
+      </KeyboardAvoidingView>
+    );
+}
 
 export const Styles = StyleSheet.create({
     container: {
