@@ -12,6 +12,8 @@ import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
 import VanderScreen from './screens/VaderScreen';
 import SchuuScreen from './screens/SchuuScreen';
 import RateScreen from './screens/RateScreen';
+import MessageScreen from './screens/Messages';
+import ContactsScreen from './screens/Contacts'
 import { Button, StyleSheet, Text  } from 'react-native';
 import { ScreenStack } from 'react-native-screens';
  
@@ -50,7 +52,13 @@ export default function App() {
                 <Stack.Screen name='Professor2' component={SchuuScreen}/>
                 <Stack.Screen name='Search' component={SearchScreen}/> 
                 <Stack.Screen name ='Rate'  component={RateScreen}/>
-                <Stack.Screen name='Profile' component={ProfileScreen}/> 
+                <Stack.Screen name ='Messages'  component={MessageScreen}/>
+                <Stack.Screen name ='Contacts'  component={ContactsScreen}/>
+                <Stack.Screen name='Profile' component={ProfileScreen}
+                            options={({ navigation }) => ({
+                                      headerRight: () => (
+                                          <Button color='#FDDA0D' title='Messages'onPress={ () => (navigation.navigate('Contacts'))} /> 
+                                          )})}/> 
           </Stack.Navigator>
       </NavigationContainer>
   );
