@@ -8,30 +8,42 @@ export default function ContactsScreen({navigation}){
     const [username, setUsername] = useState();
 
     const getContacts = async () => {
+        if (username === undefined){return;}
         try {
-            const response = await fetch('https://secret-meadow-43481.herokuapp.com/messagerooms/' + username.toLowerCase())
-            console.log(response);
+            const response = await fetch('https://secret-meadow-43481.herokuapp.com/messagerooms/' + username);
             const json = await response.json();
             let c = [];
             for(let i = 0; i < json.length; i++){
-                c.push(json[i]["id"]);
+                c.push([json[i]["id"], json[i]["userone"], json[i]["usertwo"]]);
             }
+            console.log(c);
             setContacts(c);
         } catch (error) {
-            console.error(error);
+            
         }
     }
 
     useEffect(() => {
-        getLocalData('username').then((data) => {setUsername(data)});
+        getLocalData('username').then((data) => {setUsername(data.toLocaleLowerCase())});
+    }, []);
+
+    useEffect(() => {
         getContacts();
-      }, []);
+    }, [username]);
+
+    if (username === undefined){return (
+    <View>
+        <Text>You Need To Be Signed In To Message!</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Sign In')}>
+            <Text>Sign In</Text>
+        </TouchableOpacity>
+    </View>)}
 
     return (
         <View style={{ flex: 1, padding: 20}}>
             <FlatList data={contacts} renderItem={({ item }) => (
                 <TouchableOpacity onPress={() => navigation.navigate('Messages', item)}>
-                    <Text>{item}</Text>
+                    <Text>{item[0]}</Text>
                 </TouchableOpacity>
             )}/>
       </View>

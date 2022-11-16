@@ -5,7 +5,7 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from "../../components/CustomButton/CustomButton";
 import SocialSignInButtons from "../../components/SocalSignInButtons";
 import { useNavigation } from "@react-navigation/native";
-
+import { getLocalData, storeLocalData } from '../../shared/LocalStorage';
 
 const SignInScreen = () => {
     const [username, setUsername] = useState('');
@@ -16,6 +16,7 @@ const SignInScreen = () => {
     const navigation = useNavigation();
 
     const onSignInPressed = () => {
+        storeLocalData('username', username);
         navigation.navigate('Home') };
 
     const onSignUpPressed = () => {

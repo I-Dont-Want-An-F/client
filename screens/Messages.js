@@ -3,14 +3,14 @@ import { StyleSheet, Button, KeyboardAvoidingView, View, Text, TouchableOpacity,
 import {GlobalStyles} from '../shared/GlobalStyles';
 import { getLocalData, storeLocalData } from '../shared/LocalStorage';
 
-export default function MessageScreen ({ navigation }) {
+export default function MessageScreen ({ route, navigation }) {
     const [username, setUsername] = useState('');
     const [messages, setMessages] = useState([]);
     const [messageID, setMessageID] = useState('');
     const [inputValue, setInputValue] = useState('');
 
     function Message (props) {
-        side = (props.from == username ? 'flex-end' : 'flex-start' );
+        let side = (props.sender == route.params[1] ? 'flex-end' : 'flex-start' );
         return (
             <View style={{alignSelf: side}}>
                 <View style={MessageStyles.container} >
@@ -22,9 +22,8 @@ export default function MessageScreen ({ navigation }) {
 
     const getMessages = async () => {
         try {
-            const response = await fetch('https://fast-woodland-72631.herokuapp.com/messages/' + 1)
+            const response = await fetch('https://secret-meadow-43481.herokuapp.com/messages/' + route.params[0] );
             const json = await response.json();
-            console.log(json);
             setMessages(json);
         } catch (error) {
             console.error(error);
@@ -33,7 +32,17 @@ export default function MessageScreen ({ navigation }) {
 
     function onSend () {
         if (inputValue === ''){return}
+        let message = {ID: messages.length+1, roomID: route.params[0], text: inputValue, sender: username.toLocaleLowerCase() }
+        fetch('https://secret-meadow-43481.herokuapp.com/sendmessage', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(message)
+        })
         setInputValue('');
+        getMessages();
     }
 
     if (username == '') {
@@ -41,14 +50,13 @@ export default function MessageScreen ({ navigation }) {
     }
 
     useEffect(() => {
-        getLocalData('username').then((data) => {setUsername(data)});
         getMessages();
       }, []);
 
 
     return (
         <KeyboardAvoidingView style={{width: '100%', height: '100%'}}>
-            <FlatList data={messages} renderItem={({ item })=> (<Message content = {item.text} from = {item.sender}> </Message>)}/>
+            <FlatList data={messages} renderItem={({ item })=> (<Message content = {item.text} sender = {item.sender}> </Message>)}/>
             <TextInput onSubmitEditing={onSend} value={inputValue}  onChangeText={setInputValue}
              style={{height: 40, width: '100%', padding: 10, margin: 20,position: 'absolute',
              bottom: 10, borderRadius: 10, backgroundColor: 'white'}} />
