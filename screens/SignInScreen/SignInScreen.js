@@ -5,9 +5,10 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from "../../components/CustomButton/CustomButton";
 import SocialSignInButtons from "../../components/SocalSignInButtons";
 import { useNavigation } from "@react-navigation/native";
-
+import { GlobalStyles } from "../../shared/GlobalStyles";
 
 const SignInScreen = () => {
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -72,6 +73,7 @@ const styles = StyleSheet.create({
     root: {
         alignItems: 'center',
         padding: 20,
+        backgroundColor: '#4000000',
     },
     logo: {
         width: '100%',

@@ -1,7 +1,7 @@
 import { TabRouter } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, ActivityIndicator } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Image, ActivityIndicator, SafeAreaView } from 'react-native';
+import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { GlobalStyles } from '../shared/GlobalStyles';
 import Post from '../shared/Post';
 
@@ -11,6 +11,10 @@ export default function DetailsScreen({ route, navigation }) {
   const [rating, setRating] = useState([]);
   const [post, setPost] = useState([]);
   const [comments, setComment] = useState([]);
+
+  const [defaultRating, setDefaultRating] = useState(2);
+  const [maxRating, setmaxRating] = useState([1, 2, 3, 4, 5]);
+  const starImgFilled = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png';
 
   const getProf = async () => {
     try {
@@ -59,8 +63,9 @@ export default function DetailsScreen({ route, navigation }) {
     getComment();
   }, []);
 
+
   return (
-    <KeyboardAvoidingView style={{ flex: 1, padding: 20 }}>
+    <ScrollView backGroundColor= '#DABEA7'>
       <Text style={GlobalStyles.titleBig}> {route.params.shortname + ': ' + route.params.longname} </Text>
 
       <View style={GlobalStyles.titleSmall}>
@@ -76,23 +81,23 @@ export default function DetailsScreen({ route, navigation }) {
       <View style={GlobalStyles.titleSmall}>
         {rating.map((rating) => {
           return (
-            <View style={GlobalStyles.background}>
-              <Text style={GlobalStyles.textSmall}> {'General rating: ' + rating.stars} </Text>
+            <View style={GlobalStyles.background2}>
+              <Text style={GlobalStyles.textSmall}> {'General Rating: ' + rating.stars} </Text> 
+              <Text style={GlobalStyles.textSmall}> {'Difficulty: ' + rating.dif} </Text> 
               <Text style={GlobalStyles.textSmall}> {'Homework frequency: ' + rating.hw} </Text>
-              <Text style={GlobalStyles.textSmall}> {'Difficulty: ' + rating.dif} </Text>
-              <Text style={GlobalStyles.textSmall}> {'Book requirement: ' + rating.book} </Text>
+              <Text style={GlobalStyles.textSmall}> {'Textbook requirement: ' + rating.book} </Text>
             </View>
           );
         })}
       </View>
 
-      <View style={Styles.container}>
-        <Button color={'#880808'} title="Rating" onPress={() => (navigation.navigate('Rate'))} />
-        <View style={Styles.space2} />
+      <View style={styles.container}>
+        <Button color={'#880808'} title="Rate Class" onPress={() => (navigation.navigate('Rate'))} />
+        <View style={styles.space2} />
         <Button color={'#880808'} title="Comments" />
-        <View style={Styles.space2} />
+        <View style={styles.space2} />
         <Button color={'#880808'} title="Questions" />
-        <View style={Styles.space2} />
+        <View style={styles.space2} />
         <Button color={'#880808'} title="All" />
       </View>
 
@@ -106,14 +111,15 @@ export default function DetailsScreen({ route, navigation }) {
         </View>
       )} />
 
-      <TextInput style={Styles.post} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
-    </KeyboardAvoidingView>
+      <TextInput style={styles.post} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
+    </ScrollView>
   );
 }
 
-export const Styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     //flex: 1,
+    width:350,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -139,5 +145,15 @@ export const Styles = StyleSheet.create({
     width: 10,
     height: 20,
   },
-
+  CustomRatingBarStyle: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: 8,
+    marginBottom: 5
+  },
+  starImgStyle: {
+    width: 40,
+    height: 40,
+    resizeMode: 'cover',
+  }
 });
