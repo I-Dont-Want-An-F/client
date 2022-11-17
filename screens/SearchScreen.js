@@ -1,4 +1,4 @@
-// this is the page that shows the search bar & created by Dylan
+ // this is the page that shows the search bar & created by Dylan
 // based off this tutorial by Kevin Thomas 
 // https://blog.logrocket.com/create-react-native-search-bar-from-scratch/
 
@@ -112,5 +112,3 @@ export default function SearchScreen({ navigation }) {
     </SafeAreaView>
   );
 };
-
-

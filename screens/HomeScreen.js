@@ -9,7 +9,7 @@ export default function HomeScreen ({ navigation }){
 
   const getClasses = async () => {
       try {
-      const response = await fetch('https://fast-woodland-72631.herokuapp.com/classes')
+      const response = await fetch('https://fast-woodland-72631.herokuapp.com/subject/computer science')
       const json = await response.json();
       setData(json);
       } catch (error) {
