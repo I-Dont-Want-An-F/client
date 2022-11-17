@@ -90,7 +90,7 @@ export default function DetailsScreen({ route, navigation }) {
       <FlatList data={post} renderItem={({ item }) => (
         <View style={GlobalStyles.background2}>
           <TouchableOpacity onPress={() => navigation.navigate("Post", item)}>
-            <Text style={GlobalStyles.textSmall}> {item.username + ":"} {item.id} {item.text}</Text>
+            <Text style={GlobalStyles.textSmall}> {item.username + ":"} {item.text}</Text>
           </TouchableOpacity>
         </View>
       )} />
