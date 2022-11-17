@@ -4,6 +4,9 @@ export const GlobalStyles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
+        width: '100px',
+        height: '100px',
+        resizeMode: 'contain'
     },
     list: {
         margin: 10,
@@ -30,7 +33,8 @@ export const GlobalStyles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#880808',
+        color: 'black',
+        marginTop: 5
 
 
     },
@@ -38,20 +42,26 @@ export const GlobalStyles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#D22B2B',
-
+        color: '#686A6C',
+    },
+    titleSmall2: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#3A3B3C',
+        marginBottom: 10
     },
     textBig: {
         fontSize: 25,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#880808',
+        color: 'black',
     },
     textMed: {
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#D22B2B',
+        color: 'black',
         backgroundColor: 'white',
         borderRadius: 20,
         margin: 10,
@@ -60,16 +70,16 @@ export const GlobalStyles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'left',
-        color: '#880808',
+        color: '#560319',
     },
     textSmall: {
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: "left",
         marginTop: 5,
-        marginBottom: 5,
+        marginBottom: 0,
         fontSize: 15,
-        color: '#880808',
+        color: '#560319',
         margin: 10,
     },
     textSmall2: { //same as small but with the bright red
@@ -92,16 +102,27 @@ export const GlobalStyles = StyleSheet.create({
         alignSelf: 'center',
     },
     background: {
-        backgroundColor: '#D0D0D0',
-        borderRadius: 20,
-        margin: 10,
+        backgroundColor: '#A9A9A9',
+        borderRadius: 15,
+        marginBottom: 15
     },
     background2: {
         backgroundColor: '#D0D0D0',
         borderRadius: 15,
         margin: 5,
     },
-    textIn: { //used for text input
+    background3: {
+        backgroundColor: 'white',
+        borderRadius: 15,
+        margin: 5,
+    },
+    background4: {
+        backgroundColor: 'white',
+        borderRadius: 0,
+        margin: 10,
+    },
+   textIn:{ //used for text input
+
         textAlign: "center",
         alignSelf: "center",
         width: 350,
@@ -120,11 +141,32 @@ export const GlobalStyles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 15,
         padding: 10,
+   },
+   textIn2:{ //used for text input in the rate screen 
+    textAlign: "center",
+    alignSelf: "center",
+    width: 300,
+    height: 40,
+    color: '#4C4646',
+    borderWidth: 2,
+    borderRadius: 10, 
+    marginTop: 15,
+    padding: 10,
     },
-    button: {
-        backgroundColor: "#880808",
-        width: 20,
-        padding: 20,
-        borderRadius: 5,
-    }
+   button: {
+    backgroundColor: "#880808",
+    width: 20,
+    padding: 20,
+    borderRadius: 5,
+   },
+   buttonRequire: {
+    alignItems: 'left',
+    justifyContent: 'left',
+    width: 10,
+    padding: 0,
+    borderRadius: 10,
+    marginTop: 5,
+    marginBottom: 5
+   }
+
 });
