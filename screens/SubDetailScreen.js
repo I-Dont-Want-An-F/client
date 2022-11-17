@@ -2,25 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { GlobalStyles } from '../shared/GlobalStyles';
-import SubDetailScreen from './SubDetailScreen';
 import { URL } from '../shared/URL';
 
-export default function DetailsScreen({ route, navigation }) {
+export default function SubDetailsScreen({ route, navigation }) {
 
-  const [prof, setProf] = useState([]);
   const [rating, setRating] = useState([]);
   const [post, setPost] = useState([]);
   const [comments, setComment] = useState([]);
-
-  const getProf = async () => {
-    try {
-      const response = await fetch(URL + '/prof/' + route.params.shortname)
-      const json = await response.json();
-      setProf(json);
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   const getRating = async () => {
     try {
@@ -43,7 +31,6 @@ export default function DetailsScreen({ route, navigation }) {
   }
 
   useEffect(() => {
-    getProf();
     getRating();
     getPost();
   }, []);
@@ -53,13 +40,7 @@ export default function DetailsScreen({ route, navigation }) {
       <Text style={GlobalStyles.titleBig}> {route.params.shortname + ': ' + route.params.longname} </Text>
 
       <View style={GlobalStyles.titleSmall}>
-        {prof.map((prof) => {
-          return (
-            <View>
-                <Text style={GlobalStyles.titleSmall}>{'Professor: ' + prof.name}</Text>
-            </View>
-          );
-        })}
+        <Text style={GlobalStyles.titleSmall}>{'Professor: ' + route.params.longname}</Text>
       </View>
 
       <View style={GlobalStyles.titleSmall}>

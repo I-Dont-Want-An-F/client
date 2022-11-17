@@ -6,16 +6,14 @@ import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import DetailScreen from './screens/DetailScreen';
+import SubDetailScreen from './screens/SubDetailScreen';
 import SignInScreen from './screens/SignInScreen';
 import PostScreen from './screens/PostScreen';
 import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
 import VanderScreen from './screens/VaderScreen';
 import SchuuScreen from './screens/SchuuScreen';
 import RateScreen from './screens/RateScreen';
-import { Button, StyleSheet, Text  } from 'react-native';
-import { ScreenStack } from 'react-native-screens';
- 
- 
+import { Button, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   root: {
@@ -28,30 +26,25 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-      <NavigationContainer>
- 
-          <Stack.Navigator initialRouteName='SignInScreen' 
-          screenOptions={{headerTitleAlign: 'center' }} >
-              <Stack.Screen name='Sign In' component={SignInScreen}/>
-              <Stack.Screen name='Sign Up' component={SignUpScreen}/>
-              <Stack.Screen name='Home' component={HomeScreen}   
-                            options={({ navigation }) => ({
-                                      headerRight: () => (
-                                          <Button color='#FDDA0D' title='search'onPress={ () => (navigation.navigate('Search'))} /> 
-                                          //I changed to #FDDA0D but not sure how it will look on android vs apple
-                                          ),
-                                      headerLeft: () => (
-                                          <Button color='#FDDA0D' title="👤" onPress={ () => (navigation.navigate('Profile'))} />
-                                          )
-                                          })} />
-                <Stack.Screen name='Post' component={PostScreen}/>                         
-                <Stack.Screen name='Details' component={DetailScreen}/>
-                <Stack.Screen name='Professor' component={VanderScreen}/>                      
-                <Stack.Screen name='Professor2' component={SchuuScreen}/>
-                <Stack.Screen name='Search' component={SearchScreen}/> 
-                <Stack.Screen name ='Rate'  component={RateScreen}/>
-                <Stack.Screen name='Profile' component={ProfileScreen}/> 
-          </Stack.Navigator>
-      </NavigationContainer>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='SignInScreen'
+        screenOptions={{ headerTitleAlign: 'center' }} >
+        <Stack.Screen name='Sign In' component={SignInScreen} />
+        <Stack.Screen name='Sign Up' component={SignUpScreen} />
+        <Stack.Screen name='Home' component={HomeScreen}
+          options={({ navigation }) => ({
+            headerRight: () => (<Button color='#FDDA0D' title='search' onPress={() => (navigation.navigate('Search'))} />),
+            headerLeft: () => (<Button color='#FDDA0D' title="👤" onPress={() => (navigation.navigate('Profile'))} />)
+          })} />
+        <Stack.Screen name='Post' component={PostScreen} />
+        <Stack.Screen name='Details' component={DetailScreen} />
+        <Stack.Screen name='SubDetails' component={SubDetailScreen} />
+        <Stack.Screen name='Professor' component={VanderScreen} />
+        <Stack.Screen name='Professor2' component={SchuuScreen} />
+        <Stack.Screen name='Search' component={SearchScreen} />
+        <Stack.Screen name='Rate' component={RateScreen} />
+        <Stack.Screen name='Profile' component={ProfileScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
