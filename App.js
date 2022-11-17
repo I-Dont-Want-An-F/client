@@ -9,8 +9,6 @@ import DetailScreen from './screens/DetailScreen';
 import SignInScreen from './screens/SignInScreen';
 import PostScreen from './screens/PostScreen';
 import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
-import VanderScreen from './screens/VaderScreen';
-import SchuuScreen from './screens/SchuuScreen';
 import RateScreen from './screens/RateScreen';
 import { Button, StyleSheet, Text  } from 'react-native';
 import { ScreenStack } from 'react-native-screens';
@@ -46,8 +44,6 @@ export default function App() {
                                           })} />
                 <Stack.Screen name='Post' component={PostScreen}/>                         
                 <Stack.Screen name='Details' component={DetailScreen}/>
-                <Stack.Screen name='Professor' component={VanderScreen}/>                      
-                <Stack.Screen name='Professor2' component={SchuuScreen}/>
                 <Stack.Screen name='Search' component={SearchScreen}/> 
                 <Stack.Screen name ='Rate'  component={RateScreen}/>
                 <Stack.Screen name='Profile' component={ProfileScreen}/> 
