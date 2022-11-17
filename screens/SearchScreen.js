@@ -1,21 +1,26 @@
 // this is the page that shows the search bar & created by Dylan
-// based off a tutorial by Kevin Thomas 
+// based off this tutorial by Kevin Thomas 
 // https://blog.logrocket.com/create-react-native-search-bar-from-scratch/
 
 // TO-Do 
 //Fix the keyboard as it keeps dropping down 
-//Fix the search as it does not like numbers 
 //Change the style to make it look beter 
+//unquie child, caused by both detail screen using same ID??
 
 import { React, useState, useEffect } from "react";
 import { StyleSheet, Text, FlatList, View, TouchableOpacity, SafeAreaView, TextInput,Keyboard} from "react-native";
-//import List from "./SearchData";
 import { Feather, Entypo } from "@expo/vector-icons";
 import { GlobalStyles } from '../shared/GlobalStyles';
-//import SearchBar from "./SearchBar";
+
 
 export default function SearchScreen({ navigation }) {
 
+  const Item = ({ shortname, longname}) => (
+    <View>
+      <Text style={GlobalStyles.textSmall}>{shortname}</Text>
+      <Text style={GlobalStyles.textSmall}>{longname}</Text>
+    </View>
+  );
   //filters the list of classes and creates a flatlist 
   const List = ({ searchPhrase, data }) => {
     const renderItem = ({ item }) => {
@@ -29,7 +34,7 @@ export default function SearchScreen({ navigation }) {
         )
       }
       // filter by the shortname
-      if (item.shortname.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
+      if (item.shortname.toUpperCase().includes(searchPhrase.toUpperCase())) {
         return (<View style={GlobalStyles.background2}>
           <TouchableOpacity onPress={() => navigation.navigate("Details", item)}>
             <Text style={GlobalStyles.textSmall}> {item.shortname}: {item.longname}</Text>
@@ -38,7 +43,7 @@ export default function SearchScreen({ navigation }) {
         )
       }
       // filter by the subject 
-      if (item.subject.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
+      if (item.subject.toUpperCase().includes(searchPhrase.toUpperCase())) {
         return (<View style={GlobalStyles.background2}>
           <TouchableOpacity onPress={() => navigation.navigate("Details", item)}>
             <Text style={GlobalStyles.textSmall}>{item.shortname}: {item.longname}</Text>
@@ -48,7 +53,7 @@ export default function SearchScreen({ navigation }) {
       }
     }
     return (
-      <SafeAreaView style={GlobalStyles.container2}>
+      <SafeAreaView style={GlobalStyles.list}>
         <View>
           <FlatList
             data={data}
@@ -73,7 +78,7 @@ export default function SearchScreen({ navigation }) {
         />
         {/* Input field */}
         <TextInput
-          style={GlobalStyles.textSmall}
+          style={GlobalStyles.input}
           placeholder="Search"
           value={searchPhrase}
           onChangeText={setSearchPhrase}
@@ -83,7 +88,7 @@ export default function SearchScreen({ navigation }) {
   };
 
 //creates the searchscreen and calls the funtcions above
-  const [searchPhrase, setSearchPhrase] = useState("");
+  const [searchPhrase, setSearchPhrase] = useState('');
   const [fakeData, setFakeData] = useState();
 
   // get data from the fake api endpoint
@@ -99,8 +104,7 @@ export default function SearchScreen({ navigation }) {
   }, []);
 
   return (
-    <SafeAreaView //style={styles.root}>
-    >
+    <SafeAreaView style={GlobalStyles.root}>
       <Text style={GlobalStyles.titleBig}>Classes</Text>
       <SearchBar
         searchPhrase={searchPhrase}

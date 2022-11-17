@@ -5,6 +5,20 @@ export const GlobalStyles = StyleSheet.create({
         flex: 1,
         padding: 20,
     },
+    list: {
+        margin: 10,
+        height: "85%",
+        width: "100%",
+      },
+    root: {
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      input: {
+        fontSize: 20,
+        marginLeft: 10,
+        width: "90%",
+      },
     container2: {
         margin: 15,
         justifyContent: "flex-start",
