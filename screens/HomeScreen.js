@@ -25,8 +25,7 @@ export default function HomeScreen ({ navigation }){
     }, []);
 
     return (
-      <ScrollView backgroundColor='#DABEA7'>
-      <View style={{ flex: 1, padding: 20}}>
+      <View style={{ flex: 1, padding: 20}} backgroundColor='#DABEA7'>
           {isLoading ? <ActivityIndicator/> : (
               <FlatList data={data} keyExtractor={({id}, index) => id} renderItem={({ item }) => (
                   <TouchableOpacity onPress={() => navigation.navigate('Details', item)}>
@@ -35,6 +34,5 @@ export default function HomeScreen ({ navigation }){
               )}/>
           )}
       </View>
-      </ScrollView>
     );
 }
