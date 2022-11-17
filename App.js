@@ -16,15 +16,7 @@ import MessageScreen from './screens/Messages';
 import ContactsScreen from './screens/Contacts'
 import { Button, StyleSheet, Text  } from 'react-native';
 import { ScreenStack } from 'react-native-screens';
- 
- 
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-});
+import { GlobalStyles } from './shared/GlobalStyles';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,18 +24,16 @@ export default function App() {
   return (
       <NavigationContainer>
  
-          <Stack.Navigator initialRouteName='SignInScreen' 
-          screenOptions={{headerTitleAlign: 'center' }} >
+          <Stack.Navigator initialRouteName='SignInScreen' screenOptions={{headerTitleAlign: 'center' }} >
               <Stack.Screen name='Sign In' component={SignInScreen}/>
               <Stack.Screen name='Sign Up' component={SignUpScreen}/>
               <Stack.Screen name='Home' component={HomeScreen}   
                             options={({ navigation }) => ({
                                       headerRight: () => (
-                                          <Button color='#FDDA0D' title='search'onPress={ () => (navigation.navigate('Search'))} /> 
-                                          //I changed to #FDDA0D but not sure how it will look on android vs apple
+                                          <Button color='#A9A9A9' title='search'onPress={ () => (navigation.navigate('Search'))} /> 
                                           ),
                                       headerLeft: () => (
-                                          <Button color='#FDDA0D' title="👤" onPress={ () => (navigation.navigate('Profile'))} />
+                                          <Button color='#A9A9A9' title="👤" onPress={ () => (navigation.navigate('Profile'))} />
                                           )
                                           })} />
                 <Stack.Screen name='Post' component={PostScreen}/>                         

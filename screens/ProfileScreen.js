@@ -1,9 +1,15 @@
 // user profile 
 
 import { React } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
+import { ScrollView, View, Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { GlobalStyles } from '../shared/GlobalStyles';
 
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#FFFF00',
+  },
+});
 
 
 export default function ProfileScreen({ navigation }) {
@@ -89,17 +95,16 @@ export default function ProfileScreen({ navigation }) {
     )
   }
   return (
-    <View>
-
+    <ScrollView styles={styles.container} backgroundColor='#DABEA7'>
       <Image
-        source={require('../assets/Profile_Pic.webp')}
+        source={require('../assets/Profile_Pic0.webp')}
         style={GlobalStyles.UserPic}
       />
       <Text style={GlobalStyles.titleBig}> John Doe</Text>
-      <Text style={GlobalStyles.titleSmall}>   JD12@calvin.edu</Text>
+      <Text style={GlobalStyles.titleSmall2}>   jd12@calvin.edu</Text>
 
       <View style={GlobalStyles.background}>
-        <Text style={GlobalStyles.textBig}> Classes currently taking</Text>
+        <Text style={GlobalStyles.textBig}> Classes Currently Taking</Text>
         <FlatList data={classList} renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigation.navigate("Details", item)}>
             <Text style={GlobalStyles.textMed}> {item.number} </Text>
@@ -115,6 +120,6 @@ export default function ProfileScreen({ navigation }) {
           </TouchableOpacity>
         )} />
       </View>
-    </View>
+    </ScrollView>
   )
 }

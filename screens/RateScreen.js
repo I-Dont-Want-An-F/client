@@ -1,27 +1,75 @@
-import { TabRouter } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Image, ActivityIndicator, SafeAreaView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import {GlobalStyles} from '../shared/GlobalStyles';
+import { styles } from './DetailScreen';
+import Popup from '../components/Popup';
 
 export default function RateScreen({ route, navigation }) {
-    return(
+
+  const [defaultRating, setDefaultRating] = useState(2);
+  const [maxRating, setmaxRating] = useState([1, 2, 3, 4, 5]);
+
+  const starImgFilled = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png';
+  const starImgCorner = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png';
+
+  const CustomRatingBar = () => {
+    return (
+      <View style={styles.CustomRatingBarStyle}>
+        {
+          maxRating.map((item, key) => {
+            return (
+              <TouchableOpacity
+                activeOpacity={0.7}
+                key={item}
+                onPress={() => setDefaultRating(item)}
+              >
+                <Image
+                  style={styles.starImgStyle}
+                  source={
+                    item <= defaultRating
+                      ? {uri: starImgFilled}
+                      : {uri: starImgCorner}
+                  }
+                />
+              </TouchableOpacity>
+            )
+          })
+        }
+      </View>
+    )
+  };
+
+
+
+  
+  return(
       
-    <View style={{ flex: 1, padding: 20}}>
-      <Text style = {GlobalStyles.titleBig}>  Rating Math 171 - Calculus 1 </Text>
+    <View style={{ flex: 1}}>
+      <View style={GlobalStyles.background3}>
+      <Text style = {GlobalStyles.titleBig}>  Rate Math 171 - Calculus 1 </Text>
       <Text style = {GlobalStyles.titleSmall}>  Professor: Chris Mosely</Text>
-      <Text style = {GlobalStyles.textSmall}> General rating </Text>
-      <TextInput style= {GlobalStyles.textIn2}> 0-5</TextInput>
+      <Text style = {GlobalStyles.titleSmall}>  </Text>
+      <Text style = {GlobalStyles.textSmall}> General Rating </Text>
+      <CustomRatingBar/>
+      <Text style = {GlobalStyles.textSmall}> Level of Difficulity </Text>
+      <CustomRatingBar/>     
       <Text style = {GlobalStyles.textSmall}> Homework </Text>
-      <TextInput style= {GlobalStyles.textIn2}> none, weekly, daily</TextInput>
-      <Text style = {GlobalStyles.textSmall}> Difficulity </Text>
-      <TextInput style= {GlobalStyles.textIn2}> easy, medium, hard</TextInput>
+      <TextInput style= {GlobalStyles.textIn2}> Enter hours per week</TextInput>
       <Text style = {GlobalStyles.textSmall}> Book requirement</Text>
-      <TextInput style= {GlobalStyles.textIn2}> yes, no</TextInput>
+      <Button style = {GlobalStyles.buttonRequire} color = '#646D7E' title = 'Required' />
+      <Button style = {GlobalStyles.buttonRequire} color = '#BCC6CC' title = 'Not Required' /> 
       <Text style = {GlobalStyles.textSmall}>  </Text>
 
-       
-        <Button  color={'#880808'} title="home" onPress={ () => (navigation.navigate('Home'))}   />  
+        <Button  
+          style = {GlobalStyles.button}
+          color = '#880808'
+          title = "Submit Ratings" 
+        />  
+        <Popup trigger={false}>
+          <h3> Your ratings are submitted! Thank you</h3>
+        </Popup>
+    </View>
     </View>
     )
-}
+};
