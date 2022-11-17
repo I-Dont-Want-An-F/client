@@ -15,12 +15,7 @@ import { GlobalStyles } from '../shared/GlobalStyles';
 
 export default function SearchScreen({ navigation }) {
 
-  const Item = ({ shortname, longname}) => (
-    <View>
-      <Text style={GlobalStyles.textSmall}>{shortname}</Text>
-      <Text style={GlobalStyles.textSmall}>{longname}</Text>
-    </View>
-  );
+  
   //filters the list of classes and creates a flatlist 
   const List = ({ searchPhrase, data }) => {
     const renderItem = ({ item }) => {
