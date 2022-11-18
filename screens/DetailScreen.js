@@ -65,48 +65,53 @@ export default function DetailsScreen({ route, navigation }) {
 
 
   return (
-    <ScrollView backGroundColor= '#DABEA7'>
+    <ScrollView style={GlobalStyles.background3} >
       <Text style={GlobalStyles.titleBig}> {route.params.shortname + ': ' + route.params.longname} </Text>
 
       <View style={GlobalStyles.titleSmall}>
         {prof.map((prof) => {
           return (
-            <View>
+            <View key={prof.name} >
               <Text style={GlobalStyles.titleSmall}>{'Professor: ' + prof.name}</Text>
             </View>
           );
         })}
       </View>
+      <Text style={GlobalStyles.textDivider} ></Text>
 
       <View style={GlobalStyles.titleSmall}>
         {rating.map((rating) => {
           return (
-            <View style={GlobalStyles.background2}>
-              <Text style={GlobalStyles.textSmall}> {'General Rating: ' + rating.stars} </Text> 
-              <Text style={GlobalStyles.textSmall}> {'Difficulty: ' + rating.dif} </Text> 
-              <Text style={GlobalStyles.textSmall}> {'Homework frequency: ' + rating.hw} </Text>
-              <Text style={GlobalStyles.textSmall}> {'Textbook requirement: ' + rating.book} </Text>
+            <View key={rating} style={GlobalStyles.background2}>
+              <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + rating.stars + ' / 5'} </Text> 
+              <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + rating.dif + ' / 5'} </Text> 
+              <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + rating.hw + ' hours per week'} </Text>
+              <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text>
             </View>
           );
         })}
       </View>
+      <Text style={GlobalStyles.textDivider} ></Text>
 
-      <View style={styles.container}>
-        <Button color={'#880808'} title="Rate Class" onPress={() => (navigation.navigate('Rate'))} />
-        <View style={styles.space2} />
-        <Button color={'#880808'} title="Comments" />
-        <View style={styles.space2} />
-        <Button color={'#880808'} title="Questions" />
-        <View style={styles.space2} />
-        <Button color={'#880808'} title="All" />
-      </View>
+      <Button color={'#0909FF'} title="Rate Class" onPress={() => (navigation.navigate('Rate'))} />
+      <Text style={GlobalStyles.textDivider} ></Text>
 
       <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
+      <View style={styles.container}>
+        <Text style={GlobalStyles.textSmall4}> Filter by</Text>
+        <View style={styles.space2} />
+        <Button color={'#757575'} title="Comments" />
+        <View style={styles.space2} />
+        <Button color={'#757575'} title="Questions" />
+        <View style={styles.space2} />
+        <Button color={'#757575'} title="All" />
+      </View>
+
       <FlatList data={post} renderItem={({ item }) => (
-        <View style={GlobalStyles.background2}>
+        <View  style={GlobalStyles.background2}>
           <TouchableOpacity onPress={() => navigation.navigate("Post", item)}>
-            <Text style={GlobalStyles.textSmall}> {item.id} {item.text}</Text>
+            <Text key={item.id} style={GlobalStyles.textSmall}> {item.id} {item.text}</Text>
           </TouchableOpacity>
         </View>
       )} />

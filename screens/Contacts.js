@@ -10,17 +10,26 @@ export default function ContactsScreen({navigation}){
     const getContacts = async () => {
         if (username === undefined){return;}
         try {
-            const response = await fetch('https://secret-meadow-43481.herokuapp.com/messagerooms/' + username);
+            const response = await fetch('https://fast-woodland-72631.herokuapp.com/messagerooms/' + username);
             const json = await response.json();
             let c = [];
             for(let i = 0; i < json.length; i++){
                 c.push([json[i]["id"], json[i]["userone"], json[i]["usertwo"]]);
             }
-            console.log(c);
             setContacts(c);
         } catch (error) {
             
         }
+    }
+
+    function Contacts (props) {
+        let contactName;
+        props.userone == username ? contactName = props.usertwo : contactName = props.userone;
+        return (
+            <View style={{backgroundColor: 'white', borderRadius: 15, padding: 10}}>
+                <Text>{contactName}</Text>
+            </View>
+        )
     }
 
     useEffect(() => {
@@ -42,8 +51,8 @@ export default function ContactsScreen({navigation}){
     return (
         <View style={{ flex: 1, padding: 20}}>
             <FlatList data={contacts} renderItem={({ item }) => (
-                <TouchableOpacity onPress={() => navigation.navigate('Messages', item)}>
-                    <Text>{item[0]}</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Messages', roomid = item[0], userone = [1], usertwo = [2])}>
+                    <Contacts key = {item[0]} userone = {item[1]} usertwo = {item[2]} />
                 </TouchableOpacity>
             )}/>
       </View>

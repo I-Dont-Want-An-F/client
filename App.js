@@ -28,10 +28,10 @@ export default function App() {
               <Stack.Screen name='Home' component={HomeScreen}   
                             options={({ navigation }) => ({
                                       headerRight: () => (
-                                          <Button color='#A9A9A9' title='search'onPress={ () => (navigation.navigate('Search'))} /> 
+                                          <Button color='#98AFC7' title='search'onPress={ () => (navigation.navigate('Search'))} /> 
                                           ),
                                       headerLeft: () => (
-                                          <Button color='#A9A9A9' title="👤" onPress={ () => (navigation.navigate('Profile'))} />
+                                          <Button color='#98AFC7' title="👤" onPress={ () => (navigation.navigate('Profile'))} />
                                           )
                                           })} />
                 <Stack.Screen name='Post' component={PostScreen}/>                         
@@ -43,7 +43,7 @@ export default function App() {
                 <Stack.Screen name='Profile' component={ProfileScreen}
                             options={({ navigation }) => ({
                                       headerRight: () => (
-                                          <Button color='#FDDA0D' title='Messages'onPress={ () => (navigation.navigate('Contacts'))} /> 
+                                          <Button color='#98AFC7' title='Messages'onPress={ () => (navigation.navigate('Contacts'))} /> 
                                           )})}/> 
           </Stack.Navigator>
       </NavigationContainer>

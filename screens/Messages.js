@@ -10,19 +10,21 @@ export default function MessageScreen ({ route, navigation }) {
     const [inputValue, setInputValue] = useState('');
 
     function Message (props) {
-        let side = (props.sender == route.params[1] ? 'flex-end' : 'flex-start' );
+        let side = (props.username == username ? 'flex-end' : 'flex-start' );
         return (
-            <View style={{alignSelf: side}}>
-                <View style={MessageStyles.container} >
-                      <Text>{props.content}</Text>
+            <KeyboardAvoidingView>
+                <View style={{alignSelf: side}}>
+                    <View style={MessageStyles.container} >
+                        <Text>{props.content}</Text>
+                    </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 
     const getMessages = async () => {
         try {
-            const response = await fetch('https://secret-meadow-43481.herokuapp.com/messages/' + route.params[0] );
+            const response = await fetch('https://fast-woodland-72631.herokuapp.com/messages/' + roomid );
             const json = await response.json();
             setMessages(json);
         } catch (error) {
@@ -32,8 +34,8 @@ export default function MessageScreen ({ route, navigation }) {
 
     function onSend () {
         if (inputValue === ''){return}
-        let message = {ID: messages.length+1, roomID: route.params[0], text: inputValue, sender: username.toLocaleLowerCase() }
-        fetch('https://secret-meadow-43481.herokuapp.com/sendmessage', {
+        let message = {ID: messages.length+1, roomID: roomid, text: inputValue, sender: username.toLocaleLowerCase() }
+        fetch('https://fast-woodland-72631.herokuapp.com/sendmessage', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -46,7 +48,7 @@ export default function MessageScreen ({ route, navigation }) {
     }
 
     if (username == '') {
-        getLocalData('username').then((data) => {setUsername(data)});        
+        getLocalData('username').then((data) => {setUsername(data.toLocaleLowerCase())});        
     }
 
     useEffect(() => {
@@ -56,10 +58,12 @@ export default function MessageScreen ({ route, navigation }) {
 
     return (
         <KeyboardAvoidingView style={{width: '100%', height: '100%'}}>
-            <FlatList data={messages} renderItem={({ item })=> (<Message content = {item.text} sender = {item.sender}> </Message>)}/>
+            <View style={{maxHeight: '90%', padding: 15}}>
+                <FlatList inverted data={[...messages].reverse()} renderItem={({ item })=> (<Message content = {item.text} username = {item.username} time = {item.posttime}> </Message>)}/>
+            </View>
             <TextInput onSubmitEditing={onSend} value={inputValue}  onChangeText={setInputValue}
-             style={{height: 40, width: '100%', padding: 10, margin: 20,position: 'absolute',
-             bottom: 10, borderRadius: 10, backgroundColor: 'white'}} />
+             style={{height: 40, width: '95%', flex: 1, padding: 10, marginBottom: 20, marginTop: 20, position: 'absolute',
+             bottom: 10, left: '2.5%', borderRadius: 10, backgroundColor: 'white'}} />
         </KeyboardAvoidingView>   
     );
 } 

@@ -1,9 +1,9 @@
 // user profile 
 
-import { React } from 'react';
+import { React, useState } from 'react';
 import { ScrollView, View, Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { GlobalStyles } from '../shared/GlobalStyles';
-
+import { getLocalData } from '../shared/LocalStorage';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
 
 
 export default function ProfileScreen({ navigation }) {
+  const [username, setUsername] = useState();
   //classes user is taken 
   const classList = [
     {
@@ -81,6 +82,11 @@ export default function ProfileScreen({ navigation }) {
 
   ];
 
+  if (username == '' || username == null || username === undefined) {
+    getLocalData('username').then((data) => {setUsername(data)});        
+  }
+
+
   const listItems = classList.map((c) =>
     < ClassContainerElemenet key={c.key} c={c.number} />);
 
@@ -94,14 +100,26 @@ export default function ProfileScreen({ navigation }) {
       <Text> {text} </Text>
     )
   }
+
+
+  if (username == '' || username == null || username === undefined){
+    return (
+    <View>
+        <Text>You Need To Be Signed In To Visit The Profile Screen!</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Sign In')}>
+            <Text>Sign In</Text>
+        </TouchableOpacity>
+    </View>)}
+
+
   return (
-    <ScrollView styles={styles.container} backgroundColor='#DABEA7'>
+    <ScrollView styles={styles.container} backgroundColor='#800000'>
       <Image
         source={require('../assets/Profile_Pic0.webp')}
         style={GlobalStyles.UserPic}
       />
-      <Text style={GlobalStyles.titleBig}> John Doe</Text>
-      <Text style={GlobalStyles.titleSmall2}>   jd12@calvin.edu</Text>
+      <Text style={GlobalStyles.titleBigW}> {username} </Text>
+      <Text style={GlobalStyles.titleSmall3}>   {username}@calvin.edu </Text>
 
       <View style={GlobalStyles.background}>
         <Text style={GlobalStyles.textBig}> Classes Currently Taking</Text>
