@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, FlatList} from 'react-native';
 import {GlobalStyles} from '../shared/GlobalStyles';
 import { getLocalData, storeLocalData } from '../shared/LocalStorage';
+import { URL } from '../shared/URL';
 
 export default function ContactsScreen({navigation}){
     const [contacts, setContacts] = useState();
@@ -10,7 +11,7 @@ export default function ContactsScreen({navigation}){
     const getContacts = async () => {
         if (username === undefined){return;}
         try {
-            const response = await fetch('https://fast-woodland-72631.herokuapp.com/messagerooms/' + username);
+            const response = await fetch(URL + '/messagerooms/' + username);
             const json = await response.json();
             let c = [];
             for(let i = 0; i < json.length; i++){
