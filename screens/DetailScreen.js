@@ -65,13 +65,13 @@ export default function DetailsScreen({ route, navigation }) {
 
 
   return (
-    <ScrollView backGroundColor= '#DABEA7'>
+    <View backGroundColor= '#DABEA7' >
       <Text style={GlobalStyles.titleBig}> {route.params.shortname + ': ' + route.params.longname} </Text>
 
       <View style={GlobalStyles.titleSmall}>
         {prof.map((prof) => {
           return (
-            <View>
+            <View key={prof.name} >
               <Text style={GlobalStyles.titleSmall}>{'Professor: ' + prof.name}</Text>
             </View>
           );
@@ -81,7 +81,7 @@ export default function DetailsScreen({ route, navigation }) {
       <View style={GlobalStyles.titleSmall}>
         {rating.map((rating) => {
           return (
-            <View style={GlobalStyles.background2}>
+            <View key={rating} style={GlobalStyles.background2}>
               <Text style={GlobalStyles.textSmall}> {'General Rating: ' + rating.stars} </Text> 
               <Text style={GlobalStyles.textSmall}> {'Difficulty: ' + rating.dif} </Text> 
               <Text style={GlobalStyles.textSmall}> {'Homework frequency: ' + rating.hw} </Text>
@@ -104,15 +104,15 @@ export default function DetailsScreen({ route, navigation }) {
       <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
       <FlatList data={post} renderItem={({ item }) => (
-        <View style={GlobalStyles.background2}>
+        <View  style={GlobalStyles.background2}>
           <TouchableOpacity onPress={() => navigation.navigate("Post", item)}>
-            <Text style={GlobalStyles.textSmall}> {item.id} {item.text}</Text>
+            <Text key={item.id} style={GlobalStyles.textSmall}> {item.id} {item.text}</Text>
           </TouchableOpacity>
         </View>
       )} />
 
       <TextInput style={styles.post} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
-    </ScrollView>
+    </View>
   );
 }
 
