@@ -1,4 +1,3 @@
-//created by dylan, creates a new page off of details that opens up a comment thread
 import { React, useEffect, useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, TextInput } from 'react-native';
 import { GlobalStyles } from '../shared/GlobalStyles';
@@ -29,8 +28,8 @@ export default function PostScreen({ route, navigation }) {
       <View style={GlobalStyles.titleSmall}>
         {reply.map((reply) => {
           return (
-            <View>
-              <Text style={GlobalStyles.textSmall}>{'         ' + 'Userid: ' + reply.userid}</Text>
+            <View key={reply.id}>
+              <Text style={GlobalStyles.textSmall}>{'         ' + reply.username}</Text>
               <Text style={GlobalStyles.textSmall2}>{'         ' + reply.text}</Text>
             </View>
           );
