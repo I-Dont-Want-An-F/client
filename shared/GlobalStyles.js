@@ -35,8 +35,6 @@ export const GlobalStyles = StyleSheet.create({
         textAlign: 'center',
         color: 'black',
         marginTop: 5
-
-
     },
     titleBigW: {
         fontSize: 30,
@@ -44,7 +42,6 @@ export const GlobalStyles = StyleSheet.create({
         textAlign: 'center',
         color: 'white',
         marginTop: 5
-
     },
     titleSmall: {
         fontSize: 20,
@@ -213,6 +210,44 @@ export const GlobalStyles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 5,
     marginBottom: 5
-   }
-
+   },
+   container_detail: {
+    //flex: 1,
+    width: 350,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 5,
+  },
+  post_detail: {
+    textAlign: "center",
+    alignSelf: "center",
+    width: 350,
+    borderWidth: 1,
+    borderRadius: 5,
+    marginTop: 15,
+    padding: 10,
+  },
+  box_detail: {
+    borderWidth: 1,
+    margin: 5,
+    padding: 5,
+    fontSize: 15
+  },
+  space2_detail: {
+    width: 10,
+    height: 20,
+  },
+  CustomRatingBarStyle: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: 8,
+    marginBottom: 5
+  },
+  starImgStyle: {
+    width: 40,
+    height: 40,
+    resizeMode: 'cover',
+  }
 });

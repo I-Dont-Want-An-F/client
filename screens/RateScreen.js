@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Image, ActivityIndicator, SafeAreaView, SnapshotViewIOS } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { GlobalStyles } from '../shared/GlobalStyles';
-import { styles } from './DetailScreen';
 import Popup from '../components/Popup';
 
 export default function RateScreen({ route, navigation }) {
@@ -19,11 +18,11 @@ export default function RateScreen({ route, navigation }) {
 
   const CustomRatingBarGR = () => {
     return (
-      <View style={styles.CustomRatingBarStyle}>
+      <View style={GlobalStyles.CustomRatingBarStyle}>
         {maxRating.map((item, key) => {
           return (
             <TouchableOpacity activeOpacity={0.7} key={item} onPress={() => setDefaultRating(item)}>
-              <Image style={styles.starImgStyle} source={item <= defaultRating ? { uri: starImgFilled } : { uri: starImgCorner }} />
+              <Image style={GlobalStyles.starImgStyle} source={item <= defaultRating ? { uri: starImgFilled } : { uri: starImgCorner }} />
             </TouchableOpacity>
           )
         })
@@ -34,7 +33,7 @@ export default function RateScreen({ route, navigation }) {
 
   const CustomRatingBarLoD = () => {
     return (
-      <View style={styles.CustomRatingBarStyle}>
+      <View style={GlobalStyles.CustomRatingBarStyle}>
         {
           maxRating2.map((item, key) => {
             return (
@@ -44,7 +43,7 @@ export default function RateScreen({ route, navigation }) {
                 onPress={() => setDefaultRating2(item)}
               >
                 <Image
-                  style={styles.starImgStyle}
+                  style={GlobalStyles.starImgStyle}
                   source={
                     item <= defaultRating2
                       ? {uri: starImgFilled}

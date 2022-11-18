@@ -57,7 +57,7 @@ export default function DetailsScreen({ route, navigation }) {
 
   if (prof.length > 1) {
     return (
-      <View backGroundColor='#DABEA7' >
+      <View style={GlobalStyles.background3} >
         <Text style={GlobalStyles.titleBig}> {route.params.shortname + ': ' + route.params.longname} </Text>
 
         <View style={GlobalStyles.titleSmall}>
@@ -72,30 +72,37 @@ export default function DetailsScreen({ route, navigation }) {
           })}
         </View>
 
+        <Text style={GlobalStyles.textDivider} ></Text>
+
         <View style={GlobalStyles.titleSmall}>
           {rating.map((rating) => {
             return (
               <View key={rating} style={GlobalStyles.background2}>
-                <Text style={GlobalStyles.textSmall}> {'General Rating: ' + rating.stars} </Text>
-                <Text style={GlobalStyles.textSmall}> {'Difficulty: ' + rating.dif} </Text>
-                <Text style={GlobalStyles.textSmall}> {'Homework frequency: ' + rating.hw} </Text>
-                <Text style={GlobalStyles.textSmall}> {'Textbook requirement: ' + rating.book} </Text>
+                <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + rating.stars + ' / 5'} </Text>
+                <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + rating.dif + ' / 5'} </Text>
+                <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + rating.hw + ' hours per week'} </Text>
+                <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text>
               </View>
             );
           })}
         </View>
 
-        <View style={styles.container}>
-          <Button color={'#880808'} title="Rate Class" onPress={() => (navigation.navigate('Rate', { sName: route.params.shortname, lName: route.params.longname, pName: { prof } }))} />
-          <View style={styles.space2} />
-          <Button color={'#880808'} title="Comments" />
-          <View style={styles.space2} />
-          <Button color={'#880808'} title="Questions" />
-          <View style={styles.space2} />
-          <Button color={'#880808'} title="All" />
-        </View>
+        <Text style={GlobalStyles.textDivider} ></Text>
+
+        <Button color={'#0909FF'} title="Rate Class" onPress={() => (navigation.navigate('Rate', { sName: route.params.shortname, lName: route.params.longname, pName: { prof } }))} />
+        <Text style={GlobalStyles.textDivider} ></Text>
 
         <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
+
+        <View style={GlobalStyles.container_detail}>
+          <Text style={GlobalStyles.textSmall4}> Filter by</Text>
+          <View style={GlobalStyles.space2_detail} />
+          <Button color={'#757575'} title="Comments" />
+          <View style={GlobalStyles.space2_detail} />
+          <Button color={'#757575'} title="Questions" />
+          <View style={GlobalStyles.space2_detail} />
+          <Button color={'#757575'} title="All" />
+        </View>
 
         <FlatList data={post} renderItem={({ item }) => (
           <View style={GlobalStyles.background2}>
@@ -108,19 +115,19 @@ export default function DetailsScreen({ route, navigation }) {
         <FlatList data={comments} renderItem={({ item }) => (
           <View style={GlobalStyles.background2}>
             {/* <TouchableOpacity onPress={() => navigation.navigate("Post", item)}> */}
-              <Text key={item} style={GlobalStyles.textSmall}> {item.user1} {item.post} </Text>
+            <Text key={item} style={GlobalStyles.textSmall}> {item.user1} {item.post} </Text>
             {/* </TouchableOpacity>/ */}
           </View>
         )} />
 
-        <TextInput style={styles.post} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
+        <TextInput style={GlobalStyles.post_detail} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
 
       </View>
     );
   }
 
   return (
-    <ScrollView style={GlobalStyles.background3} >
+    <View style={GlobalStyles.background3} >
       <Text style={GlobalStyles.titleBig}> {route.params.shortname + ': ' + route.params.longname} </Text>
 
       <View style={GlobalStyles.titleSmall}>
@@ -138,28 +145,29 @@ export default function DetailsScreen({ route, navigation }) {
         {rating.map((rating) => {
           return (
             <View key={rating} style={GlobalStyles.background2}>
-              <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + rating.stars + ' / 5'} </Text> 
-              <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + rating.dif + ' / 5'} </Text> 
+              <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + rating.stars + ' / 5'} </Text>
+              <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + rating.dif + ' / 5'} </Text>
               <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + rating.hw + ' hours per week'} </Text>
               <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text>
             </View>
           );
         })}
       </View>
+
       <Text style={GlobalStyles.textDivider} ></Text>
 
-      <Button color={'#0909FF'} title="Rate Class" onPress={() => (navigation.navigate('Rate', , { sName: route.params.shortname, lName: route.params.longname, pName: { prof } ))} />
+      <Button color={'#0909FF'} title="Rate Class" onPress={() => (navigation.navigate('Rate', { sName: route.params.shortname, lName: route.params.longname, pName: { prof } }))} />
       <Text style={GlobalStyles.textDivider} ></Text>
 
       <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
-      <View style={styles.container}>
+      <View style={GlobalStyles.container_detail}>
         <Text style={GlobalStyles.textSmall4}> Filter by</Text>
-        <View style={styles.space2} />
+        <View style={GlobalStyles.space2_detail} />
         <Button color={'#757575'} title="Comments" />
-        <View style={styles.space2} />
+        <View style={GlobalStyles.space2_detail} />
         <Button color={'#757575'} title="Questions" />
-        <View style={styles.space2} />
+        <View style={GlobalStyles.space2_detail} />
         <Button color={'#757575'} title="All" />
       </View>
 
@@ -174,54 +182,12 @@ export default function DetailsScreen({ route, navigation }) {
       <FlatList data={comments} renderItem={({ item }) => (
         <View style={GlobalStyles.background2}>
           {/* <TouchableOpacity onPress={() => navigation.navigate("Post", item)}> */}
-            <Text key={item} style={GlobalStyles.textSmall}> {item.user1} {item.post} </Text>
+          <Text key={item} style={GlobalStyles.textSmall}> {item.user1} {item.post} </Text>
           {/* </TouchableOpacity> */}
         </View>
       )} />
 
-      <TextInput style={styles.post} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
-    </ScrollView>
+      <TextInput style={GlobalStyles.post_detail} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
+    </View>
   );
 }
-
-export const styles = StyleSheet.create({
-  container: {
-    //flex: 1,
-    width: 350,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 5,
-  },
-  post: {
-    textAlign: "center",
-    alignSelf: "center",
-    width: 350,
-    borderWidth: 1,
-    borderRadius: 5,
-    marginTop: 15,
-    padding: 10,
-  },
-  box: {
-    borderWidth: 1,
-    margin: 5,
-    padding: 5,
-    fontSize: 15
-  },
-  space2: {
-    width: 10,
-    height: 20,
-  },
-  CustomRatingBarStyle: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    marginTop: 8,
-    marginBottom: 5
-  },
-  starImgStyle: {
-    width: 40,
-    height: 40,
-    resizeMode: 'cover',
-  }
-});
