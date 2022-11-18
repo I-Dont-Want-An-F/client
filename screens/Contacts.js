@@ -10,7 +10,7 @@ export default function ContactsScreen({navigation}){
     const getContacts = async () => {
         if (username === undefined){return;}
         try {
-            const response = await fetch('https://secret-meadow-43481.herokuapp.com/messagerooms/' + username);
+            const response = await fetch('https://fast-woodland-72631.herokuapp.com/messagerooms/' + username);
             const json = await response.json();
             let c = [];
             for(let i = 0; i < json.length; i++){

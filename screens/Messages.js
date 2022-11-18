@@ -10,7 +10,7 @@ export default function MessageScreen ({ route, navigation }) {
     const [inputValue, setInputValue] = useState('');
 
     function Message (props) {
-        let side = (props.sender == route.params[1] ? 'flex-end' : 'flex-start' );
+        let side = (props.sender == username ? 'flex-end' : 'flex-start' );
         return (
             <View style={{alignSelf: side}}>
                 <View style={MessageStyles.container} >
@@ -22,7 +22,7 @@ export default function MessageScreen ({ route, navigation }) {
 
     const getMessages = async () => {
         try {
-            const response = await fetch('https://secret-meadow-43481.herokuapp.com/messages/' + route.params[0] );
+            const response = await fetch('https://fast-woodland-72631.herokuapp.com/messages/' + route.params[0] );
             const json = await response.json();
             setMessages(json);
         } catch (error) {
@@ -33,7 +33,7 @@ export default function MessageScreen ({ route, navigation }) {
     function onSend () {
         if (inputValue === ''){return}
         let message = {ID: messages.length+1, roomID: route.params[0], text: inputValue, sender: username.toLocaleLowerCase() }
-        fetch('https://secret-meadow-43481.herokuapp.com/sendmessage', {
+        fetch('https://fast-woodland-72631.herokuapp.com/sendmessage', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
