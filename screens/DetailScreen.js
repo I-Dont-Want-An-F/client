@@ -5,10 +5,12 @@ import { TabRouter } from '@react-navigation/native';
 import { GlobalStyles } from '../shared/GlobalStyles';
 import Post from '../shared/Post';
 import SubDetailsScreen from './SubDetails';
+import { getLocalData } from '../shared/LocalStorage';
 import { URL } from '../shared/URL';
 
 export default function DetailsScreen({ route, navigation }) {
 
+  const [username, setUsername] = useState();
   const [prof, setProf] = useState([]);
   const [rating, setRating] = useState([]);
   const [post, setPost] = useState([]);
@@ -17,6 +19,7 @@ export default function DetailsScreen({ route, navigation }) {
   const [defaultRating, setDefaultRating] = useState(2);
   const [maxRating, setmaxRating] = useState([1, 2, 3, 4, 5]);
   const starImgFilled = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png';
+
 
   const getProf = async () => {
     try {
@@ -49,6 +52,7 @@ export default function DetailsScreen({ route, navigation }) {
   }
 
   useEffect(() => {
+    getLocalData('username').then((data) => {setUsername(data.toLocaleLowerCase())});
     getProf();
     getRating();
     getPost();
@@ -120,7 +124,7 @@ export default function DetailsScreen({ route, navigation }) {
           </View>
         )} />
 
-        <TextInput style={GlobalStyles.post_detail} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
+        <TextInput style={GlobalStyles.post_detail} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: event.nativeEvent.text }]) }} >{ }</TextInput>
 
       </View>
     );
