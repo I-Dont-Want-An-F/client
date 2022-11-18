@@ -18,9 +18,9 @@ import { Button, StyleSheet } from 'react-native';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
     return (
         <NavigationContainer>
-
             <Stack.Navigator initialRouteName='SignInScreen' screenOptions={{ headerTitleAlign: 'center' }} >
                 <Stack.Screen name='Sign In' component={SignInScreen} />
                 <Stack.Screen name='Sign Up' component={SignUpScreen} />

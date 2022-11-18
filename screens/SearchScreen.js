@@ -1,80 +1,114 @@
-import { React, useState} from 'react';
-import { View, TextInput, FlatList, TouchableOpacity } from 'react-native';
+ // this is the page that shows the search bar & created by Dylan
+// based off this tutorial by Kevin Thomas 
+// https://blog.logrocket.com/create-react-native-search-bar-from-scratch/
+
+// TO-Do 
+//Fix the keyboard as it keeps dropping down 
+//Change the style to make it look beter 
+//unquie child, caused by both detail screen using same ID??
+
+import { React, useState, useEffect } from "react";
+import { StyleSheet, Text, FlatList, View, TouchableOpacity, SafeAreaView, TextInput,Keyboard} from "react-native";
+import { Feather, Entypo } from "@expo/vector-icons";
+import { GlobalStyles } from '../shared/GlobalStyles';
 
 
-//TODO: instead of navigating based on the typed input, 
-//use the typed input to filter which class appear in a flatlist below
+export default function SearchScreen({ navigation }) {
 
-export default function SearchScreen ({ navigation }){
-    const [data, setData] = useState();
-
-    function textChanged(text){
-        var text = text.toLowerCase();
-        classList.map( 
-            (c) => {
-                var lowerC = c.number.toLowerCase();
-                if (text == lowerC) {
-                    navigation.navigate("Details", c);
-                }
-            });
-    }
-
-    return (
-        <View>
-            <TextInput
-                style={{height: 40, padding: 10, margin: 20, textAlign: 'center',
-                        borderRadius: 10, backgroundColor: 'white'}}
-                onChangeText={textChanged}
-                placeholder="Search"
-            /> 
+  
+  //filters the list of classes and creates a flatlist 
+  const List = ({ searchPhrase, data }) => {
+    const renderItem = ({ item }) => {
+      // when no input, show all
+      if (searchPhrase === "") {
+        return (<View style={GlobalStyles.background2}>
+          <TouchableOpacity onPress={() => navigation.navigate("Details", item)}>
+            <Text style={GlobalStyles.textSmall}> {item.shortname}: {item.longname}</Text>
+          </TouchableOpacity>
         </View>
+        )
+      }
+      // filter by the shortname
+      if (item.shortname.toUpperCase().includes(searchPhrase.toUpperCase())) {
+        return (<View style={GlobalStyles.background2}>
+          <TouchableOpacity onPress={() => navigation.navigate("Details", item)}>
+            <Text style={GlobalStyles.textSmall}> {item.shortname}: {item.longname}</Text>
+          </TouchableOpacity>
+        </View>
+        )
+      }
+      // filter by the subject 
+      if (item.subject.toUpperCase().includes(searchPhrase.toUpperCase())) {
+        return (<View style={GlobalStyles.background2}>
+          <TouchableOpacity onPress={() => navigation.navigate("Details", item)}>
+            <Text style={GlobalStyles.textSmall}>{item.shortname}: {item.longname}</Text>
+          </TouchableOpacity>
+        </View>
+        )
+      }
+    }
+    return (
+      <SafeAreaView style={GlobalStyles.list}>
+        <View>
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
+        </View>
+      </SafeAreaView>
     );
-}
+  };
 
+  //creates a search bar 
+  const SearchBar = ({ searchPhrase, setSearchPhrase }) => {
+    return (
+      <View style={GlobalStyles.container2}>
+        {/* search Icon */}
+        <Feather
+          name="search"
+          size={20}
+          color="black"
+          style={{ marginLeft: 1 }}
+        />
+        {/* Input field */}
+        <TextInput
+          style={GlobalStyles.input}
+          placeholder="Search"
+          value={searchPhrase}
+          onChangeText={setSearchPhrase}
+        />
+      </View>
+    );
+  };
 
+//creates the searchscreen and calls the funtcions above
+  const [searchPhrase, setSearchPhrase] = useState('');
+  const [fakeData, setFakeData] = useState();
 
-const classList = [
+  // get data from the fake api endpoint
+  useEffect(() => {
+    const getData = async () => {
+      const apiResponse = await fetch(
+        "https://fast-woodland-72631.herokuapp.com/classes"
+      );
+      const data = await apiResponse.json();
+      setFakeData(data);
+    };
+    getData();
+  }, []);
 
-    {number: "CS 104", name: "Applied Computing", key: 0,
-    prof: "Derek Schuurman",
-    rating: "3.0", hw: "daily", dif:"2.5", book: "No info",
-    post1: "freshman 26': When is this class typically offered?",
-    post2: "I'm a senior: Probably not this semester.",
-    post3: "freshman 26': Oh no, I need to take it this year!"},
-
-    {number: "CS 108", name: "Intro to Computing", key: 1,
-    prof: "Keith VanderLinden",
-    rating: "4.8", hw: "weekly", dif: "3.0", book: "Online resource",
-    post1: "python_new: Help! I deleted my Thonny!",
-    post2: "python_easy: Try to find the install link on Moodle.",
-    post3: "python_so_hard: I genuinely can't understand how turtle works."},
-
-    {number: "Math 171", name: "Calculus I", key: 2,
-    prof: "Chris Moseley",
-    rating: "4.5", hw: "weekly", dif:"2.8", book:"Not required",
-    post1: "freshman 26': How could the dif only be 2.8? It's so hard!",
-    post2: "sophomore 25': Try go to help session on Wednesday night.",
-    post3: "junior 24': Or contact a tutor if you need further help."},
-
-    {number:"CS 112", name: "Intro to Data Structures", key: 3,
-    prof: "Victor Norman",
-    rating: "4.5", hw: "weekly", dif:"2.9", book: "Not required, but recommended",
-    post1: "user123: Any tips for studying for next test?",
-    post2: "user456: Want to come and study with us together?",
-    post3: "user123: Of course! Where are your guys?"},
-
-    {number: "CS 262", name: "Software Engineering", key: 4,
-    prof: "Keith VanderLinden",
-    rating: "4.8", hw: "weekly", dif: "3.2", book: "Not required",
-    post1: "developer_a: I love learning JavaScript!",
-    post2: "developer_b: Are your guys ready for the presentation?",
-    post3: "developer_c: SC303 is a big room! I'm so nervous."},
-
-    {number: "ENGR 220", name: "Intro to Computer Architecture", key: 5,
-    prof: "Mark Michmerhuizen",
-    rating: "2.1", hw: "never", dif:"4.3", book:"No info",
-    post1: "user123: When is the next lab help session?",
-    post2: "user789: I believe they move it to Wednesday this week.",
-    post3: "user456: Oh no, I'm on my way already!"},
-
-    ];
+  return (
+    <SafeAreaView style={GlobalStyles.root}>
+      <Text style={GlobalStyles.titleBig}>Classes</Text>
+      <SearchBar
+        searchPhrase={searchPhrase}
+        setSearchPhrase={setSearchPhrase}
+      />
+      <List
+        searchPhrase={searchPhrase}
+        data={fakeData}
+      />
+    </SafeAreaView>
+  );
+};

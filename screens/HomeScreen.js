@@ -11,7 +11,7 @@ export default function HomeScreen({ navigation }) {
 
   const getClasses = async () => {
     try {
-      const response = await fetch(URL + '/classes')
+      const response = await fetch(URL + '/subject/computer science')
       const json = await response.json();
       setData(json);
     } catch (error) {
