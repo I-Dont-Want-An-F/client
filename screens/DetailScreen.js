@@ -105,10 +105,13 @@ export default function DetailsScreen({ route, navigation }) {
           </View>
         )} />
 
-        {/* inputting new reply: not working yet. */}
-        <View style={GlobalStyles.background2}>
-          <Text style={GlobalStyles.textSmall}> {"etl3:"} {comments} </Text>
-        </View>
+        <FlatList data={comments} renderItem={({ item }) => (
+          <View style={GlobalStyles.background2}>
+            {/* <TouchableOpacity onPress={() => navigation.navigate("Post", item)}> */}
+              <Text key={item} style={GlobalStyles.textSmall}> {item.user1} {item.post} </Text>
+            {/* </TouchableOpacity>/ */}
+          </View>
+        )} />
 
         <TextInput style={styles.post} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
 
@@ -160,6 +163,14 @@ export default function DetailsScreen({ route, navigation }) {
           <TouchableOpacity onPress={() => navigation.navigate("Post", item)}>
             <Text key={item.id} style={GlobalStyles.textSmall}> {item.username + ":"} {item.text} </Text>
           </TouchableOpacity>
+        </View>
+      )} />
+
+      <FlatList data={comments} renderItem={({ item }) => (
+        <View style={GlobalStyles.background2}>
+          {/* <TouchableOpacity onPress={() => navigation.navigate("Post", item)}> */}
+            <Text key={item} style={GlobalStyles.textSmall}> {item.user1} {item.post} </Text>
+          {/* </TouchableOpacity> */}
         </View>
       )} />
 

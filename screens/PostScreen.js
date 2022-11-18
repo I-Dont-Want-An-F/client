@@ -6,6 +6,7 @@ import { URL } from '../shared/URL';
 export default function PostScreen({ route, navigation }) {
 
   const [reply, setReply] = useState([])
+  const [comments, setComment] = useState([])
 
   const getReply = async () => {
     try {
@@ -35,7 +36,16 @@ export default function PostScreen({ route, navigation }) {
           );
         })}
       </View>
-      <TextInput style={GlobalStyles.textIn} placeholder="post a reply">{ }</TextInput>
+
+      <FlatList data={comments} renderItem={({ item }) => (
+        <View>
+          <Text style={GlobalStyles.textSmall}>{'         ' + item.user1}</Text>
+          <Text style={GlobalStyles.textSmall2}>{'         ' + item.post}</Text>
+        </View>
+      )} />
+
+      <TextInput style={GlobalStyles.textIn} placeholder="post a reply" onSubmitEditing={(event) => { setComment([...comments, { user1: "zs35", post: event.nativeEvent.text }]) }} >{ }</TextInput>
+
       <Text>  </Text>
     </View>
   );

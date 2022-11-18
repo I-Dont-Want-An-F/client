@@ -84,6 +84,14 @@ export default function SubDetailsScreen({ route, navigation }) {
                 </View>
             )} />
 
+            <FlatList data={comments} renderItem={({ item }) => (
+                <View style={GlobalStyles.background2}>
+                    {/* <TouchableOpacity onPress={() => navigation.navigate("Post", item)}> */}
+                        <Text key={item} style={GlobalStyles.textSmall}> {item.user1} {item.post} </Text>
+                    {/* </TouchableOpacity> */}
+                </View>
+            )} />
+
             <TextInput style={styles.post} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
         </View>
     );

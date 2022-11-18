@@ -39,8 +39,7 @@ export default function App() {
                 <Stack.Screen name='Profile' component={ProfileScreen}
                     options={({ navigation }) => ({
                         headerRight: () => (
-                            <Button color='#FDDA0D' title='Messages' onPress={() => (navigation.navigate('Contacts'))} />
-                        )
+                            <Button color='#FDDA0D' title='Messages' onPress={() => (navigation.navigate('Contacts'))} />)
                     })} />
             </Stack.Navigator>
         </NavigationContainer>
