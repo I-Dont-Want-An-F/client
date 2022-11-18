@@ -11,10 +11,13 @@ export default function RateScreen({ route, navigation }) {
   const [maxRating, setmaxRating] = useState([1, 2, 3, 4, 5]);
   const { sName, lName } = route.params;
 
+  const [defaultRating2, setDefaultRating2] = useState(2);
+  const [maxRating2, setmaxRating2] = useState([1, 2, 3, 4, 5]);
+
   const starImgFilled = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png';
   const starImgCorner = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png';
 
-  const CustomRatingBar = () => {
+  const CustomRatingBarGR = () => {
     return (
       <View style={styles.CustomRatingBarStyle}>
         {maxRating.map((item, key) => {
@@ -29,31 +32,60 @@ export default function RateScreen({ route, navigation }) {
     )
   };
 
-  return (
-    <View style={{ flex: 1 }}>
-      <View style={GlobalStyles.background3}>
-        <Text style={GlobalStyles.titleBig}>  Rate this class! </Text>
-        <Text style={GlobalStyles.titleSmall}>  {sName}: {lName} </Text>
-        <Text style={GlobalStyles.titleSmall}>  </Text>
-        <Text style={GlobalStyles.textSmall}> General Rating </Text>
-        <CustomRatingBar />
-        <Text style={GlobalStyles.textSmall}> Level of Difficulity </Text>
-        <CustomRatingBar />
-        <Text style={GlobalStyles.textSmall}> Homework </Text>
-        <TextInput style={GlobalStyles.textIn2}> Enter hours per week</TextInput>
-        <Text style={GlobalStyles.textSmall}> Book requirement</Text>
-        <Button style={GlobalStyles.buttonRequire} color='#646D7E' title='Required' />
-        <Button style={GlobalStyles.buttonRequire} color='#BCC6CC' title='Not Required' />
-        <Text style={GlobalStyles.textSmall}>  </Text>
+  const CustomRatingBarLoD = () => {
+    return (
+      <View style={styles.CustomRatingBarStyle}>
+        {
+          maxRating2.map((item, key) => {
+            return (
+              <TouchableOpacity
+                activeOpacity={0.7}
+                key={item}
+                onPress={() => setDefaultRating2(item)}
+              >
+                <Image
+                  style={styles.starImgStyle}
+                  source={
+                    item <= defaultRating2
+                      ? {uri: starImgFilled}
+                      : {uri: starImgCorner}
+                  }
+                />
+              </TouchableOpacity>
+            )
+          })
+        }
+      </View>
+    )
+  };
 
-        <Button
-          style={GlobalStyles.button}
-          color='#880808'
-          title="Submit Ratings"
-        />
-        <Popup trigger={false}>
-          <h3> Your ratings are submitted! Thank you</h3>
-        </Popup>
+  return(
+      
+    <View style={{ flex: 1}}>
+      <View style={GlobalStyles.background3}>
+      <Text style={GlobalStyles.titleBig}>  Rate this class! </Text>
+      <Text style={GlobalStyles.titleSmall}>  {sName}: {lName} </Text>
+      <Text style = {GlobalStyles.titleSmall}>  </Text>
+      <Text style = {GlobalStyles.textSmall5}> General Rating </Text>
+      <CustomRatingBarGR/>
+      <Text style = {GlobalStyles.textSmall5}> Level of Difficulity </Text>
+      <CustomRatingBarLoD/>     
+      <Text style = {GlobalStyles.textSmall5}> Homework </Text>
+      <TextInput style= {GlobalStyles.textIn2} placeholder="Enter hours per week" textAlign='center' keyboardType='numeric' ></TextInput>
+      <Text style={GlobalStyles.textDivider} ></Text>
+      <Text style = {GlobalStyles.textSmall5}> Book requirement</Text>
+      <Button style = {GlobalStyles.buttonRequire} color = '#646D7E' title = 'Required' />
+      <Button style = {GlobalStyles.buttonRequire} color = '#BCC6CC' title = 'Not Required' /> 
+      <Text style={GlobalStyles.textDivider} ></Text>
+      <Text style={GlobalStyles.textDivider} ></Text>
+      <Text style={GlobalStyles.textDivider} ></Text>
+      <Text style={GlobalStyles.textDivider} ></Text>
+
+        <Button  
+          style = {GlobalStyles.button}
+          color = '#880808'
+          title = "Submit Ratings" 
+        />  
       </View>
     </View>
   )

@@ -56,13 +56,13 @@ export default function ProfileScreen({ navigation }) {
   }
 
   return (
-    <View styles={styles.container} backgroundColor='#DABEA7'>
+    <ScrollView styles={styles.container} backgroundColor='#800000'>
       <Image
         source={require('../assets/Profile_Pic0.webp')}
         style={GlobalStyles.UserPic}
       />
-      <Text style={GlobalStyles.titleBig}> {username} </Text>
-      <Text style={GlobalStyles.titleSmall2}>   {username}@calvin.edu </Text>
+      <Text style={GlobalStyles.titleBigW}> {username} </Text>
+      <Text style={GlobalStyles.titleSmall3}>   {username}@calvin.edu </Text>
 
       <View style={GlobalStyles.background}>
         <Text style={GlobalStyles.textBig}> Classes Currently Taking</Text>
@@ -81,6 +81,6 @@ export default function ProfileScreen({ navigation }) {
           </TouchableOpacity>
         )} />
       </View>
-    </View>
+    </ScrollView>
   )
 }

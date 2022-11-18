@@ -26,8 +26,8 @@ export default function App() {
                 <Stack.Screen name='Sign Up' component={SignUpScreen} />
                 <Stack.Screen name='Home' component={HomeScreen}
                     options={({ navigation }) => ({
-                        headerRight: () => (<Button color='#FDDA0D' title='search' onPress={() => (navigation.navigate('Search'))} />),
-                        headerLeft: () => (<Button color='#FDDA0D' title="👤" onPress={() => (navigation.navigate('Profile'))} />)
+                        headerRight: () => (<Button color='#98AFC7' title='search' onPress={() => (navigation.navigate('Search'))} />),
+                        headerLeft: () => (<Button color='#98AFC7' title="👤" onPress={() => (navigation.navigate('Profile'))} />)
                     })} />
                 <Stack.Screen name='Post' component={PostScreen} />
                 <Stack.Screen name='Details' component={DetailScreen} />
@@ -39,7 +39,7 @@ export default function App() {
                 <Stack.Screen name='Profile' component={ProfileScreen}
                     options={({ navigation }) => ({
                         headerRight: () => (
-                            <Button color='#FDDA0D' title='Messages' onPress={() => (navigation.navigate('Contacts'))} />)
+                            <Button color='#98AFC7' title='Messages' onPress={() => (navigation.navigate('Contacts'))} />)
                     })} />
             </Stack.Navigator>
         </NavigationContainer>
