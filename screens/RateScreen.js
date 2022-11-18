@@ -10,10 +10,13 @@ export default function RateScreen({ route, navigation }) {
   const [defaultRating, setDefaultRating] = useState(2);
   const [maxRating, setmaxRating] = useState([1, 2, 3, 4, 5]);
 
+  const [defaultRating2, setDefaultRating2] = useState(2);
+  const [maxRating2, setmaxRating2] = useState([1, 2, 3, 4, 5]);
+
   const starImgFilled = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png';
   const starImgCorner = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png';
 
-  const CustomRatingBar = () => {
+  const CustomRatingBarGR = () => {
     return (
       <View style={styles.CustomRatingBarStyle}>
         {
@@ -40,7 +43,32 @@ export default function RateScreen({ route, navigation }) {
     )
   };
 
-
+  const CustomRatingBarLoD = () => {
+    return (
+      <View style={styles.CustomRatingBarStyle}>
+        {
+          maxRating2.map((item, key) => {
+            return (
+              <TouchableOpacity
+                activeOpacity={0.7}
+                key={item}
+                onPress={() => setDefaultRating2(item)}
+              >
+                <Image
+                  style={styles.starImgStyle}
+                  source={
+                    item <= defaultRating2
+                      ? {uri: starImgFilled}
+                      : {uri: starImgCorner}
+                  }
+                />
+              </TouchableOpacity>
+            )
+          })
+        }
+      </View>
+    )
+  };
 
   
   return(
@@ -50,16 +78,20 @@ export default function RateScreen({ route, navigation }) {
       <Text style = {GlobalStyles.titleBig}>  Rate Math 171 - Calculus 1 </Text>
       <Text style = {GlobalStyles.titleSmall}>  Professor: Chris Mosely</Text>
       <Text style = {GlobalStyles.titleSmall}>  </Text>
-      <Text style = {GlobalStyles.textSmall}> General Rating </Text>
-      <CustomRatingBar/>
-      <Text style = {GlobalStyles.textSmall}> Level of Difficulity </Text>
-      <CustomRatingBar/>     
-      <Text style = {GlobalStyles.textSmall}> Homework </Text>
-      <TextInput style= {GlobalStyles.textIn2}> Enter hours per week</TextInput>
-      <Text style = {GlobalStyles.textSmall}> Book requirement</Text>
+      <Text style = {GlobalStyles.textSmall5}> General Rating </Text>
+      <CustomRatingBarGR/>
+      <Text style = {GlobalStyles.textSmall5}> Level of Difficulity </Text>
+      <CustomRatingBarLoD/>     
+      <Text style = {GlobalStyles.textSmall5}> Homework </Text>
+      <TextInput style= {GlobalStyles.textIn2} placeholder="Enter hours per week" textAlign='center' keyboardType='numeric' ></TextInput>
+      <Text style={GlobalStyles.textDivider} ></Text>
+      <Text style = {GlobalStyles.textSmall5}> Book requirement</Text>
       <Button style = {GlobalStyles.buttonRequire} color = '#646D7E' title = 'Required' />
       <Button style = {GlobalStyles.buttonRequire} color = '#BCC6CC' title = 'Not Required' /> 
-      <Text style = {GlobalStyles.textSmall}>  </Text>
+      <Text style={GlobalStyles.textDivider} ></Text>
+      <Text style={GlobalStyles.textDivider} ></Text>
+      <Text style={GlobalStyles.textDivider} ></Text>
+      <Text style={GlobalStyles.textDivider} ></Text>
 
         <Button  
           style = {GlobalStyles.button}

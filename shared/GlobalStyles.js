@@ -16,17 +16,32 @@ export const GlobalStyles = StyleSheet.create({
         marginTop: 5
 
     },
+    titleBigW: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: 'white',
+        marginTop: 5
+
+    },
     titleSmall: {
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#686A6C',
+        color: '#34282C',
     },
     titleSmall2: {
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center',
         color: '#3A3B3C',
+        marginBottom: 10
+    },
+    titleSmall3: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#DADBDD',
         marginBottom: 10
     },
     textBig:{
@@ -70,6 +85,37 @@ export const GlobalStyles = StyleSheet.create({
         color: '#D22B2B',
         margin: 10,
     },
+    textSmall3:{
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign:"left",
+        marginTop: 5,
+        marginBottom: 0,
+        color: 'black',
+        margin: 10,
+    },
+    textSmall4:{
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign:"left",
+        marginTop: 5,
+        marginBottom: 0,
+        color: '#560319',
+    },
+    textDivider: {
+        fontSize: 5,
+        marginBottom: 2,
+        marginTop: 2
+    },
+    textSmall5:{
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign:"left",
+        marginTop: 5,
+        marginBottom: 0,
+        color: 'black',
+        margin: 10,
+    },
     UserPic: {
         marginTop: 10,
         borderRadius: 50,
@@ -85,13 +131,13 @@ export const GlobalStyles = StyleSheet.create({
         marginBottom: 15
     },
     background2: {
-        backgroundColor: '#D0D0D0',
+        backgroundColor: '#DADBDD',
         borderRadius: 15,
         margin: 5,
     },
     background3: {
         backgroundColor: 'white',
-        borderRadius: 15,
+        borderRadius: 0,
         margin: 5,
     },
     background4: {
