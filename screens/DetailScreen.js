@@ -1,9 +1,11 @@
-import { TabRouter } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Image, ActivityIndicator, SafeAreaView } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
+import { TabRouter } from '@react-navigation/native';
 import { GlobalStyles } from '../shared/GlobalStyles';
 import Post from '../shared/Post';
+import SubDetailsScreen from './SubDetails';
+import { URL } from '../shared/URL';
 
 export default function DetailsScreen({ route, navigation }) {
 
@@ -18,7 +20,7 @@ export default function DetailsScreen({ route, navigation }) {
 
   const getProf = async () => {
     try {
-      const response = await fetch('https://fast-woodland-72631.herokuapp.com/prof/' + route.params.shortname)
+      const response = await fetch(URL + '/prof/' + route.params.shortname)
       const json = await response.json();
       setProf(json);
     } catch (error) {
@@ -28,7 +30,7 @@ export default function DetailsScreen({ route, navigation }) {
 
   const getRating = async () => {
     try {
-      const response = await fetch('https://fast-woodland-72631.herokuapp.com/rating/' + route.params.shortname)
+      const response = await fetch(URL + '/rating/' + route.params.shortname)
       const json = await response.json();
       setRating(json);
     } catch (error) {
@@ -38,19 +40,9 @@ export default function DetailsScreen({ route, navigation }) {
 
   const getPost = async () => {
     try {
-      const response = await fetch('https://fast-woodland-72631.herokuapp.com/post/' + route.params.shortname)
+      const response = await fetch(URL + '/post/' + route.params.shortname)
       const json = await response.json();
       setPost(json);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const getComment = async () => {
-    try {
-      const response = await fetch('https://fast-woodland-72631.herokuapp.com/comments/' + route.params.shortname)
-      const json = await response.json();
-      setComment(json);
     } catch (error) {
       console.error(error);
     }
@@ -60,12 +52,72 @@ export default function DetailsScreen({ route, navigation }) {
     getProf();
     getRating();
     getPost();
-    getComment();
   }, []);
 
 
+  if (prof.length > 1) {
+    return (
+      <View backGroundColor='#DABEA7' >
+        <Text style={GlobalStyles.titleBig}> {route.params.shortname + ': ' + route.params.longname} </Text>
+
+        <View style={GlobalStyles.titleSmall}>
+          {prof.map((prof) => {
+            return (
+              <View key={prof.name} >
+                <TouchableOpacity onPress={() => navigation.navigate('SubDetails', { sName: route.params.shortname, lName: route.params.longname, pName: prof.name })}>
+                  <Text style={GlobalStyles.titleSmall}>{'Professor: ' + prof.name}</Text>
+                </TouchableOpacity>
+              </View>
+            );
+          })}
+        </View>
+
+        <View style={GlobalStyles.titleSmall}>
+          {rating.map((rating) => {
+            return (
+              <View key={rating} style={GlobalStyles.background2}>
+                <Text style={GlobalStyles.textSmall}> {'General Rating: ' + rating.stars} </Text>
+                <Text style={GlobalStyles.textSmall}> {'Difficulty: ' + rating.dif} </Text>
+                <Text style={GlobalStyles.textSmall}> {'Homework frequency: ' + rating.hw} </Text>
+                <Text style={GlobalStyles.textSmall}> {'Textbook requirement: ' + rating.book} </Text>
+              </View>
+            );
+          })}
+        </View>
+
+        <View style={styles.container}>
+          <Button color={'#880808'} title="Rate Class" onPress={() => (navigation.navigate('Rate', { sName: route.params.shortname, lName: route.params.longname, pName: { prof } }))} />
+          <View style={styles.space2} />
+          <Button color={'#880808'} title="Comments" />
+          <View style={styles.space2} />
+          <Button color={'#880808'} title="Questions" />
+          <View style={styles.space2} />
+          <Button color={'#880808'} title="All" />
+        </View>
+
+        <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
+
+        <FlatList data={post} renderItem={({ item }) => (
+          <View style={GlobalStyles.background2}>
+            <TouchableOpacity onPress={() => navigation.navigate("Post", item)}>
+              <Text key={item.id} style={GlobalStyles.textSmall}> {item.username + ":"} {item.text} </Text>
+            </TouchableOpacity>
+          </View>
+        )} />
+
+        {/* inputting new reply: not working yet. */}
+        <View style={GlobalStyles.background2}>
+          <Text style={GlobalStyles.textSmall}> {"etl3:"} {comments} </Text>
+        </View>
+
+        <TextInput style={styles.post} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
+
+      </View>
+    );
+  }
+
   return (
-    <View backGroundColor= '#DABEA7' >
+    <View backGroundColor='#DABEA7' >
       <Text style={GlobalStyles.titleBig}> {route.params.shortname + ': ' + route.params.longname} </Text>
 
       <View style={GlobalStyles.titleSmall}>
@@ -82,8 +134,8 @@ export default function DetailsScreen({ route, navigation }) {
         {rating.map((rating) => {
           return (
             <View key={rating} style={GlobalStyles.background2}>
-              <Text style={GlobalStyles.textSmall}> {'General Rating: ' + rating.stars} </Text> 
-              <Text style={GlobalStyles.textSmall}> {'Difficulty: ' + rating.dif} </Text> 
+              <Text style={GlobalStyles.textSmall}> {'General Rating: ' + rating.stars} </Text>
+              <Text style={GlobalStyles.textSmall}> {'Difficulty: ' + rating.dif} </Text>
               <Text style={GlobalStyles.textSmall}> {'Homework frequency: ' + rating.hw} </Text>
               <Text style={GlobalStyles.textSmall}> {'Textbook requirement: ' + rating.book} </Text>
             </View>
@@ -92,7 +144,7 @@ export default function DetailsScreen({ route, navigation }) {
       </View>
 
       <View style={styles.container}>
-        <Button color={'#880808'} title="Rate Class" onPress={() => (navigation.navigate('Rate'))} />
+        <Button color={'#880808'} title="Rate Class" onPress={() => (navigation.navigate('Rate', { sName: route.params.shortname, lName: route.params.longname, pName: { prof } }))} />
         <View style={styles.space2} />
         <Button color={'#880808'} title="Comments" />
         <View style={styles.space2} />
@@ -104,9 +156,9 @@ export default function DetailsScreen({ route, navigation }) {
       <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
       <FlatList data={post} renderItem={({ item }) => (
-        <View  style={GlobalStyles.background2}>
+        <View style={GlobalStyles.background2}>
           <TouchableOpacity onPress={() => navigation.navigate("Post", item)}>
-            <Text key={item.id} style={GlobalStyles.textSmall}> {item.id} {item.text}</Text>
+            <Text key={item.id} style={GlobalStyles.textSmall}> {item.username + ":"} {item.text} </Text>
           </TouchableOpacity>
         </View>
       )} />
@@ -119,7 +171,7 @@ export default function DetailsScreen({ route, navigation }) {
 export const styles = StyleSheet.create({
   container: {
     //flex: 1,
-    width:350,
+    width: 350,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',

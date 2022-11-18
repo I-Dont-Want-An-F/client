@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { StyleSheet, Button, KeyboardAvoidingView, View, Text, TouchableOpacity, FlatList, TextInput } from 'react-native';
 import {GlobalStyles} from '../shared/GlobalStyles';
 import { getLocalData, storeLocalData } from '../shared/LocalStorage';
+import { URL } from '../shared/URL';
 
 export default function MessageScreen ({ route, navigation }) {
     const [username, setUsername] = useState('');
@@ -24,7 +25,7 @@ export default function MessageScreen ({ route, navigation }) {
 
     const getMessages = async () => {
         try {
-            const response = await fetch('https://fast-woodland-72631.herokuapp.com/messages/' + roomid );
+            const response = await fetch(URL + '/messages/' + roomid );
             const json = await response.json();
             setMessages(json);
         } catch (error) {
@@ -35,7 +36,7 @@ export default function MessageScreen ({ route, navigation }) {
     function onSend () {
         if (inputValue === ''){return}
         let message = {ID: messages.length+1, roomID: roomid, text: inputValue, sender: username.toLocaleLowerCase() }
-        fetch('https://fast-woodland-72631.herokuapp.com/sendmessage', {
+        fetch(URL + '/sendmessage', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
