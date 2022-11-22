@@ -7,6 +7,7 @@ export default function PostScreen({ route, navigation }) {
 
   const [reply, setReply] = useState([])
   const [comments, setComment] = useState([])
+  const [inputValue, setInputValue] = useState('');
 
   const getReply = async () => {
     try {
@@ -17,6 +18,22 @@ export default function PostScreen({ route, navigation }) {
       console.error(error);
     }
   }
+
+  function onSend () {
+    if (inputValue === ''){return}
+    let comment = {ID: comments.length+1, classID: route.params.id, question: reply, userID: username.toLocaleLowerCase(), postTime }
+    fetch(URL + '/reply', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(comment)
+    })
+    setInputValue('');
+    getReply();
+}
+
 
   useEffect(() => {
     getReply();
