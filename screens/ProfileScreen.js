@@ -56,7 +56,7 @@ export default function ProfileScreen({ navigation }) {
   }
 
   return (
-    <ScrollView styles={styles.container} backgroundColor='#800000'>
+    <View styles={styles.container} backgroundColor='#800000'>
       <Image
         source={require('../assets/Profile_Pic0.webp')}
         style={GlobalStyles.UserPic}
@@ -81,6 +81,10 @@ export default function ProfileScreen({ navigation }) {
           </TouchableOpacity>
         )} />
       </View>
-    </ScrollView>
+
+      <View backgroundColor='#800000'>
+        <Text>{}</Text>
+      </View>
+    </View>
   )
 }

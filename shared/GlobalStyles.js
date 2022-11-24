@@ -8,13 +8,33 @@ export const GlobalStyles = StyleSheet.create({
         height: '100px',
         resizeMode: 'contain'
     },
+    list: {
+        margin: 10,
+        height: "85%",
+        width: "100%",
+      },
+    root: {
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      input: {
+        fontSize: 20,
+        marginLeft: 10,
+        width: "90%",
+      },
+    container2: {
+        margin: 15,
+        justifyContent: "flex-start",
+        alignItems: "center",
+        flexDirection: "row",
+        width: "90%",
+    },
     titleBig: {
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
         color: 'black',
         marginTop: 5
-
     },
     titleBigW: {
         fontSize: 30,
@@ -22,7 +42,6 @@ export const GlobalStyles = StyleSheet.create({
         textAlign: 'center',
         color: 'white',
         marginTop: 5
-
     },
     titleSmall: {
         fontSize: 20,
@@ -50,7 +69,7 @@ export const GlobalStyles = StyleSheet.create({
         textAlign: 'center',
         color: 'black',
     },
-    textMed:{
+    textMed: {
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'center',
@@ -59,26 +78,26 @@ export const GlobalStyles = StyleSheet.create({
         borderRadius: 20,
         margin: 10,
     },
-    textMed2:{
+    textMed2: {
         fontSize: 20,
         fontWeight: 'bold',
         textAlign: 'left',
         color: '#560319',
     },
-    textSmall:{
+    textSmall: {
         fontSize: 15,
         fontWeight: 'bold',
-        textAlign:"left",
+        textAlign: "left",
         marginTop: 5,
         marginBottom: 0,
         fontSize: 15,
         color: '#560319',
         margin: 10,
     },
-    textSmall2:{ //same as small but with the bright red
+    textSmall2: { //same as small but with the bright red
         fontSize: 15,
         fontWeight: 'bold',
-        textAlign:"left",
+        textAlign: "left",
         marginTop: 5,
         marginBottom: 5,
         fontSize: 15,
@@ -121,7 +140,7 @@ export const GlobalStyles = StyleSheet.create({
         borderRadius: 50,
         borderWidth: 4,
         borderColor: '#FDDA0D',
-        width: 100, 
+        width: 100,
         height: 100,
         alignSelf: 'center',
     },
@@ -146,11 +165,23 @@ export const GlobalStyles = StyleSheet.create({
         margin: 10,
     },
    textIn:{ //used for text input
+
         textAlign: "center",
         alignSelf: "center",
         width: 350,
         borderWidth: 1,
-        borderRadius: 5, 
+        borderRadius: 5,
+        marginTop: 15,
+        padding: 10,
+    },
+    textIn2: { //used for text input in the rate screen 
+        textAlign: "center",
+        alignSelf: "center",
+        width: 300,
+        height: 40,
+        color: '#D22B2B',
+        borderWidth: 2,
+        borderRadius: 10,
         marginTop: 15,
         padding: 10,
    },
@@ -179,5 +210,44 @@ export const GlobalStyles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 5,
     marginBottom: 5
-   }
+   },
+   container_detail: {
+    //flex: 1,
+    width: 350,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 5,
+  },
+  post_detail: {
+    textAlign: "center",
+    alignSelf: "center",
+    width: 350,
+    borderWidth: 1,
+    borderRadius: 5,
+    marginTop: 15,
+    padding: 10,
+  },
+  box_detail: {
+    borderWidth: 1,
+    margin: 5,
+    padding: 5,
+    fontSize: 15
+  },
+  space2_detail: {
+    width: 10,
+    height: 20,
+  },
+  CustomRatingBarStyle: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: 8,
+    marginBottom: 5
+  },
+  starImgStyle: {
+    width: 40,
+    height: 40,
+    resizeMode: 'cover',
+  }
 });
