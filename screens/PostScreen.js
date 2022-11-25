@@ -1,10 +1,13 @@
 import { React, useEffect, useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, TextInput } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { GlobalStyles } from '../shared/GlobalStyles';
+import { getLocalData } from '../shared/LocalStorage';
 import { URL } from '../shared/URL';
 
 export default function PostScreen({ route, navigation }) {
 
+  const [username, setUsername] = useState();
   const [reply, setReply] = useState([])
   const [comments, setComment] = useState([])
 
@@ -19,13 +22,15 @@ export default function PostScreen({ route, navigation }) {
   }
 
   useEffect(() => {
+    getLocalData('username').then((data) => { setUsername(data.toLocaleLowerCase()) });
     getReply();
   }, []);
 
   return (
-    <View style={GlobalStyles.background2}>
+    <KeyboardAwareScrollView style={GlobalStyles.background2}>
       <Text>  </Text>
       <Text style={GlobalStyles.textSmall} > {route.params.username + ":"} {route.params.text} </Text>
+
       <View style={GlobalStyles.titleSmall}>
         {reply.map((reply) => {
           return (
@@ -37,16 +42,20 @@ export default function PostScreen({ route, navigation }) {
         })}
       </View>
 
-      <FlatList data={comments} renderItem={({ item }) => (
-        <View>
-          <Text style={GlobalStyles.textSmall}>{'         ' + item.user1}</Text>
-          <Text style={GlobalStyles.textSmall2}>{'         ' + item.post}</Text>
-        </View>
-      )} />
+      <View style={GlobalStyles.titleSmall}>
+        {comments.map((item) => {
+          return (
+            <View key={item}>
+              <Text style={GlobalStyles.textSmall}>{'         ' + item.user1}</Text>
+              <Text style={GlobalStyles.textSmall2}>{'         ' + item.post}</Text>
+            </View>
+          );
+        })}
+      </View>
 
-      <TextInput style={GlobalStyles.textIn} placeholder="post a reply" onSubmitEditing={(event) => { setComment([...comments, { user1: "zs35", post: event.nativeEvent.text }]) }} >{ }</TextInput>
+      <TextInput style={GlobalStyles.textIn} placeholder="post a reply" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: event.nativeEvent.text }]) }} >{ }</TextInput>
 
       <Text>  </Text>
-    </View>
+    </KeyboardAwareScrollView>
   );
 }

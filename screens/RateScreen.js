@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Image, ActivityIndicator, SafeAreaView, SnapshotViewIOS } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { TextInput } from 'react-native-gesture-handler';
 import { GlobalStyles } from '../shared/GlobalStyles';
 import Popup from '../components/Popup';
@@ -60,7 +61,7 @@ export default function RateScreen({ route, navigation }) {
 
   return(
       
-    <View style={{ flex: 1}}>
+    <KeyboardAwareScrollView style={{ flex: 1}}>
       <View style={GlobalStyles.background3}>
       <Text style={GlobalStyles.titleBig}>  Rate this class! </Text>
       <Text style={GlobalStyles.titleSmall}>  {sName}: {lName} </Text>
@@ -86,6 +87,6 @@ export default function RateScreen({ route, navigation }) {
           title = "Submit Ratings" 
         />  
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   )
 };
