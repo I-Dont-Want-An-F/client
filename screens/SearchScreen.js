@@ -60,27 +60,7 @@ export default function SearchScreen({ navigation }) {
     );
   };
 
-  //creates a search bar 
-  const SearchBar = ({ searchPhrase, setSearchPhrase }) => {
-    return (
-      <View style={GlobalStyles.container2}>
-        {/* search Icon */}
-        <Feather
-          name="search"
-          size={20}
-          color="black"
-          style={{ marginLeft: 1 }}
-        />
-        {/* Input field */}
-        <TextInput
-          style={GlobalStyles.input}
-          placeholder="Search"
-          value={searchPhrase}
-          onChangeText={setSearchPhrase}
-        />
-      </View>
-    );
-  };
+
 
 //creates the searchscreen and calls the funtcions above
   const [searchPhrase, setSearchPhrase] = useState('');
@@ -112,3 +92,25 @@ export default function SearchScreen({ navigation }) {
     </SafeAreaView>
   );
 };
+
+  //creates a search bar 
+  const SearchBar = ({ searchPhrase, setSearchPhrase }) => {
+    return (
+      <View style={GlobalStyles.container2}>
+        {/* search Icon */}
+        <Feather
+          name="search"
+          size={20}
+          color="black"
+          style={{ marginLeft: 1 }}
+        />
+        {/* Input field */}
+        <TextInput
+          style={GlobalStyles.input}
+          placeholder="Search"
+          value={searchPhrase}
+          onChangeText={setSearchPhrase}
+        />
+      </View>
+    );
+  };
