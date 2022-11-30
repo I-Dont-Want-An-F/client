@@ -3,6 +3,7 @@ import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvo
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { TabRouter } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { SelectList } from 'react-native-dropdown-select-list';
 import { GlobalStyles } from '../shared/GlobalStyles';
 import Post from '../shared/Post';
 import { getLocalData } from '../shared/LocalStorage';
@@ -16,6 +17,9 @@ export default function SubDetailsScreen({ route, navigation }) {
     const [rating, setRating] = useState([]);
     const [post, setPost] = useState([]);
     const [comments, setComment] = useState([]);
+
+    const [selected, setSelected] = useState([]);
+    const options = [{ key: '1', value: 'Comments' }, { key: '2', value: 'Questions' }, { key: '3', value: 'All' },];
 
     const [defaultRating, setDefaultRating] = useState(2);
     const [maxRating, setmaxRating] = useState([1, 2, 3, 4, 5]);
@@ -77,15 +81,21 @@ export default function SubDetailsScreen({ route, navigation }) {
 
             <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
-            <View style={styles.container}>
-                <Text style={GlobalStyles.textSmall4}> Filter by</Text>
-                <View style={styles.space2} />
-                <Button color={'#757575'} title="Comments" />
-                <View style={styles.space2} />
-                <Button color={'#757575'} title="Questions" />
-                <View style={styles.space2} />
-                <Button color={'#757575'} title="All" />
-            </View>
+            <SelectList
+                setSelected={(val) => setSelected(val)}
+                data={options}
+                save="value"
+            />
+
+            {/* <View style={GlobalStyles.container_detail}>
+        <Text style={GlobalStyles.textSmall4}> Filter by</Text>
+        <View style={GlobalStyles.space2_detail} />
+        <Button color={'#757575'} title="Comments" />
+        <View style={GlobalStyles.space2_detail} />
+        <Button color={'#757575'} title="Questions" />
+        <View style={GlobalStyles.space2_detail} />
+        <Button color={'#757575'} title="All" />
+      </View> */}
 
             <View style={GlobalStyles.titleSmall}>
                 {post.map((post) => {

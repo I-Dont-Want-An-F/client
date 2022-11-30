@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Image, ActivityIndicator, SafeAreaView } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { SelectList } from 'react-native-dropdown-select-list';
 import { TabRouter } from '@react-navigation/native';
 import { GlobalStyles } from '../shared/GlobalStyles';
 import Post from '../shared/Post';
@@ -16,6 +17,9 @@ export default function DetailsScreen({ route, navigation }) {
   const [rating, setRating] = useState([]);
   const [post, setPost] = useState([]);
   const [comments, setComment] = useState([]);
+
+  const [selected, setSelected] = useState([]);
+  const options = [{ key: '1', value: 'Comments' }, { key: '2', value: 'Questions' }, { key: '3', value: 'All' },];
 
   const [defaultRating, setDefaultRating] = useState(2);
   const [maxRating, setmaxRating] = useState([1, 2, 3, 4, 5]);
@@ -98,15 +102,21 @@ export default function DetailsScreen({ route, navigation }) {
 
         <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
-        <View style={GlobalStyles.container_detail}>
-          <Text style={GlobalStyles.textSmall4}> Filter by</Text>
-          <View style={GlobalStyles.space2_detail} />
-          <Button color={'#757575'} title="Comments" />
-          <View style={GlobalStyles.space2_detail} />
-          <Button color={'#757575'} title="Questions" />
-          <View style={GlobalStyles.space2_detail} />
-          <Button color={'#757575'} title="All" />
-        </View>
+        <SelectList
+          setSelected={(val) => setSelected(val)}
+          data={options}
+          save="value"
+        />
+
+        {/* <View style={GlobalStyles.container_detail}>
+        <Text style={GlobalStyles.textSmall4}> Filter by</Text>
+        <View style={GlobalStyles.space2_detail} />
+        <Button color={'#757575'} title="Comments" />
+        <View style={GlobalStyles.space2_detail} />
+        <Button color={'#757575'} title="Questions" />
+        <View style={GlobalStyles.space2_detail} />
+        <Button color={'#757575'} title="All" />
+      </View> */}
 
         <View style={GlobalStyles.titleSmall}>
           {post.map((post) => {
@@ -171,7 +181,13 @@ export default function DetailsScreen({ route, navigation }) {
 
       <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
-      <View style={GlobalStyles.container_detail}>
+      <SelectList
+        setSelected={(val) => setSelected(val)}
+        data={options}
+        save="value"
+      />
+
+      {/* <View style={GlobalStyles.container_detail}>
         <Text style={GlobalStyles.textSmall4}> Filter by</Text>
         <View style={GlobalStyles.space2_detail} />
         <Button color={'#757575'} title="Comments" />
@@ -179,7 +195,7 @@ export default function DetailsScreen({ route, navigation }) {
         <Button color={'#757575'} title="Questions" />
         <View style={GlobalStyles.space2_detail} />
         <Button color={'#757575'} title="All" />
-      </View>
+      </View> */}
 
       <View style={GlobalStyles.titleSmall}>
         {post.map((post) => {
