@@ -29,7 +29,11 @@ export default function App() {
                         headerRight: () => (<Button color='#98AFC7' title='search' onPress={() => (navigation.navigate('Search'))} />),
                         headerLeft: () => (<Button color='#98AFC7' title="👤" onPress={() => (navigation.navigate('Profile'))} />)
                     })} />
-                <Stack.Screen name='Post' component={PostScreen} />
+                <Stack.Screen name='Post' component={PostScreen} 
+                    options={({ navigation }) => ({
+                        headerRight: () => (
+                            <Button color='#98AFC7' title='Messages' onPress={() => (navigation.navigate('Contacts'))} />)
+                    })} />
                 <Stack.Screen name='Details' component={DetailScreen} />
                 <Stack.Screen name='SubDetails' component={SubDetailsScreen} />
                 <Stack.Screen name='Search' component={SearchScreen} />

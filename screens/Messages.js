@@ -1,3 +1,4 @@
+//Created By Eli Lewis
 import { React, useState, useEffect } from 'react';
 import { StyleSheet, Button, KeyboardAvoidingView, View, Text, TouchableOpacity, FlatList, TextInput } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -11,6 +12,7 @@ export default function MessageScreen ({ route, navigation }) {
     const [messageID, setMessageID] = useState('');
     const [inputValue, setInputValue] = useState('');
 
+    // Component to render a single message
     function Message (props) {
         let side = (props.username == username ? 'flex-end' : 'flex-start' );
         return (
@@ -24,6 +26,7 @@ export default function MessageScreen ({ route, navigation }) {
         )
     }
 
+    // Fetch messages from the database
     const getMessages = async () => {
         try {
             const response = await fetch(URL + '/messages/' + roomid );
@@ -34,6 +37,7 @@ export default function MessageScreen ({ route, navigation }) {
         }
     }
 
+    // Post new message to the database
     function onSend () {
         if (inputValue === ''){return}
         let message = {ID: messages.length+1, roomID: roomid, text: inputValue, sender: username.toLocaleLowerCase() }
@@ -49,15 +53,18 @@ export default function MessageScreen ({ route, navigation }) {
         getMessages();
     }
 
+    // get username from local storage if it is not yet set
     if (username == '') {
         getLocalData('username').then((data) => {setUsername(data.toLocaleLowerCase())});        
     }
 
+    // Loads all new messages everytime there is a screen update
     useEffect(() => {
         getMessages();
       }, []);
 
 
+    // render component for messages
     return (
         <KeyboardAvoidingView style={{width: '100%', height: '100%'}}>
             <View style={{maxHeight: '90%', padding: 15}}>

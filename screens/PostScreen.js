@@ -11,6 +11,7 @@ export default function PostScreen({ route, navigation }) {
   const [reply, setReply] = useState([])
   const [comments, setComment] = useState([])
 
+  // Fetches replies
   const getReply = async () => {
     try {
       const response = await fetch(URL + '/reply/' + route.params.id)
