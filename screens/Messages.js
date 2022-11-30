@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { StyleSheet, Button, KeyboardAvoidingView, View, Text, TouchableOpacity, FlatList, TextInput } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {GlobalStyles} from '../shared/GlobalStyles';
 import { getLocalData, storeLocalData } from '../shared/LocalStorage';
 import { URL } from '../shared/URL';

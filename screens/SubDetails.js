@@ -2,17 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Image, ActivityIndicator, SafeAreaView } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
 import { TabRouter } from '@react-navigation/native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { SelectList } from 'react-native-dropdown-select-list';
 import { GlobalStyles } from '../shared/GlobalStyles';
 import Post from '../shared/Post';
+import { getLocalData } from '../shared/LocalStorage';
 import { URL } from '../shared/URL';
 
 export default function SubDetailsScreen({ route, navigation }) {
 
     const { sName, lName, pName } = route.params;
+    const [username, setUsername] = useState();
     const [prof, setProf] = useState([]);
     const [rating, setRating] = useState([]);
     const [post, setPost] = useState([]);
     const [comments, setComment] = useState([]);
+
+    const [selected, setSelected] = useState([]);
+    const options = [{ key: '1', value: 'Comments' }, { key: '2', value: 'Questions' }, { key: '3', value: 'All' },];
 
     const [defaultRating, setDefaultRating] = useState(2);
     const [maxRating, setmaxRating] = useState([1, 2, 3, 4, 5]);
@@ -39,12 +46,13 @@ export default function SubDetailsScreen({ route, navigation }) {
     }
 
     useEffect(() => {
+        getLocalData('username').then((data) => { setUsername(data.toLocaleLowerCase()) });
         getRating();
         getPost();
     }, []);
 
     return (
-        <View backGroundColor='#DABEA7' >
+        <KeyboardAwareScrollView backGroundColor='#DABEA7' >
             <Text style={GlobalStyles.titleBig}> {sName + ': ' + lName} </Text>
 
             <View style={GlobalStyles.titleSmall}>
@@ -73,34 +81,46 @@ export default function SubDetailsScreen({ route, navigation }) {
 
             <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
-            <View style={styles.container}>
-                <Text style={GlobalStyles.textSmall4}> Filter by</Text>
-                <View style={styles.space2} />
-                <Button color={'#757575'} title="Comments" />
-                <View style={styles.space2} />
-                <Button color={'#757575'} title="Questions" />
-                <View style={styles.space2} />
-                <Button color={'#757575'} title="All" />
+            <SelectList
+                setSelected={(val) => setSelected(val)}
+                data={options}
+                save="value"
+            />
+
+            {/* <View style={GlobalStyles.container_detail}>
+        <Text style={GlobalStyles.textSmall4}> Filter by</Text>
+        <View style={GlobalStyles.space2_detail} />
+        <Button color={'#757575'} title="Comments" />
+        <View style={GlobalStyles.space2_detail} />
+        <Button color={'#757575'} title="Questions" />
+        <View style={GlobalStyles.space2_detail} />
+        <Button color={'#757575'} title="All" />
+      </View> */}
+
+            <View style={GlobalStyles.titleSmall}>
+                {post.map((post) => {
+                    return (
+                        <View key={post.id} style={GlobalStyles.background2}>
+                            <TouchableOpacity onPress={() => navigation.navigate("Post", post)}>
+                                <Text key={post.id} style={GlobalStyles.textSmall}> {post.username + ":"} {post.text} </Text>
+                            </TouchableOpacity>
+                        </View>
+                    );
+                })}
             </View>
 
-            <FlatList data={post} renderItem={({ item }) => (
-                <View style={GlobalStyles.background2}>
-                    <TouchableOpacity onPress={() => navigation.navigate("Post", item)}>
-                        <Text key={item.id} style={GlobalStyles.textSmall}> {item.username + ":"} {item.text} </Text>
-                    </TouchableOpacity>
-                </View>
-            )} />
+            <View style={GlobalStyles.titleSmall}>
+                {comments.map((item) => {
+                    return (
+                        <View key={item.post} style={GlobalStyles.background2}>
+                            <Text style={GlobalStyles.textSmall}> {item.user1 + ":"} {item.post} </Text>
+                        </View>
+                    );
+                })}
+            </View>
 
-            <FlatList data={comments} renderItem={({ item }) => (
-                <View style={GlobalStyles.background2}>
-                    {/* <TouchableOpacity onPress={() => navigation.navigate("Post", item)}> */}
-                    <Text key={item} style={GlobalStyles.textSmall}> {item.user1} {item.post} </Text>
-                    {/* </TouchableOpacity> */}
-                </View>
-            )} />
-
-            <TextInput style={styles.post} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: "etl3:", post: event.nativeEvent.text }]) }} >{ }</TextInput>
-        </View>
+            <TextInput style={styles.post} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: event.nativeEvent.text }]) }} >{ }</TextInput>
+        </KeyboardAwareScrollView>
     );
 }
 
