@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, FlatList, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, FlatList, TouchableOpacity, Image, StyleSheet,Button } from 'react-native';
 import { GlobalStyles } from '../shared/GlobalStyles';
 import { getLocalData } from '../shared/LocalStorage';
 import { URL } from '../shared/URL';
@@ -18,7 +18,7 @@ export default function ProfileScreen({ navigation }) {
 
   const getTaking = async () => {
     try {
-      const response = await fetch(URL + '/classtake/abc12')
+      const response = await fetch(URL + '/classtake/'+username)
       const json = await response.json();
       setTaking(json);
     } catch (error) {
@@ -28,7 +28,7 @@ export default function ProfileScreen({ navigation }) {
 
   const getTaken = async () => {
     try {
-      const response = await fetch(URL + '/classtook/abc12')
+      const response = await fetch(URL + '/classtook/'+username)
       const json = await response.json();
       setTaken(json);
     } catch (error) {
@@ -48,15 +48,18 @@ export default function ProfileScreen({ navigation }) {
   if (username == '' || username == null || username === undefined) {
     return (
       <View>
-        <Text>You Need To Be Signed In To Visit The Profile Screen!</Text>
+        <Button title='help' onPress={()=> navigation.navigate('Help')}/> 
+        <Text style={GlobalStyles.textBig}>You Need To Be Signed In To Visit The Profile Screen!</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Sign In')}>
-          <Text>Sign In</Text>
+          <Text style={GlobalStyles.textSmall2}>Sign In</Text>
         </TouchableOpacity>
       </View>)
   }
 
   return (
     <View styles={styles.container} backgroundColor='#800000'>
+      <Button title='logout' onPress={()=> setUsername("")}/> 
+      <Button title='help' onPress={()=> navigation.navigate('Help')}/> 
       <Image
         source={require('../assets/Profile_Pic0.webp')}
         style={GlobalStyles.UserPic}
@@ -88,3 +91,4 @@ export default function ProfileScreen({ navigation }) {
     </View>
   )
 }
+ 
