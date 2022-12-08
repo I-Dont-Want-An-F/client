@@ -18,7 +18,7 @@ export default function ProfileScreen({ navigation }) {
 
   const getTaking = async () => {
     try {
-      const response = await fetch(URL + '/classtake/'+username)
+      const response = await fetch(URL + '/classtake/'+ username)
       const json = await response.json();
       setTaking(json);
     } catch (error) {
@@ -28,7 +28,7 @@ export default function ProfileScreen({ navigation }) {
 
   const getTaken = async () => {
     try {
-      const response = await fetch(URL + '/classtook/'+username)
+      const response = await fetch(URL + '/classtook/'+ username)
       const json = await response.json();
       setTaken(json);
     } catch (error) {

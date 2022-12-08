@@ -2,10 +2,7 @@
 // based off this tutorial by Kevin Thomas 
 // https://blog.logrocket.com/create-react-native-search-bar-from-scratch/
 
-// TO-Do 
-//Fix the keyboard as it keeps dropping down 
-//Change the style to make it look beter 
-//unquie child, caused by both detail screen using same ID??
+
 
 import { React, useState, useEffect } from "react";
 import { StyleSheet, Text, FlatList, View, TouchableOpacity, SafeAreaView, TextInput,Keyboard} from "react-native";
