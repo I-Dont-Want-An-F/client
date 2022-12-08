@@ -58,6 +58,7 @@ export default function ProfileScreen({ navigation }) {
 
   return (
     <View styles={styles.container} backgroundColor='#800000'>
+       {/* need to change local data  */}
       <Button title='logout' onPress={()=> setUsername("")}/> 
       <Button title='help' onPress={()=> navigation.navigate('Help')}/> 
       <Image
