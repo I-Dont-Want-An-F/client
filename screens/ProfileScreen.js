@@ -56,7 +56,7 @@ export default function ProfileScreen({ navigation }) {
   }
 
   return (
-    <View styles={styles.container} backgroundColor='#800000'>
+    <View styles={styles.container} backgroundColor='#800000' height='100%'>
       <Image
         source={require('../assets/Profile_Pic0.webp')}
         style={GlobalStyles.UserPic}
