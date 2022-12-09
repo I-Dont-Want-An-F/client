@@ -22,7 +22,7 @@ export default function ProfileScreen({ navigation }) {
       const json = await response.json();
       setTaking(json);
     } catch (error) {
-      console.error(error);
+      //console.error(error); error handling isnt cool anymore
     }
   }
 
@@ -32,7 +32,7 @@ export default function ProfileScreen({ navigation }) {
       const json = await response.json();
       setTaken(json);
     } catch (error) {
-      console.error(error);
+     // console.error(error);
     }
   }
 
