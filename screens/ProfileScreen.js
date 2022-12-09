@@ -12,13 +12,13 @@ const styles = StyleSheet.create({
 
 export default function ProfileScreen({ navigation }) {
 
-  const [username, setUsername] = useState();
+  const [username, setUsername] = useState("abc12");
   const [classTaking, setTaking] = useState([]);
   const [classTaken, setTaken] = useState([]);
 
   const getTaking = async () => {
     try {
-      const response = await fetch(URL + '/classtake/abc12')
+      const response = await fetch(URL + '/classtake/' + username)
       const json = await response.json();
       setTaking(json);
     } catch (error) {
@@ -28,7 +28,7 @@ export default function ProfileScreen({ navigation }) {
 
   const getTaken = async () => {
     try {
-      const response = await fetch(URL + '/classtook/abc12')
+      const response = await fetch(URL + '/classtook/' + username)
       const json = await response.json();
       setTaken(json);
     } catch (error) {
@@ -37,13 +37,13 @@ export default function ProfileScreen({ navigation }) {
   }
 
   useEffect(() => {
-    getTaking();
-    getTaken();
+    getLocalData('username').then((data) => {setUsername(data.toLocaleLowerCase())});
   }, []);
 
-  if (username == '' || username == null || username === undefined) {
-    getLocalData('username').then((data) => { setUsername(data) });
-  }
+  useEffect(() => {
+    getTaking();
+    getTaken();
+  }, [username]);
 
   if (username == '' || username == null || username === undefined) {
     return (
