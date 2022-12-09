@@ -44,7 +44,48 @@ export default function SubDetailsScreen({ route, navigation }) {
             console.error(error);
         }
     }
-
+    const getStars = (type) => {
+        var sum = 0;
+        for (var i = 0; i < rating.length; i++) {
+          sum += rating[i].stars;
+        }
+        sum = sum / rating.length;
+        sum = Math.round(sum * 100) / 100;
+        return(
+          sum
+        )
+      }
+    
+      const getHW = () => {
+        var sum = 0;
+        for (var i = 0; i < rating.length; i++) {
+          sum += rating[i].hw;
+        }
+        sum = sum / rating.length;
+        sum = Math.round(sum * 100) / 100;
+        return(sum)
+      }
+    
+      const getDif = () => {
+        var sum = 0;
+        for (var i = 0; i < rating.length; i++) {
+          sum += rating[i].dif;
+        }
+        sum = sum / rating.length;
+        sum = Math.round(sum * 100) / 100;
+       return(sum)
+      }
+    
+      //need to do somthing differnet 
+      const getBook = () => {
+        var sum = 0;
+        for (var i = 0; i < rating.length; i++) {
+          sum += rating[i].book;
+        }
+        sum = sum / rating.length;
+        sum = Math.round(sum * 100) / 100;
+        return(sum)
+      }
     useEffect(() => {
         getLocalData('username').then((data) => { setUsername(data.toLocaleLowerCase()) });
         getRating();
@@ -65,10 +106,10 @@ export default function SubDetailsScreen({ route, navigation }) {
                 {rating.map((rating) => {
                     return (
                         <View key={rating} style={GlobalStyles.background2}>
-                            <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + rating.stars + ' / 5'} </Text>
-                            <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + rating.dif + ' / 5'} </Text>
-                            <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + rating.hw + ' hours per week'} </Text>
-                            <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text>
+                            <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + getStars() + ' / 5'} </Text>
+                            <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + getDif() + ' / 5'} </Text>
+                            <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + getHW() + ' hours per week'} </Text>
+                            {/* <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text> */}
                         </View>
                     );
                 })}
