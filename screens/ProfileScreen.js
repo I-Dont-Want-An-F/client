@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text, FlatList, TouchableOpacity, Image, StyleSheet,Button } from 'react-native';
 import { GlobalStyles } from '../shared/GlobalStyles';
-import { getLocalData } from '../shared/LocalStorage';
+import { getLocalData, storeLocalData } from '../shared/LocalStorage';
 import { URL } from '../shared/URL';
 
 const styles = StyleSheet.create({
@@ -18,7 +18,7 @@ export default function ProfileScreen({ navigation }) {
 
   const getTaking = async () => {
     try {
-      const response = await fetch(URL + '/classtake/' + 'abc12')
+      const response = await fetch(URL + '/classtake/' + username)
       const json = await response.json();
       setTaking(json);
     } catch (error) {
@@ -28,7 +28,7 @@ export default function ProfileScreen({ navigation }) {
 
   const getTaken = async () => {
     try {
-      const response = await fetch(URL + '/classtook/abc12')
+      const response = await fetch(URL + '/classtook/' + username)
       const json = await response.json();
       setTaken(json);
     } catch (error) {
@@ -37,13 +37,13 @@ export default function ProfileScreen({ navigation }) {
   }
 
   useEffect(() => {
-    getTaking();
-    getTaken();
+    getLocalData('username').then((data) => {setUsername(data.toLocaleLowerCase())});
   }, []);
 
-  if (username == '' || username == null || username === undefined) {
-    getLocalData('username').then((data) => { setUsername(data) });
-  }
+  useEffect(() => {
+    getTaking();
+    getTaken();
+  }, [username]);
 
   if (username == '' || username == null || username === undefined) {
     return (
@@ -60,7 +60,7 @@ export default function ProfileScreen({ navigation }) {
     <View style={styles.container} backgroundColor='#800000'>
        {/* need to change local data  */}
        <View style={GlobalStyles.container_detail}>
-      <Button color='gray' title='     logout     ' onPress={()=> setUsername("")}/> 
+      <Button color='gray' title='     logout     ' onPress={()=> {setUsername(""); storeLocalData("username", ""); navigation.navigate("Sign In")}}/> 
       <Button color='gray' title='      Online help     ' onPress={()=> navigation.navigate('Help')}/> 
       </View>
       <Image
