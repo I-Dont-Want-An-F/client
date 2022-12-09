@@ -18,7 +18,7 @@ export default function ProfileScreen({ navigation }) {
 
   const getTaking = async () => {
     try {
-      const response = await fetch(URL + '/classtake/'+ username)
+      const response = await fetch(URL + '/classtake/' + 'abc12')
       const json = await response.json();
       setTaking(json);
     } catch (error) {
@@ -28,7 +28,7 @@ export default function ProfileScreen({ navigation }) {
 
   const getTaken = async () => {
     try {
-      const response = await fetch(URL + '/classtook/'+ username)
+      const response = await fetch(URL + '/classtook/abc12')
       const json = await response.json();
       setTaken(json);
     } catch (error) {
@@ -57,10 +57,12 @@ export default function ProfileScreen({ navigation }) {
   }
 
   return (
-    <View styles={styles.container} backgroundColor='#800000'>
+    <View style={styles.container} backgroundColor='#800000'>
        {/* need to change local data  */}
-      <Button title='logout' onPress={()=> setUsername("")}/> 
-      <Button title='help' onPress={()=> navigation.navigate('Help')}/> 
+       <View style={GlobalStyles.container_detail}>
+      <Button color='gray' title='     logout     ' onPress={()=> setUsername("")}/> 
+      <Button color='gray' title='      Online help     ' onPress={()=> navigation.navigate('Help')}/> 
+      </View>
       <Image
         source={require('../assets/Profile_Pic0.webp')}
         style={GlobalStyles.UserPic}
