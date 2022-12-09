@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 export default function ProfileScreen({ navigation }) {
 
-  const [username, setUsername] = useState();
+  const [username, setUsername] = useState("abc12");
   const [classTaking, setTaking] = useState([]);
   const [classTaken, setTaken] = useState([]);
 
@@ -57,11 +57,12 @@ export default function ProfileScreen({ navigation }) {
   }
 
   return (
-    <View style={styles.container} backgroundColor='#800000'>
+
+      <View styles={styles.container} backgroundColor='#800000' height='100%'>
        {/* need to change local data  */}
        <View style={GlobalStyles.container_detail}>
-      <Button color='gray' title='     logout     ' onPress={()=> {setUsername(""); storeLocalData("username", ""); navigation.navigate("Sign In")}}/> 
-      <Button color='gray' title='      Online help     ' onPress={()=> navigation.navigate('Help')}/> 
+        <Button color='gray' title='     logout     ' onPress={()=> {setUsername(""); storeLocalData("username", ""); navigation.navigate("Sign In")}}/> 
+        <Button color='gray' title='      Online help     ' onPress={()=> navigation.navigate('Help')}/> 
       </View>
       <Image
         source={require('../assets/Profile_Pic0.webp')}
