@@ -103,16 +103,14 @@ export default function SubDetailsScreen({ route, navigation }) {
             <Text style={GlobalStyles.textDivider} ></Text>
 
             <View style={GlobalStyles.titleSmall}>
-                {rating.map((rating) => {
-                    return (
+                
                         <View key={rating} style={GlobalStyles.background2}>
                             <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + getStars() + ' / 5'} </Text>
                             <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + getDif() + ' / 5'} </Text>
                             <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + getHW() + ' hours per week'} </Text>
                             {/* <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text> */}
                         </View>
-                    );
-                })}
+                   
             </View>
 
             <Text style={GlobalStyles.textDivider} ></Text>
