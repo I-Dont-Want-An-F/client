@@ -249,5 +249,6 @@ export const GlobalStyles = StyleSheet.create({
     width: 40,
     height: 40,
     resizeMode: 'cover',
-  }
+  },
+ 
 });

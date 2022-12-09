@@ -18,12 +18,16 @@ export default function DetailsScreen({ route, navigation }) {
   const [post, setPost] = useState([]);
   const [comments, setComment] = useState([]);
 
+
+  //finds the averages
+  const [stars, setStars] = useState([]);
+  const [hw, setHW] = useState([]);
+  const [dif, setDif] = useState([]);
+  const [book, setBook] = useState([]);
+
   const [selected, setSelected] = useState([]);
   const options = [{ key: '1', value: 'Comments' }, { key: '2', value: 'Questions' }, { key: '3', value: 'All' },];
 
-  const [defaultRating, setDefaultRating] = useState(2);
-  const [maxRating, setmaxRating] = useState([1, 2, 3, 4, 5]);
-  const starImgFilled = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png';
 
   const getProf = async () => {
     try {
@@ -55,11 +59,56 @@ export default function DetailsScreen({ route, navigation }) {
     }
   }
 
+  const getStars = (type) => {
+    var sum = 0;
+    for (var i = 0; i < rating.length; i++) {
+      sum += rating[i].stars;
+    }
+    sum = sum / rating.length;
+    sum = Math.round(sum * 100) / 100;
+    return(
+      sum
+    )
+  }
+
+  const getHW = () => {
+    var sum = 0;
+    for (var i = 0; i < rating.length; i++) {
+      sum += rating[i].hw;
+    }
+    sum = sum / rating.length;
+    sum = Math.round(sum * 100) / 100;
+    return(sum)
+  }
+
+  const getDif = () => {
+    var sum = 0;
+    for (var i = 0; i < rating.length; i++) {
+      sum += rating[i].dif;
+    }
+    sum = sum / rating.length;
+    sum = Math.round(sum * 100) / 100;
+   return(sum)
+  }
+
+  //need to do somthing differnet 
+  const getBook = () => {
+    var sum = 0;
+    for (var i = 0; i < rating.length; i++) {
+      sum += rating[i].book;
+    }
+    sum = sum / rating.length;
+    sum = Math.round(sum * 100) / 100;
+    return(sum)
+  }
+
   useEffect(() => {
     getLocalData('username').then((data) => { setUsername(data.toLocaleLowerCase()) });
     getProf();
     getRating();
     getPost();
+    getStars();
+  
   }, []);
 
 
@@ -83,16 +132,14 @@ export default function DetailsScreen({ route, navigation }) {
         <Text style={GlobalStyles.textDivider} ></Text>
 
         <View style={GlobalStyles.titleSmall}>
-          {rating.map((rating) => {
-            return (
+         
               <View key={rating} style={GlobalStyles.background2}>
-                <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + rating.stars + ' / 5'} </Text>
-                <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + rating.dif + ' / 5'} </Text>
-                <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + rating.hw + ' hours per week'} </Text>
-                <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text>
+                <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + getStars() + ' / 5'} </Text>
+                <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + getDif() + ' / 5'} </Text>
+                <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + getHW() + ' hours per week'} </Text>
+                {/* <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text> */}
               </View>
-            );
-          })}
+           
         </View>
 
         <Text style={GlobalStyles.textDivider} ></Text>
@@ -108,15 +155,6 @@ export default function DetailsScreen({ route, navigation }) {
           save="value"
         />
 
-        {/* <View style={GlobalStyles.container_detail}>
-        <Text style={GlobalStyles.textSmall4}> Filter by</Text>
-        <View style={GlobalStyles.space2_detail} />
-        <Button color={'#757575'} title="Comments" />
-        <View style={GlobalStyles.space2_detail} />
-        <Button color={'#757575'} title="Questions" />
-        <View style={GlobalStyles.space2_detail} />
-        <Button color={'#757575'} title="All" />
-      </View> */}
 
         <View style={GlobalStyles.titleSmall}>
           {post.map((post) => {
@@ -162,16 +200,12 @@ export default function DetailsScreen({ route, navigation }) {
       <Text style={GlobalStyles.textDivider} ></Text>
 
       <View style={GlobalStyles.titleSmall}>
-        {rating.map((rating) => {
-          return (
             <View key={rating} style={GlobalStyles.background2}>
-              <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + rating.stars + ' / 5'} </Text>
-              <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + rating.dif + ' / 5'} </Text>
-              <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + rating.hw + ' hours per week'} </Text>
-              <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text>
+              <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + getStars() + ' / 5'} </Text>
+              <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + getDif() + ' / 5'} </Text>
+              <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + getHW() + ' hours per week'} </Text>
+              {/* <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text> */}
             </View>
-          );
-        })}
       </View>
 
       <Text style={GlobalStyles.textDivider} ></Text>
@@ -186,16 +220,6 @@ export default function DetailsScreen({ route, navigation }) {
         data={options}
         save="value"
       />
-
-      {/* <View style={GlobalStyles.container_detail}>
-        <Text style={GlobalStyles.textSmall4}> Filter by</Text>
-        <View style={GlobalStyles.space2_detail} />
-        <Button color={'#757575'} title="Comments" />
-        <View style={GlobalStyles.space2_detail} />
-        <Button color={'#757575'} title="Questions" />
-        <View style={GlobalStyles.space2_detail} />
-        <Button color={'#757575'} title="All" />
-      </View> */}
 
       <View style={GlobalStyles.titleSmall}>
         {post.map((post) => {
