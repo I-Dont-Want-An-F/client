@@ -250,5 +250,11 @@ export const GlobalStyles = StyleSheet.create({
     height: 40,
     resizeMode: 'cover',
   },
+  ratePic: {
+    width: 350,
+    height: 400,
+    resizeMode: 'contain',
+    marginTop: 0
+  }
  
 });

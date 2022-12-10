@@ -14,6 +14,7 @@ import PostScreen from './screens/PostScreen';
 import SignUpScreen from './screens/SignUpScreen/SignUpScreen';
 import RateScreen from './screens/RateScreen';
 import OnlineHelp from './screens/OnlineHelp';
+import RateSubmit from './screens/RateSubmit'
 import { Button, StyleSheet } from 'react-native';
 
 const Stack = createNativeStackNavigator();
@@ -45,7 +46,8 @@ export default function App() {
                 <Stack.Screen name='Rate' component={RateScreen} />
                 <Stack.Screen name='Messages' component={MessageScreen} />
                 <Stack.Screen name='Contacts' component={ContactsScreen} />
-                <Stack.Screen name='Profile' component={ProfileScreen}
+                <Stack.Screen name='RateSubmit' component={RateSubmit} />
+                <Stack.Screen name='Profile' component={ProfileScreen} 
                     options={({ navigation }) => ({
                         headerRight: () => (
                             <Button color='#98AFC7' title='Messages' onPress={() => (navigation.navigate('Contacts'))} />)
@@ -54,4 +56,4 @@ export default function App() {
             </Stack.Navigator>
         </NavigationContainer>
     );
-}
+};

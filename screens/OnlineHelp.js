@@ -10,7 +10,7 @@ export default function OnlineHelp({ navigation }) {
         <View>
             <ScrollView>
                 {/* create a post */}
-                <Text style={GlobalStyles.titleBig}> online help </Text>
+                <Text style={GlobalStyles.titleBig}> Online Help </Text>
                 <Text> </Text>
                 <Text style={GlobalStyles.titleSmall2}>Imagine you wanted to leave a comment or question for a class. You can do this by:</Text>
                 <Text style={GlobalStyles.textSmall}> 1. Find the class on which you want to comment either by finding it on the home screen or by searching for it using the search bar</Text>
