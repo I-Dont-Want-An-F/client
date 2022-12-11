@@ -31,7 +31,7 @@ export default function DetailsScreen({ route, navigation }) {
 
   const getProf = async () => {
     try {
-      const response = await fetch(URL + '/prof/' + route.params.shortname)
+      const response = await fetch(URL + '/prof/' + route.params.shortname )
       const json = await response.json();
       setProf(json);
     } catch (error) {
@@ -114,7 +114,7 @@ export default function DetailsScreen({ route, navigation }) {
   function Sendpost () {
     if (inputValue === ''){return}
     
-    let Posts = {ID: post.length+30, userID: username, text : inputValue }
+    let Posts = {ID: post.length+49, classID : route.params.id, userID: username, text : inputValue }
     console.log(Posts)
     fetch(URL + '/createposts', {
         method: 'POST',
