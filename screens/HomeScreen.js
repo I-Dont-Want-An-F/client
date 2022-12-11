@@ -1,3 +1,7 @@
+/**
+ * Implements the home screen of the app.
+ */
+
 import { React, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -25,15 +29,15 @@ export default function HomeScreen({ navigation }) {
     getClasses();
   }, []);
 
-    return (
-      <View style={{ flex: 1, padding: 20}} backgroundColor='#800000'>
-          {isLoading ? <ActivityIndicator/> : (
-              <FlatList data={data} keyExtractor={({id}, index) => id} renderItem={({ item }) => (
-                  <TouchableOpacity onPress={() => navigation.navigate('Details', item)}>
-                    <Post text = {item.shortname + ': ' + item.longname}></Post>
-                  </TouchableOpacity>
-              )}/>
-          )}
-      </View>
-    );
+  return (
+    <View style={{ flex: 1, padding: 20 }} backgroundColor='#800000'>
+      {isLoading ? <ActivityIndicator /> : (
+        <FlatList data={data} keyExtractor={({ id }, index) => id} renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => navigation.navigate('Details', item)}>
+            <Post text={item.shortname + ': ' + item.longname}></Post>
+          </TouchableOpacity>
+        )} />
+      )}
+    </View>
+  );
 }

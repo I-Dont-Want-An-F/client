@@ -1,8 +1,10 @@
-//created by Dylan, creates the online help page 
+/**
+ * Created by Dylan, creates the online help page.
+ */
+
 import { React, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, ActivityIndicator, ScrollView } from 'react-native';
 import { GlobalStyles } from '../shared/GlobalStyles';
-
 
 //creates the online help page 
 export default function OnlineHelp({ navigation }) {
@@ -58,11 +60,5 @@ export default function OnlineHelp({ navigation }) {
 
             </ScrollView>
         </View>
-
-
-
-
-
-
     )
 }

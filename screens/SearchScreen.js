@@ -1,19 +1,17 @@
- // this is the page that shows the search bar & created by Dylan
-// based off this tutorial by Kevin Thomas 
-// https://blog.logrocket.com/create-react-native-search-bar-from-scratch/
-
-
+/**
+ * Created by Dylan. Implements the search screen and the search bar.
+ * Based off this tutorial by Kevin Thomas:
+ * https://blog.logrocket.com/create-react-native-search-bar-from-scratch/
+ */
 
 import { React, useState, useEffect } from "react";
-import { StyleSheet, Text, FlatList, View, TouchableOpacity, SafeAreaView, TextInput,Keyboard} from "react-native";
+import { StyleSheet, Text, FlatList, View, TouchableOpacity, SafeAreaView, TextInput, Keyboard } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 import { GlobalStyles } from '../shared/GlobalStyles';
 
-
 export default function SearchScreen({ navigation }) {
 
-  
-  //filters the list of classes and creates a flatlist 
+  // filters the list of classes and creates a flatlist 
   const List = ({ searchPhrase, data }) => {
     const renderItem = ({ item }) => {
       // when no input, show all
@@ -59,7 +57,7 @@ export default function SearchScreen({ navigation }) {
 
 
 
-//creates the searchscreen and calls the funtcions above
+  //creates the searchscreen and calls the funtcions above
   const [searchPhrase, setSearchPhrase] = useState('');
   const [fakeData, setFakeData] = useState();
 
@@ -90,24 +88,24 @@ export default function SearchScreen({ navigation }) {
   );
 };
 
-  //creates a search bar 
-  const SearchBar = ({ searchPhrase, setSearchPhrase }) => {
-    return (
-      <View style={GlobalStyles.container2}>
-        {/* search Icon */}
-        <Feather
-          name="search"
-          size={20}
-          color="black"
-          style={{ marginLeft: 1 }}
-        />
-        {/* Input field */}
-        <TextInput
-          style={GlobalStyles.input}
-          placeholder="Search"
-          value={searchPhrase}
-          onChangeText={setSearchPhrase}
-        />
-      </View>
-    );
-  };
+//creates a search bar 
+const SearchBar = ({ searchPhrase, setSearchPhrase }) => {
+  return (
+    <View style={GlobalStyles.container2}>
+      {/* search Icon */}
+      <Feather
+        name="search"
+        size={20}
+        color="black"
+        style={{ marginLeft: 1 }}
+      />
+      {/* Input field */}
+      <TextInput
+        style={GlobalStyles.input}
+        placeholder="Search"
+        value={searchPhrase}
+        onChangeText={setSearchPhrase}
+      />
+    </View>
+  );
+};

@@ -1,4 +1,7 @@
-//Created By Eli Lewis
+/**
+ * Created by ELi. Implements the messaging page.
+ */
+
 import { React, useState, useEffect } from 'react';
 import { StyleSheet, Button, KeyboardAvoidingView, View, Text, TouchableOpacity, FlatList, TextInput } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -76,8 +79,6 @@ export default function MessageScreen ({ route, navigation }) {
         </KeyboardAvoidingView>   
     );
 } 
-
-
 
 const MessageStyles = StyleSheet.create({
     container: {

@@ -1,5 +1,9 @@
+/**
+ * Created by Eli. Implements the profile screen.
+ */
+
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, FlatList, TouchableOpacity, Image, StyleSheet,Button } from 'react-native';
+import { ScrollView, View, Text, FlatList, TouchableOpacity, Image, StyleSheet, Button } from 'react-native';
 import { GlobalStyles } from '../shared/GlobalStyles';
 import { getLocalData, storeLocalData } from '../shared/LocalStorage';
 import { URL } from '../shared/URL';
@@ -16,6 +20,7 @@ export default function ProfileScreen({ navigation }) {
   const [classTaking, setTaking] = useState([]);
   const [classTaken, setTaken] = useState([]);
 
+  // get the user data from the DB.
   const getTaking = async () => {
     try {
       const response = await fetch(URL + '/classtake/' + username)
@@ -32,12 +37,12 @@ export default function ProfileScreen({ navigation }) {
       const json = await response.json();
       setTaken(json);
     } catch (error) {
-     // console.error(error);
+      // console.error(error);
     }
   }
 
   useEffect(() => {
-    getLocalData('username').then((data) => {setUsername(data.toLocaleLowerCase())});
+    getLocalData('username').then((data) => { setUsername(data.toLocaleLowerCase()) });
   }, []);
 
   useEffect(() => {
@@ -45,10 +50,11 @@ export default function ProfileScreen({ navigation }) {
     getTaken();
   }, [username]);
 
+  // if user didn't log in, require them to log in
   if (username == '' || username == null || username === undefined) {
     return (
       <View>
-        <Button title='help' onPress={()=> navigation.navigate('Help')}/> 
+        <Button title='help' onPress={() => navigation.navigate('Help')} />
         <Text style={GlobalStyles.textBig}>You Need To Be Signed In To Visit The Profile Screen!</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Sign In')}>
           <Text style={GlobalStyles.textSmall2}>Sign In</Text>
@@ -56,13 +62,13 @@ export default function ProfileScreen({ navigation }) {
       </View>)
   }
 
+  // if the user logged in, show the user profile
   return (
-
-      <View styles={styles.container} backgroundColor='#800000' height='100%'>
-       {/* need to change local data  */}
-       <View style={GlobalStyles.container_detail}>
-        <Button color='gray' title='     logout     ' onPress={()=> {setUsername(""); storeLocalData("username", ""); navigation.navigate("Sign In")}}/> 
-        <Button color='gray' title='      Online help     ' onPress={()=> navigation.navigate('Help')}/> 
+    <View styles={styles.container} backgroundColor='#800000' height='100%'>
+      {/* need to change local data  */}
+      <View style={GlobalStyles.container_detail}>
+        <Button color='gray' title='     logout     ' onPress={() => { setUsername(""); storeLocalData("username", ""); navigation.navigate("Sign In") }} />
+        <Button color='gray' title='      Online help     ' onPress={() => navigation.navigate('Help')} />
       </View>
       <Image
         source={require('../assets/Profile_Pic0.webp')}
@@ -90,9 +96,8 @@ export default function ProfileScreen({ navigation }) {
       </View>
 
       <View backgroundColor='#800000'>
-        <Text>{}</Text>
+        <Text>{ }</Text>
       </View>
     </View>
   )
 }
- 

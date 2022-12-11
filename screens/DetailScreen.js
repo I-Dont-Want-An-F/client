@@ -1,3 +1,8 @@
+/**
+ * Implements the class detail screen.
+ * Created by Sophia, updated by Dylan.
+ */
+
 import React, { useEffect, useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Image, ActivityIndicator, SafeAreaView } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
@@ -18,8 +23,7 @@ export default function DetailsScreen({ route, navigation }) {
   const [post, setPost] = useState([]);
   const [comments, setComment] = useState([]);
 
-
-  //finds the averages
+  // finds the averages of the rating
   const [stars, setStars] = useState([]);
   const [hw, setHW] = useState([]);
   const [dif, setDif] = useState([]);
@@ -28,7 +32,7 @@ export default function DetailsScreen({ route, navigation }) {
   const [selected, setSelected] = useState([]);
   const options = [{ key: '1', value: 'Comments' }, { key: '2', value: 'Questions' }, { key: '3', value: 'All' },];
 
-
+  // fetch the class data from the DB.
   const getProf = async () => {
     try {
       const response = await fetch(URL + '/prof/' + route.params.shortname)
@@ -66,7 +70,7 @@ export default function DetailsScreen({ route, navigation }) {
     }
     sum = sum / rating.length;
     sum = Math.round(sum * 100) / 100;
-    return(
+    return (
       sum
     )
   }
@@ -78,7 +82,7 @@ export default function DetailsScreen({ route, navigation }) {
     }
     sum = sum / rating.length;
     sum = Math.round(sum * 100) / 100;
-    return(sum)
+    return (sum)
   }
 
   const getDif = () => {
@@ -88,7 +92,7 @@ export default function DetailsScreen({ route, navigation }) {
     }
     sum = sum / rating.length;
     sum = Math.round(sum * 100) / 100;
-   return(sum)
+    return (sum)
   }
 
   //need to do somthing differnet 
@@ -99,7 +103,7 @@ export default function DetailsScreen({ route, navigation }) {
     }
     sum = sum / rating.length;
     sum = Math.round(sum * 100) / 100;
-    return(sum)
+    return (sum)
   }
 
   useEffect(() => {
@@ -108,15 +112,15 @@ export default function DetailsScreen({ route, navigation }) {
     getRating();
     getPost();
     getStars();
-  
   }, []);
 
-
+  // if the class has more than prof to teach
   if (prof.length > 1) {
     return (
       <KeyboardAwareScrollView style={GlobalStyles.background3} >
         <Text style={GlobalStyles.titleBig}> {route.params.shortname + ': ' + route.params.longname} </Text>
 
+        {/* create sub details screen and use the professors' name as the button. */}
         <View style={GlobalStyles.titleSmall}>
           {prof.map((prof) => {
             return (
@@ -131,31 +135,34 @@ export default function DetailsScreen({ route, navigation }) {
 
         <Text style={GlobalStyles.textDivider} ></Text>
 
+        {/* create the basic info section. */}
         <View style={GlobalStyles.titleSmall}>
-         
-              <View key={rating} style={GlobalStyles.background2}>
-                <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + getStars() + ' / 5'} </Text>
-                <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + getDif() + ' / 5'} </Text>
-                <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + getHW() + ' hours per week'} </Text>
-                {/* <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text> */}
-              </View>
-           
+
+          <View key={rating} style={GlobalStyles.background2}>
+            <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + getStars() + ' / 5'} </Text>
+            <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + getDif() + ' / 5'} </Text>
+            <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + getHW() + ' hours per week'} </Text>
+            {/* <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text> */}
+          </View>
+
         </View>
 
         <Text style={GlobalStyles.textDivider} ></Text>
 
+        {/* create the rating button. */}
         <Button color={'#0909FF'} title="Rate Class" onPress={() => (navigation.navigate('Rate', { sName: route.params.shortname, lName: route.params.longname, pName: { prof } }))} />
         <Text style={GlobalStyles.textDivider} ></Text>
 
         <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
+        {/* create the filter. */}
         <SelectList
           setSelected={(val) => setSelected(val)}
           data={options}
           save="value"
         />
 
-
+        {/* show all the posts. */}
         <View style={GlobalStyles.titleSmall}>
           {post.map((post) => {
             return (
@@ -178,16 +185,19 @@ export default function DetailsScreen({ route, navigation }) {
           })}
         </View>
 
+        {/* create the reply input box. */}
         <TextInput style={GlobalStyles.post_detail} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: event.nativeEvent.text }]) }} >{ }</TextInput>
 
       </KeyboardAwareScrollView>
     );
   }
 
+  // if the class has only 1 professor to teach
   return (
     <KeyboardAwareScrollView style={GlobalStyles.background3} >
       <Text style={GlobalStyles.titleBig}> {route.params.shortname + ': ' + route.params.longname} </Text>
 
+      {/* show the professor who teaches the class. */}
       <View style={GlobalStyles.titleSmall}>
         {prof.map((prof) => {
           return (
@@ -199,28 +209,32 @@ export default function DetailsScreen({ route, navigation }) {
       </View>
       <Text style={GlobalStyles.textDivider} ></Text>
 
+      {/* create the basic info section. */}
       <View style={GlobalStyles.titleSmall}>
-            <View key={rating} style={GlobalStyles.background2}>
-              <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + getStars() + ' / 5'} </Text>
-              <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + getDif() + ' / 5'} </Text>
-              <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + getHW() + ' hours per week'} </Text>
-              {/* <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text> */}
-            </View>
+        <View key={rating} style={GlobalStyles.background2}>
+          <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + getStars() + ' / 5'} </Text>
+          <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + getDif() + ' / 5'} </Text>
+          <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + getHW() + ' hours per week'} </Text>
+          {/* <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text> */}
+        </View>
       </View>
 
       <Text style={GlobalStyles.textDivider} ></Text>
 
+      {/* create the rating button. */}
       <Button color={'#0909FF'} title="Rate Class" onPress={() => (navigation.navigate('Rate', { sName: route.params.shortname, lName: route.params.longname, pName: { prof } }))} />
       <Text style={GlobalStyles.textDivider} ></Text>
 
       <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
+      {/* create the filter. */}
       <SelectList
         setSelected={(val) => setSelected(val)}
         data={options}
         save="value"
       />
 
+      {/* show all posts. */}
       <View style={GlobalStyles.titleSmall}>
         {post.map((post) => {
           return (
@@ -243,6 +257,7 @@ export default function DetailsScreen({ route, navigation }) {
         })}
       </View>
 
+      {/* create the reply input box. */}
       <TextInput style={GlobalStyles.post_detail} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: event.nativeEvent.text }]) }} >{ }</TextInput>
     </KeyboardAwareScrollView>
   );

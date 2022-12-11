@@ -1,6 +1,9 @@
-// created by Chang, creates the sign up page
-import React, {useState} from "react";
-import { View, Text, StyleSheet, ScrollView} from 'react-native';
+/**
+ * Created by Chang. Implements the sign up screen.
+ */
+
+import React, { useState } from "react";
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from "../../components/CustomButton/CustomButton";
 import SocialSignInButtons from "../../components/SocalSignInButtons";
@@ -16,63 +19,67 @@ const SignUpPressed = () => {
     const [passwordRepeat, setPasswordRepeat] = useState('');
 
     const onRegisterPressed = () => {
-        navigation.navigate('Home') };
+        navigation.navigate('Home')
+    };
 
     const onSignInPressed = () => {
-        navigation.navigate('Sign In') };
+        navigation.navigate('Sign In')
+    };
 
-    const onTermsOfUsePressed =() => {
-        console.warn("Terms of Use"); };
+    const onTermsOfUsePressed = () => {
+        console.warn("Terms of Use");
+    };
 
-    const onPrivacyPolicyPressed =() => {
-        console.warn("Privacy Policy"); };
+    const onPrivacyPolicyPressed = () => {
+        console.warn("Privacy Policy");
+    };
 
     return (
         <ScrollView>
-        <View style={styles.root}>
-            <Text style={styles.title}>Create an account</Text>
+            <View style={styles.root}>
+                <Text style={styles.title}>Create an account</Text>
 
-            <CustomInput 
-                placeholder="Username" 
-                value={username} 
-                setValue={setUsername} 
-            />
-            <CustomInput 
-                placeholder="Email" 
-                value={email} 
-                setValue={setEmail} 
-            />
-            <CustomInput 
-                placeholder="Password"
-                value={password}
-                setValue={setPassword}
-                secureTextEntry
-            />
-            <CustomInput 
-                placeholder="Repeat Password"
-                value={passwordRepeat}
-                setValue={setPasswordRepeat}
-                secureTextEntry
-            />
-            <CustomButton 
-                text="Register"
-                onPress={onRegisterPressed}
-            />
-            <Text style={styles.text}>
-                By registering, you confirm that you accept our {' '}
-                <Text style={styles.link} onPress={onTermsOfUsePressed}>Terms of Use</Text> and{' '}
-                <Text style={styles.link} onPress={onPrivacyPolicyPressed}>Privacy Policy</Text>
-            </Text>
+                <CustomInput
+                    placeholder="Username"
+                    value={username}
+                    setValue={setUsername}
+                />
+                <CustomInput
+                    placeholder="Email"
+                    value={email}
+                    setValue={setEmail}
+                />
+                <CustomInput
+                    placeholder="Password"
+                    value={password}
+                    setValue={setPassword}
+                    secureTextEntry
+                />
+                <CustomInput
+                    placeholder="Repeat Password"
+                    value={passwordRepeat}
+                    setValue={setPasswordRepeat}
+                    secureTextEntry
+                />
+                <CustomButton
+                    text="Register"
+                    onPress={onRegisterPressed}
+                />
+                <Text style={styles.text}>
+                    By registering, you confirm that you accept our {' '}
+                    <Text style={styles.link} onPress={onTermsOfUsePressed}>Terms of Use</Text> and{' '}
+                    <Text style={styles.link} onPress={onPrivacyPolicyPressed}>Privacy Policy</Text>
+                </Text>
 
-            <SocialSignInButtons/>
+                <SocialSignInButtons />
 
-            <CustomButton
-                text="Have an account? Sign in"
-                onPress={onSignInPressed}
-                type="TERTIARY"
-            />
+                <CustomButton
+                    text="Have an account? Sign in"
+                    onPress={onSignInPressed}
+                    type="TERTIARY"
+                />
 
-        </View>
+            </View>
         </ScrollView>
     );
 };

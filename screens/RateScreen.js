@@ -1,4 +1,7 @@
-// created by Chang, creates the rate page
+/**
+ * Created by Chang, creates the rate page.
+ */
+
 import React, { useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Image, ActivityIndicator, SafeAreaView, SnapshotViewIOS } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -49,8 +52,8 @@ export default function RateScreen({ route, navigation }) {
                   style={GlobalStyles.starImgStyle}
                   source={
                     item <= defaultRating2
-                      ? {uri: starImgFilled}
-                      : {uri: starImgCorner}
+                      ? { uri: starImgFilled }
+                      : { uri: starImgCorner }
                   }
                 />
               </TouchableOpacity>
@@ -61,42 +64,42 @@ export default function RateScreen({ route, navigation }) {
     )
   };
 
-  return(
-      
-    <KeyboardAwareScrollView style={{ flex: 1}}>
+  return (
+
+    <KeyboardAwareScrollView style={{ flex: 1 }}>
       {/* General info of rating */}
       <View style={GlobalStyles.background3}>
-      <Text style={GlobalStyles.titleBig}>  Rate this class! </Text>
-      <Text style={GlobalStyles.titleSmall}>  {sName}: {lName} </Text>
-      <Text style = {GlobalStyles.titleSmall}>  </Text>
+        <Text style={GlobalStyles.titleBig}>  Rate this class! </Text>
+        <Text style={GlobalStyles.titleSmall}>  {sName}: {lName} </Text>
+        <Text style={GlobalStyles.titleSmall}>  </Text>
 
-      {/* Star Ratings */}
-      <Text style = {GlobalStyles.textSmall5}> General Rating </Text>
-      <CustomRatingBarGR/>
-      <Text style = {GlobalStyles.textSmall5}> Level of Difficulity </Text>
-      <CustomRatingBarLoD/>     
+        {/* Star Ratings */}
+        <Text style={GlobalStyles.textSmall5}> General Rating </Text>
+        <CustomRatingBarGR />
+        <Text style={GlobalStyles.textSmall5}> Level of Difficulity </Text>
+        <CustomRatingBarLoD />
 
-      {/* Homework and textbook */}
-      <Text style = {GlobalStyles.textSmall5}> Homework </Text>
-      <TextInput style= {GlobalStyles.textIn2} placeholder="Enter hours per week" textAlign='center' keyboardType='numeric' ></TextInput>
-      <Text style={GlobalStyles.textDivider} ></Text>
-      <Text style = {GlobalStyles.textSmall5}> Book requirement</Text>
-      <Button style = {GlobalStyles.buttonRequire} color = '#646D7E' title = 'Required' />
-      <Button style = {GlobalStyles.buttonRequire} color = '#BCC6CC' title = 'Not Required' /> 
-      <Text style={GlobalStyles.textDivider} ></Text>
-      <Text style={GlobalStyles.textDivider} ></Text>
-      <Text style={GlobalStyles.textDivider} ></Text>
-      <Text style={GlobalStyles.textDivider} ></Text>
+        {/* Homework and textbook */}
+        <Text style={GlobalStyles.textSmall5}> Homework </Text>
+        <TextInput style={GlobalStyles.textIn2} placeholder="Enter hours per week" textAlign='center' keyboardType='numeric' ></TextInput>
+        <Text style={GlobalStyles.textDivider} ></Text>
+        <Text style={GlobalStyles.textSmall5}> Book requirement</Text>
+        <Button style={GlobalStyles.buttonRequire} color='#646D7E' title='Required' />
+        <Button style={GlobalStyles.buttonRequire} color='#BCC6CC' title='Not Required' />
+        <Text style={GlobalStyles.textDivider} ></Text>
+        <Text style={GlobalStyles.textDivider} ></Text>
+        <Text style={GlobalStyles.textDivider} ></Text>
+        <Text style={GlobalStyles.textDivider} ></Text>
 
-        <Button  
-          style = {GlobalStyles.button}
-          color = '#880808'
-          title = "Submit Ratings" 
-          onPress={()=> navigation.navigate('RateSubmit')}
-        />  
+        <Button
+          style={GlobalStyles.button}
+          color='#880808'
+          title="Submit Ratings"
+          onPress={() => navigation.navigate('RateSubmit')}
+        />
       </View>
     </KeyboardAwareScrollView>
   )
 };
 
-<Button color='gray' title='      Online help     ' onPress={()=> navigation.navigate('Help')}/> 
+<Button color='gray' title='      Online help     ' onPress={() => navigation.navigate('Help')} /> 

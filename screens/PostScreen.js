@@ -1,3 +1,7 @@
+/**
+ * Created by Sophia. Implements the post screen.
+ */
+
 import { React, useEffect, useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, TextInput } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -11,7 +15,7 @@ export default function PostScreen({ route, navigation }) {
   const [reply, setReply] = useState([])
   const [comments, setComment] = useState([])
 
-  // Fetches replies
+  // fetch replies of the post from the DB.
   const getReply = async () => {
     try {
       const response = await fetch(URL + '/reply/' + route.params.id)
@@ -30,8 +34,10 @@ export default function PostScreen({ route, navigation }) {
   return (
     <KeyboardAwareScrollView style={GlobalStyles.background2}>
       <Text>  </Text>
+      {/* show the main post. */}
       <Text style={GlobalStyles.textSmall} > {route.params.username + ":"} {route.params.text} </Text>
 
+      {/* show the replies to the main post. */}
       <View style={GlobalStyles.titleSmall}>
         {reply.map((reply) => {
           return (
@@ -54,6 +60,7 @@ export default function PostScreen({ route, navigation }) {
         })}
       </View>
 
+      {/* create the reply input box. */}
       <TextInput style={GlobalStyles.textIn} placeholder="post a reply" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: event.nativeEvent.text }]) }} >{ }</TextInput>
 
       <Text>  </Text>
