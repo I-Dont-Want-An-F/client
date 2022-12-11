@@ -1,3 +1,4 @@
+// created by Chang, creates the sign up page
 import React, {useState} from "react";
 import { View, Text, StyleSheet, ScrollView} from 'react-native';
 import CustomInput from '../../components/CustomInput';

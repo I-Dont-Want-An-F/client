@@ -1,3 +1,4 @@
+// created by Chang, creates the sign in page
 import React, {useState} from "react";
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
 import Logo from '../../assets/images/logo4.png';
