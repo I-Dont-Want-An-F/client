@@ -1,3 +1,7 @@
+/**
+ * This .js file stores the global style setting.
+ */
+
 import { StyleSheet } from 'react-native';
 
 export const GlobalStyles = StyleSheet.create({
@@ -12,16 +16,16 @@ export const GlobalStyles = StyleSheet.create({
         margin: 10,
         height: "85%",
         width: "100%",
-      },
+    },
     root: {
         justifyContent: "center",
         alignItems: "center",
-      },
-      input: {
+    },
+    input: {
         fontSize: 20,
         marginLeft: 10,
         width: "90%",
-      },
+    },
     container2: {
         margin: 15,
         justifyContent: "flex-start",
@@ -63,7 +67,7 @@ export const GlobalStyles = StyleSheet.create({
         color: '#DADBDD',
         marginBottom: 10
     },
-    textBig:{
+    textBig: {
         fontSize: 25,
         fontWeight: 'bold',
         textAlign: 'center',
@@ -104,19 +108,19 @@ export const GlobalStyles = StyleSheet.create({
         color: '#D22B2B',
         margin: 10,
     },
-    textSmall3:{
+    textSmall3: {
         fontSize: 18,
         fontWeight: 'bold',
-        textAlign:"left",
+        textAlign: "left",
         marginTop: 5,
         marginBottom: 0,
         color: 'black',
         margin: 10,
     },
-    textSmall4:{
+    textSmall4: {
         fontSize: 15,
         fontWeight: 'bold',
-        textAlign:"left",
+        textAlign: "left",
         marginTop: 5,
         marginBottom: 0,
         color: '#560319',
@@ -126,10 +130,10 @@ export const GlobalStyles = StyleSheet.create({
         marginBottom: 2,
         marginTop: 2
     },
-    textSmall5:{
+    textSmall5: {
         fontSize: 15,
         fontWeight: 'bold',
-        textAlign:"left",
+        textAlign: "left",
         marginTop: 5,
         marginBottom: 0,
         color: 'black',
@@ -164,7 +168,7 @@ export const GlobalStyles = StyleSheet.create({
         borderRadius: 0,
         margin: 10,
     },
-   textIn:{ //used for text input
+    textIn: { //used for text input
 
         textAlign: "center",
         alignSelf: "center",
@@ -184,70 +188,76 @@ export const GlobalStyles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 15,
         padding: 10,
-   },
-   textIn2:{ //used for text input in the rate screen 
-    textAlign: "center",
-    alignSelf: "center",
-    width: 300,
-    height: 40,
-    color: '#4C4646',
-    borderWidth: 2,
-    borderRadius: 10, 
-    marginTop: 15,
-    padding: 10,
     },
-   button: {
-    backgroundColor: "#880808",
-    width: 20,
-    padding: 20,
-    borderRadius: 5,
-   },
-   buttonRequire: {
-    alignItems: 'left',
-    justifyContent: 'left',
-    width: 10,
-    padding: 0,
-    borderRadius: 10,
-    marginTop: 5,
-    marginBottom: 5
-   },
-   container_detail: {
-    //flex: 1,
-    width: 350,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 5,
-  },
-  post_detail: {
-    textAlign: "center",
-    alignSelf: "center",
-    width: 350,
-    borderWidth: 1,
-    borderRadius: 5,
-    marginTop: 15,
-    padding: 10,
-  },
-  box_detail: {
-    borderWidth: 1,
-    margin: 5,
-    padding: 5,
-    fontSize: 15
-  },
-  space2_detail: {
-    width: 10,
-    height: 20,
-  },
-  CustomRatingBarStyle: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    marginTop: 8,
-    marginBottom: 5
-  },
-  starImgStyle: {
-    width: 40,
-    height: 40,
-    resizeMode: 'cover',
-  }
+    textIn2: { //used for text input in the rate screen 
+        textAlign: "center",
+        alignSelf: "center",
+        width: 300,
+        height: 40,
+        color: '#4C4646',
+        borderWidth: 2,
+        borderRadius: 10,
+        marginTop: 15,
+        padding: 10,
+    },
+    button: {
+        backgroundColor: "#880808",
+        width: 20,
+        padding: 20,
+        borderRadius: 5,
+    },
+    buttonRequire: {
+        alignItems: 'left',
+        justifyContent: 'left',
+        width: 10,
+        padding: 0,
+        borderRadius: 10,
+        marginTop: 5,
+        marginBottom: 5
+    },
+    container_detail: {
+        //flex: 1,
+        width: 350,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 5,
+    },
+    post_detail: {
+        textAlign: "center",
+        alignSelf: "center",
+        width: 350,
+        borderWidth: 1,
+        borderRadius: 5,
+        marginTop: 15,
+        padding: 10,
+    },
+    box_detail: {
+        borderWidth: 1,
+        margin: 5,
+        padding: 5,
+        fontSize: 15
+    },
+    space2_detail: {
+        width: 10,
+        height: 20,
+    },
+    CustomRatingBarStyle: {
+        justifyContent: 'center',
+        flexDirection: 'row',
+        marginTop: 8,
+        marginBottom: 5
+    },
+    starImgStyle: {
+        width: 40,
+        height: 40,
+        resizeMode: 'cover',
+    },
+    ratePic: {
+        width: 350,
+        height: 400,
+        resizeMode: 'contain',
+        marginTop: 0
+    },
 });

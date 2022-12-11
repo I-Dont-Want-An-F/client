@@ -1,4 +1,9 @@
 
+/**
+ * Created by Sophia. Implements the post screen.
+ */
+
+
 import { React, useEffect, useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, TextInput } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -15,7 +20,7 @@ export default function PostScreen({ route, navigation }) {
   const [inputValue, setInputValue] = useState('');
   
 
-  // Fetches replies
+  // fetch replies of the post from the DB.
   const getReply = async () => {
     try {
       const response = await fetch(URL + '/reply/' + route.params.id)
@@ -64,7 +69,12 @@ export default function PostScreen({ route, navigation }) {
   return (
     <View style={GlobalStyles.background2}>
       <Text>  </Text>
+      {/* show the main post. */}
       <Text style={GlobalStyles.textSmall} > {route.params.username + ":"} {route.params.text} </Text>
+
+
+      {/* show the replies to the main post. */}
+
       <View style={GlobalStyles.titleSmall}>
         {reply.map((reply) => {
           return (
@@ -76,6 +86,7 @@ export default function PostScreen({ route, navigation }) {
         })}
       </View>
 
+
       <FlatList data={comments} renderItem={({ item }) => (
         <View>
           <Text style={GlobalStyles.textSmall}>{'         ' + item.user1}</Text>
@@ -85,6 +96,22 @@ export default function PostScreen({ route, navigation }) {
         
       <TextInput style={GlobalStyles.textIn} placeholder="post a reply" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: inputValue}  ]) , Sendreply() }} onChangeText={setInputValue}  >{ }</TextInput>
       
+
+      <View style={GlobalStyles.titleSmall}>
+        {comments.map((item) => {
+          return (
+            <View key={item}>
+              <Text style={GlobalStyles.textSmall}>{'         ' + item.user1}</Text>
+              <Text style={GlobalStyles.textSmall2}>{'         ' + item.post}</Text>
+            </View>
+          );
+        })}
+      </View>
+
+      {/* create the reply input box. */}
+      <TextInput style={GlobalStyles.textIn} placeholder="post a reply" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: event.nativeEvent.text }]) }} >{ }</TextInput>
+
+
       <Text>  </Text>
       {/* <TextInput onSubmitEditing={replySend} value={inputValue}  onChangeText={setInputValue} /> */}
     </View>

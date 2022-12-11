@@ -1,9 +1,12 @@
+/**
+ * Created by Chang, creates the rate page.
+ */
+
 import React, { useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Image, ActivityIndicator, SafeAreaView, SnapshotViewIOS } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { TextInput } from 'react-native-gesture-handler';
 import { GlobalStyles } from '../shared/GlobalStyles';
-import Popup from '../components/Popup';
 
 export default function RateScreen({ route, navigation }) {
 
@@ -17,6 +20,7 @@ export default function RateScreen({ route, navigation }) {
   const starImgFilled = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png';
   const starImgCorner = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png';
 
+  // Rate general rating of a class
   const CustomRatingBarGR = () => {
     return (
       <View style={GlobalStyles.CustomRatingBarStyle}>
@@ -32,6 +36,7 @@ export default function RateScreen({ route, navigation }) {
     )
   };
 
+  // Rate level of difficulty of a class
   const CustomRatingBarLoD = () => {
     return (
       <View style={GlobalStyles.CustomRatingBarStyle}>
@@ -47,8 +52,8 @@ export default function RateScreen({ route, navigation }) {
                   style={GlobalStyles.starImgStyle}
                   source={
                     item <= defaultRating2
-                      ? {uri: starImgFilled}
-                      : {uri: starImgCorner}
+                      ? { uri: starImgFilled }
+                      : { uri: starImgCorner }
                   }
                 />
               </TouchableOpacity>
@@ -59,34 +64,42 @@ export default function RateScreen({ route, navigation }) {
     )
   };
 
-  return(
-      
-    <KeyboardAwareScrollView style={{ flex: 1}}>
-      <View style={GlobalStyles.background3}>
-      <Text style={GlobalStyles.titleBig}>  Rate this class! </Text>
-      <Text style={GlobalStyles.titleSmall}>  {sName}: {lName} </Text>
-      <Text style = {GlobalStyles.titleSmall}>  </Text>
-      <Text style = {GlobalStyles.textSmall5}> General Rating </Text>
-      <CustomRatingBarGR/>
-      <Text style = {GlobalStyles.textSmall5}> Level of Difficulity </Text>
-      <CustomRatingBarLoD/>     
-      <Text style = {GlobalStyles.textSmall5}> Homework </Text>
-      <TextInput style= {GlobalStyles.textIn2} placeholder="Enter hours per week" textAlign='center' keyboardType='numeric' ></TextInput>
-      <Text style={GlobalStyles.textDivider} ></Text>
-      <Text style = {GlobalStyles.textSmall5}> Book requirement</Text>
-      <Button style = {GlobalStyles.buttonRequire} color = '#646D7E' title = 'Required' />
-      <Button style = {GlobalStyles.buttonRequire} color = '#BCC6CC' title = 'Not Required' /> 
-      <Text style={GlobalStyles.textDivider} ></Text>
-      <Text style={GlobalStyles.textDivider} ></Text>
-      <Text style={GlobalStyles.textDivider} ></Text>
-      <Text style={GlobalStyles.textDivider} ></Text>
+  return (
 
-        <Button  
-          style = {GlobalStyles.button}
-          color = '#880808'
-          title = "Submit Ratings" 
-        />  
+    <KeyboardAwareScrollView style={{ flex: 1 }}>
+      {/* General info of rating */}
+      <View style={GlobalStyles.background3}>
+        <Text style={GlobalStyles.titleBig}>  Rate this class! </Text>
+        <Text style={GlobalStyles.titleSmall}>  {sName}: {lName} </Text>
+        <Text style={GlobalStyles.titleSmall}>  </Text>
+
+        {/* Star Ratings */}
+        <Text style={GlobalStyles.textSmall5}> General Rating </Text>
+        <CustomRatingBarGR />
+        <Text style={GlobalStyles.textSmall5}> Level of Difficulity </Text>
+        <CustomRatingBarLoD />
+
+        {/* Homework and textbook */}
+        <Text style={GlobalStyles.textSmall5}> Homework </Text>
+        <TextInput style={GlobalStyles.textIn2} placeholder="Enter hours per week" textAlign='center' keyboardType='numeric' ></TextInput>
+        <Text style={GlobalStyles.textDivider} ></Text>
+        <Text style={GlobalStyles.textSmall5}> Book requirement</Text>
+        <Button style={GlobalStyles.buttonRequire} color='#646D7E' title='Required' />
+        <Button style={GlobalStyles.buttonRequire} color='#BCC6CC' title='Not Required' />
+        <Text style={GlobalStyles.textDivider} ></Text>
+        <Text style={GlobalStyles.textDivider} ></Text>
+        <Text style={GlobalStyles.textDivider} ></Text>
+        <Text style={GlobalStyles.textDivider} ></Text>
+
+        <Button
+          style={GlobalStyles.button}
+          color='#880808'
+          title="Submit Ratings"
+          onPress={() => navigation.navigate('RateSubmit')}
+        />
       </View>
     </KeyboardAwareScrollView>
   )
 };
+
+<Button color='gray' title='      Online help     ' onPress={() => navigation.navigate('Help')} /> 

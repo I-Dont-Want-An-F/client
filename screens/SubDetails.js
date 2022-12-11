@@ -1,3 +1,8 @@
+/**
+ * Created by Sophia. Implements the sub-detail screen for classes with multiple professors.
+ * Based on the DetailScreen.js.
+ */
+
 import React, { useEffect, useState } from 'react';
 import { Button, View, Text, TouchableOpacity, FlatList, StyleSheet, KeyboardAvoidingView, Image, ActivityIndicator, SafeAreaView } from 'react-native';
 import { ScrollView, TextInput } from 'react-native-gesture-handler';
@@ -11,20 +16,20 @@ import { URL } from '../shared/URL';
 
 export default function SubDetailsScreen({ route, navigation }) {
 
+    // receive class infos from the parent detail page.
     const { sName, lName, pName } = route.params;
+
     const [username, setUsername] = useState();
     const [prof, setProf] = useState([]);
     const [rating, setRating] = useState([]);
     const [post, setPost] = useState([]);
     const [comments, setComment] = useState([]);
 
+    // set up the options for the filter.
     const [selected, setSelected] = useState([]);
     const options = [{ key: '1', value: 'Comments' }, { key: '2', value: 'Questions' }, { key: '3', value: 'All' },];
 
-    const [defaultRating, setDefaultRating] = useState(2);
-    const [maxRating, setmaxRating] = useState([1, 2, 3, 4, 5]);
-    const starImgFilled = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png';
-
+    // fetch basic informations from the DB.
     const getRating = async () => {
         try {
             const response = await fetch(URL + '/rating/' + sName)
@@ -44,6 +49,48 @@ export default function SubDetailsScreen({ route, navigation }) {
             console.error(error);
         }
     }
+    const getStars = (type) => {
+        var sum = 0;
+        for (var i = 0; i < rating.length; i++) {
+            sum += rating[i].stars;
+        }
+        sum = sum / rating.length;
+        sum = Math.round(sum * 100) / 100;
+        return (
+            sum
+        )
+    }
+
+    const getHW = () => {
+        var sum = 0;
+        for (var i = 0; i < rating.length; i++) {
+            sum += rating[i].hw;
+        }
+        sum = sum / rating.length;
+        sum = Math.round(sum * 100) / 100;
+        return (sum)
+    }
+
+    const getDif = () => {
+        var sum = 0;
+        for (var i = 0; i < rating.length; i++) {
+            sum += rating[i].dif;
+        }
+        sum = sum / rating.length;
+        sum = Math.round(sum * 100) / 100;
+        return (sum)
+    }
+
+    //need to do somthing differnet 
+    const getBook = () => {
+        var sum = 0;
+        for (var i = 0; i < rating.length; i++) {
+            sum += rating[i].book;
+        }
+        sum = sum / rating.length;
+        sum = Math.round(sum * 100) / 100;
+        return (sum)
+    }
 
     useEffect(() => {
         getLocalData('username').then((data) => { setUsername(data.toLocaleLowerCase()) });
@@ -51,6 +98,7 @@ export default function SubDetailsScreen({ route, navigation }) {
         getPost();
     }, []);
 
+    // create the sub detail page
     return (
         <KeyboardAwareScrollView backGroundColor='#DABEA7' >
             <Text style={GlobalStyles.titleBig}> {sName + ': ' + lName} </Text>
@@ -62,16 +110,14 @@ export default function SubDetailsScreen({ route, navigation }) {
             <Text style={GlobalStyles.textDivider} ></Text>
 
             <View style={GlobalStyles.titleSmall}>
-                {rating.map((rating) => {
-                    return (
-                        <View key={rating} style={GlobalStyles.background2}>
-                            <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + rating.stars + ' / 5'} </Text>
-                            <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + rating.dif + ' / 5'} </Text>
-                            <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + rating.hw + ' hours per week'} </Text>
-                            <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text>
-                        </View>
-                    );
-                })}
+
+                <View key={rating} style={GlobalStyles.background2}>
+                    <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + getStars() + ' / 5'} </Text>
+                    <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + getDif() + ' / 5'} </Text>
+                    <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + getHW() + ' hours per week'} </Text>
+                    {/* <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text> */}
+                </View>
+
             </View>
 
             <Text style={GlobalStyles.textDivider} ></Text>
@@ -81,22 +127,14 @@ export default function SubDetailsScreen({ route, navigation }) {
 
             <Text style={GlobalStyles.titleSmall}> {'Showing all posts:'} </Text>
 
+            {/* create the filter. */}
             <SelectList
                 setSelected={(val) => setSelected(val)}
                 data={options}
                 save="value"
             />
 
-            {/* <View style={GlobalStyles.container_detail}>
-        <Text style={GlobalStyles.textSmall4}> Filter by</Text>
-        <View style={GlobalStyles.space2_detail} />
-        <Button color={'#757575'} title="Comments" />
-        <View style={GlobalStyles.space2_detail} />
-        <Button color={'#757575'} title="Questions" />
-        <View style={GlobalStyles.space2_detail} />
-        <Button color={'#757575'} title="All" />
-      </View> */}
-
+            {/* show the posts. */}
             <View style={GlobalStyles.titleSmall}>
                 {post.map((post) => {
                     return (

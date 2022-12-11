@@ -1,3 +1,7 @@
+/**
+ * Created by Eli. Get and store the local data.
+ */
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const storeLocalData = async (key, value) => {
@@ -6,12 +10,12 @@ export const storeLocalData = async (key, value) => {
     } catch (e) {
         console.error(e);
     }
-  }
+}
 
-  export const getLocalData = async (key) => {
+export const getLocalData = async (key) => {
     try {
         return await AsyncStorage.getItem(key);
-    } catch(e) {
+    } catch (e) {
         console.error(e);
     }
-  }
+}

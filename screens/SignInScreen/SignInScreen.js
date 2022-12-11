@@ -1,5 +1,9 @@
-import React, {useState} from "react";
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView} from 'react-native';
+/**
+ * Created by Chang. Implements the sign in screen.
+ */
+
+import React, { useState } from "react";
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
 import Logo from '../../assets/images/logo4.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from "../../components/CustomButton/CustomButton";
@@ -13,66 +17,70 @@ const SignInScreen = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const {height} = useWindowDimensions();
+    const { height } = useWindowDimensions();
 
     const navigation = useNavigation();
 
     const onSignInPressed = () => {
         storeLocalData('username', username);
 
+
         
         navigation.navigate('Home') };
 
+
     const onSignUpPressed = () => {
-        navigation.navigate('Sign Up') };
+        navigation.navigate('Sign Up')
+    };
 
     const onContinueAsGuest = () => {
-        navigation.navigate('Home') };
-
-
+        navigation.navigate('Home')
+    };
 
         
     return (
         <ScrollView>
-        <View style={styles.root}>
-            <Image 
-                source={Logo} 
-                style={[styles.loop, {height: height * 0.3}]}
-                resizeMode='contain' 
-            />
-            <CustomInput 
-                placeholder="Username" 
-                value={username} 
-                setValue={setUsername} 
-            />
-            <CustomInput 
-                placeholder="Password"
-                value={password}
-                setValue={setPassword}
-                secureTextEntry
-            />
 
-            <CustomButton 
-                text="Sign In"
-                onPress={onSignInPressed}
 
-            />
+            <View style={styles.root}>
+                <Image
+                    source={Logo}
+                    style={[styles.loop, { height: height * 0.3 }]}
+                    resizeMode='contain'
+                />
+                <CustomInput
+                    placeholder="Username"
+                    value={username}
+                    setValue={setUsername}
+                />
+                <CustomInput
+                    placeholder="Password"
+                    value={password}
+                    setValue={setPassword}
+                    secureTextEntry
+                />
 
-            <CustomButton
-                text="Continue as Guest"
-                onPress={onContinueAsGuest}
-                type='TERTIARY'
-            />
+                <CustomButton
+                    text="Sign In"
+                    onPress={onSignInPressed}
+                />
 
-            <SocialSignInButtons />
+                <CustomButton
+                    text="Continue as Guest"
+                    onPress={onContinueAsGuest}
+                    type='TERTIARY'
+                />
 
-            <CustomButton
-                text="Don't have an account? Create one!"
-                onPress={onSignUpPressed}
-                type="TERTIARY"
-            />
+                <SocialSignInButtons />
 
-        </View>
+                <CustomButton
+                    text="Don't have an account? Create one!"
+                    onPress={onSignUpPressed}
+                    type="TERTIARY"
+                />
+
+            </View>
+
         </ScrollView>
     );
 };
