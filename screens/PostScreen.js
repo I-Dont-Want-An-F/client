@@ -45,8 +45,7 @@ export default function PostScreen({ route, navigation }) {
 
   function Sendreply () {
     if (inputValue === ''){return}
-    console.log(reply)
-    let replies = {ID: reply.length+30, userID: username, text : inputValue }
+    let replies = { ID: reply.length+40, text : inputValue }
     console.log(replies)
     fetch(URL + '/createreply', {
         method: 'POST',

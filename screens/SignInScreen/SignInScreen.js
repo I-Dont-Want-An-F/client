@@ -19,6 +19,8 @@ const SignInScreen = () => {
 
     const onSignInPressed = () => {
         storeLocalData('username', username);
+
+        
         navigation.navigate('Home') };
 
     const onSignUpPressed = () => {
@@ -27,6 +29,9 @@ const SignInScreen = () => {
     const onContinueAsGuest = () => {
         navigation.navigate('Home') };
 
+
+
+        
     return (
         <ScrollView>
         <View style={styles.root}>
@@ -50,6 +55,7 @@ const SignInScreen = () => {
             <CustomButton 
                 text="Sign In"
                 onPress={onSignInPressed}
+
             />
 
             <CustomButton
