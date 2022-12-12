@@ -20,10 +20,13 @@ import RateScreen from './screens/RateScreen';
 import OnlineHelp from './screens/OnlineHelp';
 import RateSubmit from './screens/RateSubmit'
 import { Button, StyleSheet } from 'react-native';
+import { LogBox } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+    LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+    LogBox.ignoreAllLogs();//Ignore all log notifications
 
     return (
         <NavigationContainer>
