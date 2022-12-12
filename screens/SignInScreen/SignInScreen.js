@@ -23,8 +23,11 @@ const SignInScreen = () => {
 
     const onSignInPressed = () => {
         storeLocalData('username', username);
-        navigation.navigate('Home')
-    };
+
+
+        
+        navigation.navigate('Home') };
+
 
     const onSignUpPressed = () => {
         navigation.navigate('Sign Up')
@@ -34,8 +37,11 @@ const SignInScreen = () => {
         navigation.navigate('Home')
     };
 
+        
     return (
         <ScrollView>
+
+
             <View style={styles.root}>
                 <Image
                     source={Logo}
@@ -74,6 +80,7 @@ const SignInScreen = () => {
                 />
 
             </View>
+
         </ScrollView>
     );
 };

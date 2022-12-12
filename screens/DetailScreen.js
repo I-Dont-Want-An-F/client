@@ -22,6 +22,10 @@ export default function DetailsScreen({ route, navigation }) {
   const [rating, setRating] = useState([]);
   const [post, setPost] = useState([]);
   const [comments, setComment] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+
+  //finds the averages
+  
 
   // finds the averages of the rating
   const [stars, setStars] = useState([]);
@@ -32,10 +36,9 @@ export default function DetailsScreen({ route, navigation }) {
   const [selected, setSelected] = useState([]);
   const options = [{ key: '1', value: 'Comments' }, { key: '2', value: 'Questions' }, { key: '3', value: 'All' },];
 
-  // fetch the class data from the DB.
   const getProf = async () => {
     try {
-      const response = await fetch(URL + '/prof/' + route.params.shortname)
+      const response = await fetch(URL + '/prof/' + route.params.shortname )
       const json = await response.json();
       setProf(json);
     } catch (error) {
@@ -70,7 +73,9 @@ export default function DetailsScreen({ route, navigation }) {
     }
     sum = sum / rating.length;
     sum = Math.round(sum * 100) / 100;
-    return (
+
+    return(
+
       sum
     )
   }
@@ -82,7 +87,11 @@ export default function DetailsScreen({ route, navigation }) {
     }
     sum = sum / rating.length;
     sum = Math.round(sum * 100) / 100;
-    return (sum)
+
+    return(sum)
+
+
+
   }
 
   const getDif = () => {
@@ -92,7 +101,11 @@ export default function DetailsScreen({ route, navigation }) {
     }
     sum = sum / rating.length;
     sum = Math.round(sum * 100) / 100;
+
+
+
     return (sum)
+
   }
 
   //need to do somthing differnet 
@@ -103,7 +116,9 @@ export default function DetailsScreen({ route, navigation }) {
     }
     sum = sum / rating.length;
     sum = Math.round(sum * 100) / 100;
+
     return (sum)
+
   }
 
   useEffect(() => {
@@ -112,9 +127,32 @@ export default function DetailsScreen({ route, navigation }) {
     getRating();
     getPost();
     getStars();
+
+  
   }, []);
 
+  function Sendpost () {
+    if (inputValue === ''){return}
+    
+    let Posts = {ID: post.length+49, classID : route.params.id, userID: username, text : inputValue }
+    console.log(Posts)
+    fetch(URL + '/createposts', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Posts)
+    })
+    setInputValue('');
+    getPost();
+}
+
+
+
+
   // if the class has more than prof to teach
+
   if (prof.length > 1) {
     return (
       <KeyboardAwareScrollView style={GlobalStyles.background3} >
@@ -138,12 +176,17 @@ export default function DetailsScreen({ route, navigation }) {
         {/* create the basic info section. */}
         <View style={GlobalStyles.titleSmall}>
 
+         
+           
+
+
           <View key={rating} style={GlobalStyles.background2}>
             <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + getStars() + ' / 5'} </Text>
             <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + getDif() + ' / 5'} </Text>
             <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + getHW() + ' hours per week'} </Text>
             {/* <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text> */}
           </View>
+
 
         </View>
 
@@ -162,7 +205,11 @@ export default function DetailsScreen({ route, navigation }) {
           save="value"
         />
 
+
+
+
         {/* show all the posts. */}
+
         <View style={GlobalStyles.titleSmall}>
           {post.map((post) => {
             return (
@@ -211,12 +258,15 @@ export default function DetailsScreen({ route, navigation }) {
 
       {/* create the basic info section. */}
       <View style={GlobalStyles.titleSmall}>
+
+
         <View key={rating} style={GlobalStyles.background2}>
           <Text style={GlobalStyles.textSmall3}> {'General Rating: ' + getStars() + ' / 5'} </Text>
           <Text style={GlobalStyles.textSmall3}> {'Difficulty: ' + getDif() + ' / 5'} </Text>
           <Text style={GlobalStyles.textSmall3}> {'Homework frequency: ' + 'Approximately ' + getHW() + ' hours per week'} </Text>
           {/* <Text style={GlobalStyles.textSmall3}> {'Textbook requirement: ' + rating.book} </Text> */}
         </View>
+
       </View>
 
       <Text style={GlobalStyles.textDivider} ></Text>
@@ -234,7 +284,10 @@ export default function DetailsScreen({ route, navigation }) {
         save="value"
       />
 
+
+
       {/* show all posts. */}
+
       <View style={GlobalStyles.titleSmall}>
         {post.map((post) => {
           return (
@@ -257,8 +310,10 @@ export default function DetailsScreen({ route, navigation }) {
         })}
       </View>
 
-      {/* create the reply input box. */}
-      <TextInput style={GlobalStyles.post_detail} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: event.nativeEvent.text }]) }} >{ }</TextInput>
+
+      <TextInput style={GlobalStyles.post_detail} placeholder="post a comment" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: inputValue }]) , Sendpost ()}} onChangeText={setInputValue} >{ }</TextInput>
+
+
     </KeyboardAwareScrollView>
   );
 }

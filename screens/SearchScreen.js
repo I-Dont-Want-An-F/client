@@ -65,7 +65,7 @@ export default function SearchScreen({ navigation }) {
   useEffect(() => {
     const getData = async () => {
       const apiResponse = await fetch(
-        "https://fast-woodland-72631.herokuapp.com/classes"
+        "https://shrouded-lowlands-27855.herokuapp.com/classes"
       );
       const data = await apiResponse.json();
       setFakeData(data);

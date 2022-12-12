@@ -43,6 +43,7 @@ export default function MessageScreen ({ route, navigation }) {
     // Post new message to the database
     function onSend () {
         if (inputValue === ''){return}
+        
         let message = {ID: messages.length+1, roomID: roomid, text: inputValue, sender: username.toLocaleLowerCase() }
         fetch(URL + '/sendmessage', {
             method: 'POST',

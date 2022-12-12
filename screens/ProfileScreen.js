@@ -19,6 +19,7 @@ export default function ProfileScreen({ navigation }) {
   const [username, setUsername] = useState("abc12");
   const [classTaking, setTaking] = useState([]);
   const [classTaken, setTaken] = useState([]);
+  
 
   // get the user data from the DB.
   const getTaking = async () => {
