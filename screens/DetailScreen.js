@@ -25,10 +25,7 @@ export default function DetailsScreen({ route, navigation }) {
   const [inputValue, setInputValue] = useState('');
 
   //finds the averages
-  const [stars, setStars] = useState([]);
-  const [hw, setHW] = useState([]);
-  const [dif, setDif] = useState([]);
-  const [book, setBook] = useState([]);
+  
 
   // finds the averages of the rating
   const [stars, setStars] = useState([]);

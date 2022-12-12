@@ -87,14 +87,14 @@ export default function PostScreen({ route, navigation }) {
       </View>
 
 
-      <FlatList data={comments} renderItem={({ item }) => (
+      {/* <FlatList data={comments} renderItem={({ item }) => (
         <View>
           <Text style={GlobalStyles.textSmall}>{'         ' + item.user1}</Text>
           <Text style={GlobalStyles.textSmall2}>{'         ' + item.post}</Text>
         </View>
       )} />
         
-      <TextInput style={GlobalStyles.textIn} placeholder="post a reply" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: inputValue}  ]) , Sendreply() }} onChangeText={setInputValue}  >{ }</TextInput>
+      <TextInput style={GlobalStyles.textIn} placeholder="post a reply" onSubmitEditing={(event) => { setComment([...comments, { user1: username, post: inputValue}  ]) , Sendreply() }} onChangeText={setInputValue}  >{ }</TextInput> */}
       
 
       <View style={GlobalStyles.titleSmall}>
