@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 
 export default function ProfileScreen({ navigation }) {
 
-  const [username, setUsername] = useState("abc12");
+  const [username, setUsername] = useState("");
   const [classTaking, setTaking] = useState([]);
   const [classTaken, setTaken] = useState([]);
   
